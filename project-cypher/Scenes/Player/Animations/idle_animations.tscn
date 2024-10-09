@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjs4y5cfi2v7d"]
+
+[ext_resource type="AnimationLibrary" uid="uid://dg2gx1pln2vh" path="res://Scenes/Player/Animations/IdleAnimations.res" id="1_3iik6"]
+
+[node name="IdleAnimations" type="AnimationPlayer"]
+libraries = {
+"IdleAnimations": ExtResource("1_3iik6")
+}

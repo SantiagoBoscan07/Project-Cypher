@@ -6,20 +6,29 @@ class_name PlayerMoveState
 @export var turnSpeed = 25
 @export var acceleration = 45
 @export var deceleration = 40
+@export var playerAnimationTree: AnimationTree
 var direction = Vector2.ZERO
 var maxSpeedChange = 0
 var desiredSpeed = Vector2.ZERO
+var lastDirectionFacing
 
 func enter():
-	pass
+	playerAnimationTree["parameters/conditions/idle"] = false
+	playerAnimationTree["parameters/conditions/moving"] = true
 
 func physicsUpdate(_delta: float):
 	movement()
+	playerAnimationTree["parameters/Move/blend_position"].x = desiredSpeed.x
+	playerAnimationTree["parameters/Move/blend_position"].y = -desiredSpeed.y
+	if direction != Vector2.ZERO:
+		lastDirectionFacing = direction
 	player.move_and_slide()
 
 func update(_delta: float):
 	getInput()
 	if !Input.is_action_pressed("moveUp") and !Input.is_action_pressed("moveDown") and !Input.is_action_pressed("moveLeft") and !Input.is_action_pressed("moveRight"):
+		playerAnimationTree["parameters/Idle/blend_position"].x = lastDirectionFacing.x
+		playerAnimationTree["parameters/Idle/blend_position"].y = -lastDirectionFacing.y
 		stateTransition.emit(get_parent().currentState, "PlayerIdleState")
 
 func getInput():

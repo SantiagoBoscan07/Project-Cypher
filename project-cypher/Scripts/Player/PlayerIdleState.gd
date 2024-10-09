@@ -1,11 +1,13 @@
 extends State
 class_name PlayerIdleState
 
-@export var playerAnimationTree: AnimationPlayer
+@export var playerAnimationTree: AnimationTree
 var movementActions = ["moveUp", "moveDown", "moveLeft", "moveRight"]
 
 func enter():
-	playerAnimationTree.play("idleDown")
+	playerAnimationTree["parameters/conditions/idle"] = true
+	playerAnimationTree["parameters/conditions/moving"] = false
+
 
 func update(_delta: float):
 	for action in movementActions:

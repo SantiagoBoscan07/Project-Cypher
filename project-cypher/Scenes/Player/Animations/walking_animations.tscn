@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cafhm0yengc73"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bce40qro0huc1" path="res://Scenes/Player/Animations/WalkingAnimations.res" id="1_klcmt"]
+
+[node name="WalkingAnimations" type="AnimationPlayer"]
+libraries = {
+"WalkingAnimations": ExtResource("1_klcmt")
+}

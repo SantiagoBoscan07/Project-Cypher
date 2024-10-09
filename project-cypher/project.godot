@@ -13,6 +13,7 @@ config_version=5
 config/name="Project Cypher"
 config/description="Bullet Hell Game Developed for Init Build Fall 2024"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]
