@@ -21,7 +21,6 @@ func shoot():
 	if player.lastDirectionFacing == Vector2.ZERO:
 		player.lastDirectionFacing = Vector2.DOWN
 	projectile.direction = player.lastDirectionFacing
-	print(player.lastDirectionFacing)
 	projectile.z_index = player.z_index - 1
 	get_tree().current_scene.add_child(projectile)
 	canShoot = false

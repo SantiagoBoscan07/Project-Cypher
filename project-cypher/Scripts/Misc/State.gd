@@ -18,7 +18,3 @@ func update(_delta:float):
 # Checks every frame and it accounts for any physics changes
 func physicsUpdate(_delta:float):
 	pass
-
-# Checks if an input has been pressed
-func processInput(event: InputEvent):
-	pass
