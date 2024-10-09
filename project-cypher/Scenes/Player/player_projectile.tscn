@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dppj5rjyutdgr"]
+
+[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="1_o64sq"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerProjectile.gd" id="1_wsyvj"]
+
+[node name="PlayerProjectile" type="Node2D"]
+script = ExtResource("1_wsyvj")
+speed = 250.0
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_o64sq")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
+
+[connection signal="screen_exited" from="Body/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
