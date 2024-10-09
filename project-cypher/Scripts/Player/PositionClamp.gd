@@ -9,6 +9,7 @@ var right_border = 448
 var bottom_border = 238
 var top_border = 0
 
+# Clamp the player within a small space
 func _process(delta):
 	if body:
 		body.global_position.x = clamp(body.global_position.x, left_border + margin, right_border - margin)

@@ -1,6 +1,7 @@
 extends Node
 class_name Health
 
+# Setter and Getter for Health
 @export var health: int = 1:
 	set(value):
 		health = value

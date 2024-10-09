@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=44 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -126,6 +126,52 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 radius = 6.0
 height = 16.0
 
+[sub_resource type="Shader" id="Shader_kyj71"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+uniform int particles_anim_h_frames;
+uniform int particles_anim_v_frames;
+uniform bool particles_anim_loop;
+
+void vertex() {
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	VERTEX.xy /= vec2(h_frames, v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}	
+	vec2 scale_uv = UV / vec2(h_frames, v_frames);
+	UV = scale_uv + vec2(
+		mod(particle_frame, h_frames) / h_frames, 
+		floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui6qp"]
+shader = SubResource("Shader_kyj71")
+shader_parameter/particles_anim_h_frames = 4
+shader_parameter/particles_anim_v_frames = 8
+shader_parameter/particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_caoq6"]
+_data = [Vector2(0, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.986667, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vehsm"]
+curve = SubResource("Curve_caoq6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sj58v"]
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_vehsm")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_205wi")
 playerSpeed = 75
@@ -139,7 +185,6 @@ position = Vector2(14, 11)
 texture = ExtResource("1_gaql2")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2
@@ -188,6 +233,17 @@ visible = false
 position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_btcbe")
 
+[node name="Particles" type="Node2D" parent="Body"]
+
+[node name="DashParticles" type="GPUParticles2D" parent="Body/Particles"]
+z_index = -2
+material = SubResource("ShaderMaterial_ui6qp")
+position = Vector2(14, 12)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_sj58v")
+texture = ExtResource("1_gaql2")
+lifetime = 0.5
+
 [node name="Components" type="Node2D" parent="."]
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
@@ -217,12 +273,14 @@ shootingTimer = NodePath("../../../Timer/ShootingTimer")
 script = ExtResource("9_86i7t")
 body = NodePath("../../..")
 
-[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown")]
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite")]
 script = ExtResource("13_531wn")
 player = NodePath("../../..")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 dashDuration = NodePath("../../../Timer/DashDuration")
 dashCooldown = NodePath("../../../Timer/DashCooldown")
+dashClones = NodePath("../../../Body/Particles/DashParticles")
+sprite = NodePath("../../../Body/Sprites")
 
 [node name="Misc" type="Node" parent="Components"]
 
@@ -244,6 +302,7 @@ wait_time = 0.85
 one_shot = true
 
 [node name="Debug" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = 14.0
