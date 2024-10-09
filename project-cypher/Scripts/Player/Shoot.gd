@@ -8,10 +8,12 @@ class_name Shoot
 var canShoot: bool = true
 var projectile
 
+# If shoot button is pressed it calls the shoot function
 func _physics_process(delta):
 	if Input.is_action_pressed("shoot") and canShoot:
 		shoot()
 
+# Loads the projectile scene and creates an instantiate in the scene
 func shoot():
 	shootingTimer.start()
 	projectile = projectilePreload.instantiate()
@@ -21,6 +23,6 @@ func shoot():
 	get_tree().current_scene.add_child(projectile)
 	canShoot = false
 
-
+# Once the timer runs out, the player can shoot again
 func _on_shooting_timer_timeout() -> void:
 	canShoot = true
