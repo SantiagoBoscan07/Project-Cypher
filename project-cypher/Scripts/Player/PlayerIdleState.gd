@@ -2,10 +2,12 @@ extends State
 class_name PlayerIdleState
 
 @export var playerAnimationTree: AnimationTree
+@export var player: CharacterBody2D
 var movementActions = ["moveUp", "moveDown", "moveLeft", "moveRight"]
 
 # Animations are set for idle
 func enter():
+	player.isMoving = false
 	playerAnimationTree["parameters/conditions/idle"] = true
 	playerAnimationTree["parameters/conditions/moving"] = false
 

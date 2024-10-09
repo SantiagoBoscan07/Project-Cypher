@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=39 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="7_ut3vb"]
 [ext_resource type="Script" path="res://Scripts/Player/Shoot.gd" id="8_4eq7g"]
 [ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="9_86i7t"]
+[ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
@@ -127,6 +128,7 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_205wi")
+playerSpeed = 75
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -192,19 +194,16 @@ shape = SubResource("CapsuleShape2D_btcbe")
 script = ExtResource("2_adtno")
 initialState = NodePath("PlayerIdleState")
 
-[node name="PlayerIdleState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("playerAnimationTree")]
+[node name="PlayerIdleState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("playerAnimationTree", "player")]
 script = ExtResource("2_6kmfq")
 playerAnimationTree = NodePath("../../../Body/Sprites/PlayerAnimationTree")
+player = NodePath("../../..")
 
 [node name="PlayerMoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("player", "playerAnimationTree", "marker")]
 script = ExtResource("4_s3erd")
 player = NodePath("../../..")
 playerAnimationTree = NodePath("../../../Body/Sprites/PlayerAnimationTree")
 marker = NodePath("../../../Body/Markers/ShootingPosition")
-playerSpeed = 85
-turnSpeed = 50
-acceleration = 50
-deceleration = 25
 
 [node name="Moveset" type="Node" parent="Components"]
 
@@ -218,6 +217,13 @@ shootingTimer = NodePath("../../../Timer/ShootingTimer")
 script = ExtResource("9_86i7t")
 body = NodePath("../../..")
 
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown")]
+script = ExtResource("13_531wn")
+player = NodePath("../../..")
+hurtbox = NodePath("../../../Body/Areas/Hurtbox")
+dashDuration = NodePath("../../../Timer/DashDuration")
+dashCooldown = NodePath("../../../Timer/DashCooldown")
+
 [node name="Misc" type="Node" parent="Components"]
 
 [node name="Health" type="Node" parent="Components/Misc"]
@@ -227,6 +233,14 @@ script = ExtResource("13_u21dx")
 
 [node name="ShootingTimer" type="Timer" parent="Timer"]
 wait_time = 0.3
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="Timer"]
+wait_time = 3.0
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="Timer"]
+wait_time = 0.85
 one_shot = true
 
 [node name="Debug" type="Control" parent="."]
@@ -247,3 +261,5 @@ script = ExtResource("5_jd4lw")
 stateMachine = NodePath("../../Components/FiniteStateMachine")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
+[connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]

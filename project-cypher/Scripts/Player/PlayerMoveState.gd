@@ -4,16 +4,20 @@ class_name PlayerMoveState
 @export var player: CharacterBody2D
 @export var playerAnimationTree: AnimationTree
 @export var marker: Marker2D
-@export var playerSpeed: int = 50
-@export var turnSpeed = 25
-@export var acceleration = 45
-@export var deceleration = 40
-var direction = Vector2.ZERO
 var maxSpeedChange = 0
+var turnSpeed 
+var acceleration 
+var deceleration 
+var direction = Vector2.ZERO
+
 var desiredSpeed = Vector2.ZERO
 
 # Ensures sprites are for movement
 func enter():
+	turnSpeed = player.playerSpeed / 2
+	acceleration = player.playerSpeed - 5
+	deceleration = player.playerSpeed - 10
+	player.isMoving = true
 	playerAnimationTree["parameters/conditions/idle"] = false
 	playerAnimationTree["parameters/conditions/moving"] = true
 
@@ -34,7 +38,7 @@ func getInput():
 	var verticalDirection = Input.get_axis("moveUp", "moveDown")
 	if player:
 		direction = Vector2(horizontalDirection, verticalDirection).normalized()
-		desiredSpeed = direction * playerSpeed
+		desiredSpeed = direction * player.playerSpeed
 
 # Calculates movement
 func movement():
