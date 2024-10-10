@@ -242,7 +242,7 @@ position = Vector2(14, 12)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_sj58v")
 texture = ExtResource("1_gaql2")
-lifetime = 0.5
+lifetime = 0.25
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -298,7 +298,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timer"]
-wait_time = 0.85
 one_shot = true
 
 [node name="Debug" type="Control" parent="."]
