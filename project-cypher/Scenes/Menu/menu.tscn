@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfkii3aeaf0gy"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("initial", "options", "controllers")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7le3e")
+initial = NodePath("MarginContainer/Initial")
+options = NodePath("MarginContainer/Options")
+controllers = NodePath("MarginContainer/Controller")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -50.5
+offset_right = 35.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Initial" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/Initial"]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="MarginContainer/Initial"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="MarginContainer/Initial"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Options" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Controller" type="Button" parent="MarginContainer/Options"]
+layout_mode = 2
+text = "Controller"
+
+[node name="Volume" type="Button" parent="MarginContainer/Options"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Back" type="Button" parent="MarginContainer/Options"]
+layout_mode = 2
+text = "Back"
+
+[node name="Controller" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="BackController" type="Button" parent="MarginContainer/Controller"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/Initial/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/Initial/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/Initial/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/Options/Controller" to="." method="_on_controller_pressed"]
+[connection signal="pressed" from="MarginContainer/Options/Volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="MarginContainer/Options/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/Controller/BackController" to="." method="_on_back_controller_pressed"]
