@@ -1,77 +1,113 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfkii3aeaf0gy"]
+[gd_scene load_steps=4 format=3 uid="uid://dfkii3aeaf0gy"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
+[ext_resource type="Script" path="res://Scripts/Menu/InputSettings.gd" id="2_0iokl"]
+[ext_resource type="PackedScene" uid="uid://u0hqdutq4nw4" path="res://Scenes/Menu/inputButton.tscn" id="2_djfks"]
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("initial", "options", "controllers")]
+[node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7le3e")
-initial = NodePath("MarginContainer/Initial")
-options = NodePath("MarginContainer/Options")
-controllers = NodePath("MarginContainer/Controller")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="GameOptions" type="Control" parent="." node_paths=PackedStringArray("inputSettings")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7le3e")
+inputSettings = NodePath("../InputSettings")
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOptions"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -50.5
-offset_right = 35.0
-offset_bottom = 50.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 460.0
+offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Initial" type="VBoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOptions/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Options" type="VBoxContainer" parent="GameOptions/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Play Game" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+focus_mode = 0
+text = "Play Game"
+
+[node name="Options" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+focus_mode = 0
+text = "Input Controller"
+
+[node name="InputSettings" type="Control" parent="." node_paths=PackedStringArray("gameOptions", "actionList")]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_0iokl")
+gameOptions = NodePath("../GameOptions")
+actionList = NodePath("PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList")
+
+[node name="PanelContainer" type="PanelContainer" parent="InputSettings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 460.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InputSettings/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ControllerSettings" type="VBoxContainer" parent="InputSettings/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MarginContainer/Initial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 layout_mode = 2
-text = "Play"
+size_flags_vertical = 3
 
-[node name="Options" type="Button" parent="MarginContainer/Initial"]
+[node name="ActionList" type="VBoxContainer" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings/ScrollContainer"]
 layout_mode = 2
-text = "Options"
+size_flags_horizontal = 3
 
-[node name="Exit" type="Button" parent="MarginContainer/Initial"]
-layout_mode = 2
-text = "Exit"
-
-[node name="Options" type="VBoxContainer" parent="MarginContainer"]
-visible = false
+[node name="InputButton" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList" instance=ExtResource("2_djfks")]
 layout_mode = 2
 
-[node name="Controller" type="Button" parent="MarginContainer/Options"]
+[node name="DefaultButton" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 layout_mode = 2
-text = "Controller"
+focus_mode = 0
+text = "Reset Default Controller"
 
-[node name="Volume" type="Button" parent="MarginContainer/Options"]
+[node name="BackMenu" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 layout_mode = 2
-text = "Volume"
+focus_mode = 0
+text = "Back to Menu"
 
-[node name="Back" type="Button" parent="MarginContainer/Options"]
-layout_mode = 2
-text = "Back"
-
-[node name="Controller" type="VBoxContainer" parent="MarginContainer"]
-visible = false
-layout_mode = 2
-
-[node name="BackController" type="Button" parent="MarginContainer/Controller"]
-layout_mode = 2
-text = "Back"
-
-[connection signal="pressed" from="MarginContainer/Initial/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/Initial/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/Initial/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="MarginContainer/Options/Controller" to="." method="_on_controller_pressed"]
-[connection signal="pressed" from="MarginContainer/Options/Volume" to="." method="_on_volume_pressed"]
-[connection signal="pressed" from="MarginContainer/Options/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="MarginContainer/Controller/BackController" to="." method="_on_back_controller_pressed"]
+[connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game" to="GameOptions" method="_on_play_game_pressed"]
+[connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Options" to="GameOptions" method="_on_options_pressed"]
+[connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]
+[connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="InputSettings" method="_on_back_menu_pressed"]
