@@ -288,6 +288,14 @@ sprite = NodePath("../../../Body/Sprites")
 [node name="Health" type="Node" parent="Components/Misc"]
 script = ExtResource("13_u21dx")
 
+[node name="Power-Ups" type="Node2D" parent="Components"]
+
+[node name="Barrier" type="Node2D" parent="Components/Power-Ups"]
+
+[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups"]
+
+[node name="Clones" type="Node2D" parent="Components/Power-Ups"]
+
 [node name="Timer" type="Node2D" parent="."]
 
 [node name="ShootingTimer" type="Timer" parent="Timer"]

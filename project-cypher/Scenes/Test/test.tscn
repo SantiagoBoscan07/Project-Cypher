@@ -1,8 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=3 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
+[ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
 
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_bn2ie")]
 position = Vector2(206, 109)
+
+[node name="Power-Ups Test" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_8j84a")
+
+[node name="Barrier" type="Button" parent="Power-Ups Test"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 71.0
+offset_bottom = 39.0
+text = "Barrier"
+
+[node name="Clone" type="Button" parent="Power-Ups Test"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 60.0
+offset_bottom = 87.0
+text = "Clone"
+
+[node name="Projectiles" type="Button" parent="Power-Ups Test"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 97.0
+offset_bottom = 135.0
+text = "Projectiles"
+
+[node name="TurnOff" type="Button" parent="Power-Ups Test"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 152.0
+offset_right = 97.0
+offset_bottom = 183.0
+text = "Turn Off"
+
+[connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
+[connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
+[connection signal="pressed" from="Power-Ups Test/Projectiles" to="Power-Ups Test" method="_on_projectiles_pressed"]
+[connection signal="pressed" from="Power-Ups Test/TurnOff" to="Power-Ups Test" method="_on_turn_off_pressed"]
