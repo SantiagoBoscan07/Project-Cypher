@@ -4,6 +4,7 @@ extends Control
 @export var actionList: VBoxContainer
 @onready var inputButtonScene = preload("res://Scenes/Menu/inputButton.tscn")
 
+var inputConfig
 var isRemapping = false
 var actionToRemap = null
 var remappingButton = null
@@ -24,6 +25,9 @@ var inputActions: Dictionary = {
 
 func _ready():
 	createActionList()
+
+func _enter_tree() -> void:
+	load_()
 
 func createActionList():
 	var button
@@ -61,6 +65,7 @@ func _input(event):
 			InputMap.action_erase_events(actionToRemap)
 			InputMap.action_add_event(actionToRemap, event)
 			updateActionList(remappingButton, event)
+			_save()
 			isRemapping = false
 			actionToRemap = null
 			remappingButton = null
@@ -68,6 +73,19 @@ func _input(event):
 func updateActionList(button, event):
 	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
 
+func load_():
+	inputConfig = load("res://Resources/mapInputResource.tres")
+	if not inputConfig:
+		inputConfig = Config.new()
+	for action in inputConfig.input_map:
+		InputMap.action_erase_events(action)
+		for input_event in inputConfig.input_map[action]:
+			InputMap.action_add_event(action, input_event)
+
+func _save():
+	for action in InputMap.get_actions():
+		inputConfig.input_map[action] = InputMap.action_get_events(action)
+	ResourceSaver.save(inputConfig, "res://Resources/mapConfig.tres")
 
 
 func _on_default_button_pressed():
