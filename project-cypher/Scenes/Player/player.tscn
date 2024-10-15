@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=47 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="9_86i7t"]
 [ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
+[ext_resource type="Script" path="res://Scenes/Player/projectile_spawner.gd" id="15_cd76y"]
+[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="16_4dsn3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
 animation = &"IdleAnimations/idleDown"
@@ -172,6 +174,9 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f515h"]
+size = Vector2(16, 16)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_205wi")
 playerSpeed = 75
@@ -292,7 +297,16 @@ script = ExtResource("13_u21dx")
 
 [node name="Barrier" type="Node2D" parent="Components/Power-Ups"]
 
-[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups"]
+[node name="ProjectileSpawner" type="Area2D" parent="Components/Power-Ups"]
+script = ExtResource("15_cd76y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Components/Power-Ups/ProjectileSpawner"]
+texture = ExtResource("16_4dsn3")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Components/Power-Ups/ProjectileSpawner"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/Power-Ups/ProjectileSpawner"]
+shape = SubResource("RectangleShape2D_f515h")
 
 [node name="Clones" type="Node2D" parent="Components/Power-Ups"]
 
@@ -308,6 +322,10 @@ one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timer"]
 one_shot = true
+
+[node name="ProjectileSpeed" type="Timer" parent="Timer"]
+wait_time = 0.05
+autostart = true
 
 [node name="Debug" type="Control" parent="."]
 visible = false
