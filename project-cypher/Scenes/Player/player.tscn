@@ -184,37 +184,43 @@ var theta: float = 0.0
 var speed = 100
 var direction = Vector2.RIGHT
 @export var power_timer: Timer
+@export var durationTimer: Timer
 var canStorm: bool = true
 
 #func _physics_process(delta):
 	#position += direction * speed * delta
 	
-func _read():
-	Signals.connect(\"startStorm\", start_storm)
+func _ready():
+	Signals.connect(\"startStorm\", timer)
 	
 #func _physics_process(delta):
 #	if Input.is_action_pressed(\"shoot\") and canStorm:
-#		bullet_timer.start()
-#		canStorm = false
-#		while (bullet_timer.time_left > 0):
-#			start_storm(theta)
+#		start_storm(theta)
 
 func get_vector(angle):
 	theta = angle + alpha
 	return Vector2(cos(theta), sin(theta))
 
+
+
 func start_storm(angle):
-	power_timer.start()
 	var bullethell = bullethell.instantiate()
 	bullethell.position = bulletspawner.global_position
 	bullethell.direction = get_vector(angle)
 	get_tree().current_scene.call_deferred(\"add_child\", bullethell)
 
-func _on_shooting_timer_timeout() -> void:
-	canStorm = true
-	
 func _on_bullet_storm_duration_timeout():
-	pass
+	power_timer.stop()
+
+
+func timer():
+	power_timer.start()
+	durationTimer.start()
+	start_storm(theta)
+
+
+func _on_bullet_storm_cooldown_timeout():
+	start_storm(theta)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f515h"]
@@ -344,12 +350,14 @@ script = ExtResource("13_u21dx")
 [node name="Barrier" type="Node2D" parent="Components/Power-Ups"]
 position = Vector2(14, 14)
 
-[node name="ProjectileSpawner" type="Area2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner")]
+[node name="ProjectileSpawner" type="Area2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer")]
 position = Vector2(28, 28)
 script = SubResource("GDScript_owp3k")
 bullethell = ExtResource("2_jk383")
 alpha = 1.0
 bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
+power_timer = NodePath("../../../Timer/BulletStormCooldown")
+durationTimer = NodePath("../../../Timer/BulletStormDuration")
 
 [node name="projectile" type="Sprite2D" parent="Components/Power-Ups/ProjectileSpawner"]
 position = Vector2(-14, -14)
@@ -384,8 +392,12 @@ one_shot = true
 wait_time = 0.05
 autostart = true
 
+[node name="BulletStormCooldown" type="Timer" parent="Timer"]
+wait_time = 0.01
+
 [node name="BulletStormDuration" type="Timer" parent="Timer"]
 wait_time = 5.0
+one_shot = true
 
 [node name="Debug" type="Control" parent="."]
 visible = false
@@ -409,4 +421,5 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
-[connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_prject_t_ile_duration_timeout"]
+[connection signal="timeout" from="Timer/BulletStormCooldown" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
+[connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
