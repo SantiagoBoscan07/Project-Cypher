@@ -183,29 +183,38 @@ var theta: float = 0.0
 @export var bulletspawner: Marker2D
 var speed = 100
 var direction = Vector2.RIGHT
-@export var bullet_timer: Timer
+@export var power_timer: Timer
+var canStorm: bool = true
 
 #func _physics_process(delta):
 	#position += direction * speed * delta
-	#
-
+	
+func _read():
+	Signals.connect(\"startStorm\", start_storm)
+	
+#func _physics_process(delta):
+#	if Input.is_action_pressed(\"shoot\") and canStorm:
+#		bullet_timer.start()
+#		canStorm = false
+#		while (bullet_timer.time_left > 0):
+#			start_storm(theta)
 
 func get_vector(angle):
 	theta = angle + alpha
 	return Vector2(cos(theta), sin(theta))
 
-func shoot(angle):
+func start_storm(angle):
+	power_timer.start()
 	var bullethell = bullethell.instantiate()
-	bullethell.position = global_position
+	bullethell.position = bulletspawner.global_position
 	bullethell.direction = get_vector(angle)
 	get_tree().current_scene.call_deferred(\"add_child\", bullethell)
 
+func _on_shooting_timer_timeout() -> void:
+	canStorm = true
 	
-func _on_projectile_speed_timeout():
-	shoot(theta)
-	
-func _on_prject_t_ile_duration_timeout():
-	bullet_timer.start()
+func _on_bullet_storm_duration_timeout():
+	pass
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f515h"]
@@ -375,7 +384,8 @@ one_shot = true
 wait_time = 0.05
 autostart = true
 
-[node name="PrjectTIle_Duration" type="Timer" parent="Timer"]
+[node name="BulletStormDuration" type="Timer" parent="Timer"]
+wait_time = 5.0
 
 [node name="Debug" type="Control" parent="."]
 visible = false
@@ -399,4 +409,4 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
-[connection signal="timeout" from="Timer/PrjectTIle_Duration" to="Components/Power-Ups/ProjectileSpawner" method="_on_prject_t_ile_duration_timeout"]
+[connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_prject_t_ile_duration_timeout"]
