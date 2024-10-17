@@ -1,11 +1,10 @@
 extends Area2D
 
+var bullethell
+var speed = 100
+var direction = Vector2.RIGHT
 
 
-func _ready():
-	pass 
 
-
-
-func _process(delta):
-	pass
+func _physics_process(delta):
+	position += direction * speed * delta
