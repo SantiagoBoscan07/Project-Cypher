@@ -177,20 +177,35 @@ anim_speed_max = 1.0
 [sub_resource type="GDScript" id="GDScript_owp3k"]
 script/source = "extends Area2D
 class_name Spawner
-
-var bullethell
+@export var bullethell: PackedScene
+var theta: float = 0.0
+@export_range(0,2*PI) var alpha: float = 0.0
+@export var bulletspawner: Marker2D
 var speed = 100
 var direction = Vector2.RIGHT
-var bullet_timer
+@export var bullet_timer: Timer
 
-func _physics_process(delta):
-	position += direction * speed * delta
+#func _physics_process(delta):
+	#position += direction * speed * delta
+	#
 
 
+func get_vector(angle):
+	theta = angle + alpha
+	return Vector2(cos(theta), sin(theta))
+
+func shoot(angle):
+	var bullethell = bullethell.instantiate()
+	bullethell.position = global_position
+	bullethell.direction = get_vector(angle)
+	get_tree().current_scene.call_deferred(\"add_child\", bullethell)
 
 	
-
-
+func _on_projectile_speed_timeout():
+	shoot(theta)
+	
+func _on_prject_t_ile_duration_timeout():
+	bullet_timer.start()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f515h"]
@@ -199,8 +214,6 @@ size = Vector2(16, 16)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_205wi")
 playerSpeed = 75
-bullethell = ExtResource("2_jk383")
-alpha = 5.0
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -297,7 +310,6 @@ player = NodePath("../../..")
 shootingTimer = NodePath("../../../Timer/ShootingTimer")
 
 [node name="PlayerProjectile" parent="Components/Moveset/Shoot" instance=ExtResource("2_jk383")]
-visible = false
 position = Vector2(-33, -17)
 
 [node name="PositionClamp" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("body")]
@@ -323,21 +335,22 @@ script = ExtResource("13_u21dx")
 [node name="Barrier" type="Node2D" parent="Components/Power-Ups"]
 position = Vector2(14, 14)
 
-[node name="ProjectileSpawner" type="Area2D" parent="Components/Power-Ups"]
-position = Vector2(14, 14)
+[node name="ProjectileSpawner" type="Area2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner")]
+position = Vector2(28, 28)
 script = SubResource("GDScript_owp3k")
+bullethell = ExtResource("2_jk383")
+alpha = 1.0
+bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
 
 [node name="projectile" type="Sprite2D" parent="Components/Power-Ups/ProjectileSpawner"]
 position = Vector2(-14, -14)
 texture = ExtResource("16_4dsn3")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Components/Power-Ups/ProjectileSpawner"]
-visible = false
 position = Vector2(-14, -14)
 scale = Vector2(0.8, 0.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/Power-Ups/ProjectileSpawner"]
-visible = false
 position = Vector2(-14, -14)
 shape = SubResource("RectangleShape2D_f515h")
 
@@ -386,3 +399,4 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
+[connection signal="timeout" from="Timer/PrjectTIle_Duration" to="Components/Power-Ups/ProjectileSpawner" method="_on_prject_t_ile_duration_timeout"]
