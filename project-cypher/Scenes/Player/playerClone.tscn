@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b4ok7nemk7kf"]
+[gd_scene load_steps=40 format=3 uid="uid://cgb6suqnby5ou"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_tqwfo"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="2_uncfa"]
@@ -246,10 +246,9 @@ shootingTimer = NodePath("../../../Timer/ShootingTimer")
 script = ExtResource("12_shnpt")
 body = NodePath("../../..")
 
-[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite")]
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "dashDuration", "dashCooldown", "dashClones", "sprite")]
 script = ExtResource("13_gaimh")
 player = NodePath("../../..")
-hurtbox = NodePath("")
 dashDuration = NodePath("../../../Timer/DashDuration")
 dashCooldown = NodePath("../../../Timer/DashCooldown")
 dashClones = NodePath("../../../Body/Particles/DashParticles")

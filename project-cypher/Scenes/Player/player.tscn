@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=45 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="9_86i7t"]
 [ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
+[ext_resource type="Script" path="res://Scenes/Player/clones.gd" id="15_7nnhk"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
 animation = &"IdleAnimations/idleDown"
@@ -213,6 +214,12 @@ parameters/Move/blend_position = Vector2(0, 0)
 [node name="ShootingPosition" type="Marker2D" parent="Body/Markers"]
 position = Vector2(14, 14)
 
+[node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
+position = Vector2(-10, 14)
+
+[node name="CloneMarker2" type="Marker2D" parent="Body/Markers"]
+position = Vector2(34, 14)
+
 [node name="Areas" type="Node2D" parent="Body"]
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
@@ -294,7 +301,11 @@ script = ExtResource("13_u21dx")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups"]
 
-[node name="Clones" type="Node2D" parent="Components/Power-Ups"]
+[node name="Clones" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("cloneTimer", "clone1", "clone2")]
+script = ExtResource("15_7nnhk")
+cloneTimer = NodePath("../../../Timer/CloneTimer")
+clone1 = NodePath("../../../Body/Markers/CloneMarker1")
+clone2 = NodePath("../../../Body/Markers/CloneMarker2")
 
 [node name="Timer" type="Node2D" parent="."]
 
@@ -308,6 +319,9 @@ one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timer"]
 one_shot = true
+
+[node name="CloneTimer" type="Timer" parent="Timer"]
+wait_time = 3.0
 
 [node name="Debug" type="Control" parent="."]
 visible = false
@@ -330,3 +344,4 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
+[connection signal="timeout" from="Timer/CloneTimer" to="Components/Power-Ups/Clones" method="_on_clone_timer_timeout"]
