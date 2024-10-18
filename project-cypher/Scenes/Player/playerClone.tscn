@@ -166,6 +166,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -2)
 script = ExtResource("1_tqwfo")
 playerSpeed = 75
 
@@ -174,15 +175,14 @@ playerSpeed = 75
 [node name="Sprites" type="Node2D" parent="Body"]
 
 [node name="PlayerSprite" type="Sprite2D" parent="Body/Sprites"]
-position = Vector2(14, 11)
+position = Vector2(0, 2)
 texture = ExtResource("2_uncfa")
 hframes = 4
 vframes = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
-visible = false
 z_index = -2
-position = Vector2(14, 14)
+position = Vector2(0, 5)
 texture = ExtResource("3_wy7t6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Sprites"]
@@ -204,14 +204,13 @@ parameters/Move/blend_position = Vector2(0, 0)
 [node name="Markers" type="Node2D" parent="Body"]
 
 [node name="ShootingPosition" type="Marker2D" parent="Body/Markers"]
-position = Vector2(14, 14)
+position = Vector2(0, 2)
 
 [node name="Particles" type="Node2D" parent="Body"]
 
 [node name="DashParticles" type="GPUParticles2D" parent="Body/Particles"]
 z_index = -2
 material = SubResource("ShaderMaterial_ui6qp")
-position = Vector2(14, 12)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_sj58v")
 texture = ExtResource("2_uncfa")
@@ -247,6 +246,7 @@ script = ExtResource("12_shnpt")
 body = NodePath("../../..")
 
 [node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "dashDuration", "dashCooldown", "dashClones", "sprite")]
+position = Vector2(0, -2)
 script = ExtResource("13_gaimh")
 player = NodePath("../../..")
 dashDuration = NodePath("../../../Timer/DashDuration")

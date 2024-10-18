@@ -1,21 +1,31 @@
 extends Node2D
+
 @export var cloneTimer: Timer
 @export var clone1: Marker2D
 @export var clone2: Marker2D
+
 @onready var clone: PackedScene = preload("res://Scenes/Player/playerClone.tscn")
-var cloneObject
-# Called when the node enters the scene tree for the first time.
+
+var cloneObject1
+var cloneObject2
+
 func _ready() -> void:
 	Signals.connect("activateClone", cloneActivate)
 
 func cloneActivate():
 	# test print
-	print('hello')
+	print('Clone activated.')
+	
 	# reference two pointers
 	# spawn two clones on those pointers
-	cloneObject = clone.instantiate()
-	cloneObject.position = clone1.global_position
-	get_tree().current_scene.add_child(cloneObject)
+	cloneObject1 = clone.instantiate()
+	cloneObject1.position = clone1.global_position
+	get_tree().current_scene.add_child(cloneObject1)
+	
+	cloneObject2 = clone.instantiate()
+	cloneObject2.position = clone2.global_position
+	get_tree().current_scene.add_child(cloneObject2)
+	
 	# start a timer
 	cloneTimer.start()
 # connect when the timer ends, and create a new function
@@ -23,7 +33,8 @@ func cloneActivate():
 
 
 func _on_clone_timer_timeout() -> void:
-	print('timeout test')
 	cloneTimer.stop()
+	print('Clone disappeared.')
 
-	cloneObject.queue_free()
+	cloneObject1.queue_free()
+	cloneObject2.queue_free()
