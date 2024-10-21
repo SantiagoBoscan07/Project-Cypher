@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cn434ioddp5cj"]
+[gd_scene load_steps=41 format=3 uid="uid://cn434ioddp5cj"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_onbc1"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="2_gtp27"]
@@ -165,6 +165,10 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fa4et"]
+radius = 7.0
+height = 20.0
+
 [node name="PlayerClone" type="CharacterBody2D"]
 script = ExtResource("1_onbc1")
 playerSpeed = 75
@@ -178,7 +182,6 @@ position = Vector2(14, 11)
 texture = ExtResource("2_gtp27")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2
@@ -295,6 +298,10 @@ offset_bottom = 7.0
 text = "State: "
 script = ExtResource("18_ynkad")
 stateMachine = NodePath("../../Components/FiniteStateMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 12)
+shape = SubResource("CapsuleShape2D_fa4et")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=50 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -216,6 +216,10 @@ func _on_bullet_storm_cooldown_timeout():
 	start_storm(theta)
 "
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ilu0a"]
+radius = 7.0
+height = 20.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_205wi")
 playerSpeed = 75
@@ -398,7 +402,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="CloneTimer" type="Timer" parent="Timer"]
-wait_time = 3.0
+wait_time = 10.0
 
 [node name="Debug" type="Control" parent="."]
 visible = false
@@ -417,6 +421,10 @@ offset_bottom = 7.0
 text = "State: "
 script = ExtResource("5_jd4lw")
 stateMachine = NodePath("../../Components/FiniteStateMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 12)
+shape = SubResource("CapsuleShape2D_ilu0a")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]

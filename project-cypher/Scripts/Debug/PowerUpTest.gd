@@ -11,7 +11,3 @@ func _on_clone_pressed() -> void:
 # If the button is pressed, the projectiles will show up
 func _on_projectiles_pressed() -> void:
 	Signals.emit_signal("startStorm")
-
-# Turn Off Any Power-Up
-func _on_turn_off_pressed() -> void:
-	Signals.emit_signal("turnOff")
