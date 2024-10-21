@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func activateBarrier():
 	sprite.visible = true
-	Hurtbox.is_invicible = true
+	Hurtbox.isInvulnerable = true
 	barrierTimer.start()
 
 func turnOffSprite():
@@ -20,4 +20,4 @@ func turnOffSprite():
 
 func _on_barrier_timer_timeout() -> void:
 	turnOffSprite()
-	Hurtbox.is_invicible = false
+	Hurtbox.isInvulnerable = false

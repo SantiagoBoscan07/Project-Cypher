@@ -22,6 +22,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 71.0
 offset_bottom = 39.0
+focus_mode = 0
 text = "Barrier"
 
 [node name="Clone" type="Button" parent="Power-Ups Test"]
@@ -30,6 +31,7 @@ offset_left = 8.0
 offset_top = 56.0
 offset_right = 60.0
 offset_bottom = 87.0
+focus_mode = 0
 text = "Clone"
 
 [node name="Projectiles" type="Button" parent="Power-Ups Test"]
@@ -38,6 +40,7 @@ offset_left = 8.0
 offset_top = 104.0
 offset_right = 97.0
 offset_bottom = 135.0
+focus_mode = 0
 text = "Projectiles"
 
 [node name="TurnOff" type="Button" parent="Power-Ups Test"]
@@ -46,6 +49,7 @@ offset_left = 8.0
 offset_top = 152.0
 offset_right = 97.0
 offset_bottom = 183.0
+focus_mode = 0
 text = "Turn Off"
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]

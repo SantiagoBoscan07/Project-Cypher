@@ -6,4 +6,3 @@ signal turnOff
 
 signal startStorm
 signal activateBarrier
-

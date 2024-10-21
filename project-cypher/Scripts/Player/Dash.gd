@@ -19,7 +19,7 @@ func _physics_process(delta):
 # Starts timer duration for dash, it creates clone effect, and it boost the character speed
 func boost():
 	dashDuration.start()
-	hurtbox.is_invicible = true
+	hurtbox.isInvulnerable = true
 	sprite.modulate.a = 0.5
 	normalSpeed = player.playerSpeed
 	boostSpeed = player.playerSpeed * 2
@@ -37,6 +37,7 @@ func shadowCloneBehavior():
 # Once the dash is over it starts a cooldown timer
 func _on_dash_duration_timeout() -> void:
 	dashClones.emitting = false
+	hurtbox.isInvulnerable = false
 	sprite.modulate.a = 1
 	player.playerSpeed = normalSpeed
 	dashCooldown.start()
