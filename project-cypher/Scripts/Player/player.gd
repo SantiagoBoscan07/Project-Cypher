@@ -5,6 +5,7 @@ extends CharacterBody2D
 var lastDirectionFacing: Vector2
 var isMoving: bool = false
 
+
 # Testing Signal, connecting with a custom signal
 func _ready():
 	Signals.connect("turnOff", test)

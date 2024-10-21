@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerIdleState.gd" id="2_6kmfq"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="2_adtno"]
+[ext_resource type="PackedScene" uid="uid://dppj5rjyutdgr" path="res://Scenes/Player/player_projectile.tscn" id="2_jk383"]
 [ext_resource type="AnimationLibrary" uid="uid://dg2gx1pln2vh" path="res://Scenes/Player/Animations/IdleAnimations.res" id="2_px1f2"]
 [ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="3_gm63e"]
 [ext_resource type="AnimationLibrary" uid="uid://bce40qro0huc1" path="res://Scenes/Player/Animations/WalkingAnimations.res" id="3_qha88"]
@@ -174,6 +175,55 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
+[sub_resource type="GDScript" id="GDScript_owp3k"]
+script/source = "extends Node2D
+class_name Spawner
+@export var bullethell: PackedScene
+var theta: float = 0.0
+@export_range(0,2*PI) var alpha: float = 0.0
+@export var bulletspawner: Marker2D
+var speed = 100
+var direction = Vector2.RIGHT
+@export var power_timer: Timer
+@export var durationTimer: Timer
+var canStorm: bool = true
+
+#func _physics_process(delta):
+	#position += direction * speed * delta
+	
+func _ready():
+	Signals.connect(\"startStorm\", timer)
+	
+#func _physics_process(delta):
+#	if Input.is_action_pressed(\"shoot\") and canStorm:
+#		start_storm(theta)
+
+func get_vector(angle):
+	theta = angle + alpha
+	return Vector2(cos(theta), sin(theta))
+
+
+
+func start_storm(angle):
+	var bullethell = bullethell.instantiate()
+	bullethell.position = bulletspawner.global_position
+	bullethell.direction = get_vector(angle)
+	get_tree().current_scene.call_deferred(\"add_child\", bullethell)
+
+func _on_bullet_storm_duration_timeout():
+	power_timer.stop()
+
+
+func timer():
+	power_timer.start()
+	durationTimer.start()
+	start_storm(theta)
+
+
+func _on_bullet_storm_cooldown_timeout():
+	start_storm(theta)
+"
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_205wi")
 playerSpeed = 75
@@ -295,17 +345,31 @@ script = ExtResource("13_u21dx")
 
 [node name="Power-Ups" type="Node2D" parent="Components"]
 
+
+[node name="Barrier" type="Node2D" parent="Components/Power-Ups"]
+position = Vector2(14, 14)
+
 [node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "Hurtbox", "sprite")]
 script = ExtResource("15_4i3y8")
 barrierTimer = NodePath("../../../Timer/BarrierTimer")
 Hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 sprite = NodePath("../../../Body/Sprites/Barrier")
 
-[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups"]
+
+[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer")]
+position = Vector2(28, 28)
+script = SubResource("GDScript_owp3k")
+bullethell = ExtResource("2_jk383")
+alpha = 1.0
+bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
+power_timer = NodePath("../../../Timer/BulletStormCooldown")
+durationTimer = NodePath("../../../Timer/BulletStormDuration")
 
 [node name="Clones" type="Node2D" parent="Components/Power-Ups"]
+position = Vector2(1, 0)
 
 [node name="Timer" type="Node2D" parent="."]
+position = Vector2(1, 0)
 
 [node name="ShootingTimer" type="Timer" parent="Timer"]
 wait_time = 0.3
@@ -318,8 +382,20 @@ one_shot = true
 [node name="DashDuration" type="Timer" parent="Timer"]
 one_shot = true
 
+
+[node name="ProjectileSpeed" type="Timer" parent="Timer"]
+wait_time = 0.05
+autostart = true
+
+[node name="BulletStormCooldown" type="Timer" parent="Timer"]
+wait_time = 0.01
+
+[node name="BulletStormDuration" type="Timer" parent="Timer"]
+wait_time = 5.0
+
 [node name="BarrierTimer" type="Timer" parent="Timer"]
 wait_time = 3.0
+
 one_shot = true
 
 [node name="Debug" type="Control" parent="."]
@@ -343,4 +419,10 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
+
+[connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
+[connection signal="timeout" from="Timer/BulletStormCooldown" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
+[connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
+
 [connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
+
