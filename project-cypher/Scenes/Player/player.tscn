@@ -324,9 +324,6 @@ shootingPosition = NodePath("../../../Body/Markers/ShootingPosition")
 player = NodePath("../../..")
 shootingTimer = NodePath("../../../Timer/ShootingTimer")
 
-[node name="PlayerProjectile" parent="Components/Moveset/Shoot" instance=ExtResource("2_jk383")]
-position = Vector2(-33, -17)
-
 [node name="PositionClamp" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("body")]
 script = ExtResource("9_86i7t")
 body = NodePath("../../..")
