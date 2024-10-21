@@ -4,7 +4,7 @@ class_name Shoot
 @export var shootingPosition: Marker2D
 @export var player: CharacterBody2D
 @export var shootingTimer: Timer
-@onready var projectilePreload: PackedScene = preload("res://Scenes/Player/player_projectile.tscn")
+@onready var projectilePreload: PackedScene = preload("res://Scenes/Player/playerProjectile.tscn")
 var canShoot: bool = true
 var projectile
 

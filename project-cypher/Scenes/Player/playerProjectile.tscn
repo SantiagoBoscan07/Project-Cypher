@@ -1,28 +1,28 @@
 [gd_scene load_steps=5 format=3 uid="uid://dppj5rjyutdgr"]
 
-[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="1_o64sq"]
-[ext_resource type="Script" path="res://Scripts/Player/PlayerProjectile.gd" id="1_wsyvj"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_gr10b"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerProjectile.gd" id="1_o17ge"]
+[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="2_ddwwf"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_p2l3x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n3g2k"]
 radius = 6.0
 height = 14.0
 
 [node name="PlayerProjectile" type="Node2D"]
-script = ExtResource("1_wsyvj")
+script = ExtResource("1_o17ge")
 speed = 250.0
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="Body"]
-texture = ExtResource("1_o64sq")
+texture = ExtResource("2_ddwwf")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("3_gr10b")
+script = ExtResource("3_p2l3x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
