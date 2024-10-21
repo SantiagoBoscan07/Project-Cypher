@@ -236,11 +236,13 @@ marker = NodePath("../../../Body/Markers/ShootingPosition")
 
 [node name="Moveset" type="Node" parent="Components"]
 
-[node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPosition", "player", "shootingTimer")]
+[node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPosition", "player", "shootingTimer", "cloneTimer")]
 script = ExtResource("12_8godu")
 shootingPosition = NodePath("../../../Body/Markers/ShootingPosition")
 player = NodePath("../../..")
 shootingTimer = NodePath("../../../Timer/ShootingTimer")
+isClone = true
+cloneTimer = NodePath("../../../Timer/CloneTimer")
 
 [node name="PositionClamp" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("body")]
 script = ExtResource("13_e2xl3")
@@ -273,6 +275,9 @@ one_shot = true
 wait_time = 0.05
 autostart = true
 
+[node name="CloneTimer" type="Timer" parent="Timer"]
+wait_time = 0.5
+
 [node name="Debug" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -295,3 +300,4 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
+[connection signal="timeout" from="Timer/CloneTimer" to="Components/Moveset/Shoot" method="_on_clone_timer_timeout"]

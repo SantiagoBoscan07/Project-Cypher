@@ -264,10 +264,10 @@ texture = ExtResource("6_0ursj")
 position = Vector2(14, 14)
 
 [node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
-position = Vector2(48, 0)
+position = Vector2(70, 48)
 
 [node name="CloneMarker2" type="Marker2D" parent="Body/Markers"]
-position = Vector2(-48, 0)
+position = Vector2(-70, 48)
 
 [node name="Areas" type="Node2D" parent="Body"]
 
