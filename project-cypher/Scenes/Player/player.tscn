@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=46 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -9,12 +9,14 @@
 [ext_resource type="AnimationLibrary" uid="uid://bce40qro0huc1" path="res://Scenes/Player/Animations/WalkingAnimations.res" id="3_qha88"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerMoveState.gd" id="4_s3erd"]
 [ext_resource type="Script" path="res://Scripts/Debug/StateLabel.gd" id="5_jd4lw"]
+[ext_resource type="Texture2D" uid="uid://d3pum4du6n1l6" path="res://Sprites/Player/barrierPlaceholder.png" id="6_0ursj"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="6_y6idu"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="7_ut3vb"]
 [ext_resource type="Script" path="res://Scripts/Player/Shoot.gd" id="8_4eq7g"]
 [ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="9_86i7t"]
 [ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
+[ext_resource type="Script" path="res://Scenes/Player/barrier.gd" id="15_4i3y8"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
 animation = &"IdleAnimations/idleDown"
@@ -185,7 +187,6 @@ position = Vector2(14, 11)
 texture = ExtResource("1_gaql2")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2
@@ -207,6 +208,10 @@ parameters/conditions/idle = false
 parameters/conditions/moving = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
+
+[node name="Barrier" type="Sprite2D" parent="Body/Sprites"]
+position = Vector2(14, 11)
+texture = ExtResource("6_0ursj")
 
 [node name="Markers" type="Node2D" parent="Body"]
 
@@ -290,7 +295,11 @@ script = ExtResource("13_u21dx")
 
 [node name="Power-Ups" type="Node2D" parent="Components"]
 
-[node name="Barrier" type="Node2D" parent="Components/Power-Ups"]
+[node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "Hurtbox", "sprite")]
+script = ExtResource("15_4i3y8")
+barrierTimer = NodePath("../../../Timer/BarrierTimer")
+Hurtbox = NodePath("../../../Body/Areas/Hurtbox")
+sprite = NodePath("../../../Body/Sprites/Barrier")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups"]
 
@@ -307,6 +316,10 @@ wait_time = 3.0
 one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timer"]
+one_shot = true
+
+[node name="BarrierTimer" type="Timer" parent="Timer"]
+wait_time = 3.0
 one_shot = true
 
 [node name="Debug" type="Control" parent="."]
@@ -330,3 +343,4 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
+[connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
