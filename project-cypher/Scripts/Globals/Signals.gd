@@ -5,3 +5,5 @@ extends Node
 signal turnOff
 
 signal startStorm
+signal activateBarrier
+

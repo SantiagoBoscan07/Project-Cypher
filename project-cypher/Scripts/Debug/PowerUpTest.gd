@@ -2,7 +2,7 @@ extends Control
 
 # If the button is pressed, the barrier will show up
 func _on_barrier_pressed() -> void:
-	pass # Replace with function body.
+	Signals.emit_signal("activateBarrier")
 
 # If the button is pressed, the clones will show up
 func _on_clone_pressed() -> void:
