@@ -4,8 +4,5 @@ extends Node
 # Signal used to turn off power-ups
 signal turnOff
 
-
-signal activateClone
 signal startStorm
 signal activateBarrier
-

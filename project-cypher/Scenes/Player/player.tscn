@@ -1,8 +1,4 @@
-
-[gd_scene load_steps=45 format=3 uid="uid://cls6xfv5lmsj6"]
-
 [gd_scene load_steps=48 format=3 uid="uid://cls6xfv5lmsj6"]
-
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -21,11 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="9_86i7t"]
 [ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
-
-[ext_resource type="Script" path="res://Scenes/Player/clones.gd" id="15_7nnhk"]
-
 [ext_resource type="Script" path="res://Scenes/Player/barrier.gd" id="15_4i3y8"]
-
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
 animation = &"IdleAnimations/idleDown"
@@ -224,7 +216,6 @@ func _on_bullet_storm_cooldown_timeout():
 "
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-14, -14)
 script = ExtResource("1_205wi")
 playerSpeed = 75
 
@@ -269,12 +260,6 @@ texture = ExtResource("6_0ursj")
 
 [node name="ShootingPosition" type="Marker2D" parent="Body/Markers"]
 position = Vector2(14, 14)
-
-[node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
-position = Vector2(-6, 14)
-
-[node name="CloneMarker2" type="Marker2D" parent="Body/Markers"]
-position = Vector2(34, 14)
 
 [node name="Areas" type="Node2D" parent="Body"]
 
@@ -338,7 +323,6 @@ script = ExtResource("9_86i7t")
 body = NodePath("../../..")
 
 [node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite")]
-position = Vector2(-14, -14)
 script = ExtResource("13_531wn")
 player = NodePath("../../..")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
@@ -370,16 +354,8 @@ power_timer = NodePath("../../../Timer/BulletStormCooldown")
 durationTimer = NodePath("../../../Timer/BulletStormDuration")
 player = NodePath("../../..")
 
-
-[node name="Clones" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("cloneTimer", "clone1", "clone2")]
-script = ExtResource("15_7nnhk")
-cloneTimer = NodePath("../../../Timer/CloneTimer")
-clone1 = NodePath("../../../Body/Markers/CloneMarker1")
-clone2 = NodePath("../../../Body/Markers/CloneMarker2")
-
 [node name="Clones" type="Node2D" parent="Components/Power-Ups"]
 position = Vector2(1, 0)
-
 
 [node name="Timer" type="Node2D" parent="."]
 position = Vector2(1, 0)
@@ -395,9 +371,6 @@ one_shot = true
 [node name="DashDuration" type="Timer" parent="Timer"]
 one_shot = true
 
-
-[node name="CloneTimer" type="Timer" parent="Timer"]
-
 [node name="ProjectileSpeed" type="Timer" parent="Timer"]
 wait_time = 0.05
 autostart = true
@@ -409,7 +382,6 @@ wait_time = 0.05
 wait_time = 5.0
 
 [node name="BarrierTimer" type="Timer" parent="Timer"]
-
 wait_time = 3.0
 one_shot = true
 
@@ -434,11 +406,7 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
-
-[connection signal="timeout" from="Timer/CloneTimer" to="Components/Power-Ups/Clones" method="_on_clone_timer_timeout"]
-
 [connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
 [connection signal="timeout" from="Timer/BulletStormCooldown" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
 [connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
 [connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
-

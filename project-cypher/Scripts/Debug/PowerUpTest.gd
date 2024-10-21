@@ -6,7 +6,7 @@ func _on_barrier_pressed() -> void:
 
 # If the button is pressed, the clones will show up
 func _on_clone_pressed() -> void:
-	Signals.emit_signal("activateClone")
+	pass # Replace with function body.
 
 # If the button is pressed, the projectiles will show up
 func _on_projectiles_pressed() -> void:
