@@ -6,6 +6,7 @@ extends Node2D
 @export var dashCooldown: Timer
 @export var dashClones: GPUParticles2D
 @export var sprite: Node2D
+@export var isClone: bool = false
 var canDash: bool = true
 var boostSpeed
 var normalSpeed
@@ -19,26 +20,29 @@ func _physics_process(delta):
 # Starts timer duration for dash, it creates clone effect, and it boost the character speed
 func boost():
 	dashDuration.start()
-	hurtbox.isInvulnerable = true
-	sprite.modulate.a = 0.5
+	if !isClone:
+		hurtbox.isInvulnerable = true
+		sprite.modulate.a = 0.5
+		dashClones.emitting = true
 	normalSpeed = player.playerSpeed
 	boostSpeed = player.playerSpeed * 2
 	player.playerSpeed = boostSpeed
 	canDash = false
-	dashClones.emitting = true
+
 
 # Checks if the player is moving or not while the boost is active
 func shadowCloneBehavior():
-	if !player.isMoving and !dashDuration.is_stopped():
+	if !player.isMoving and !dashDuration.is_stopped() and !isClone:
 		dashClones.emitting = false
-	if player.isMoving and !dashDuration.is_stopped():
+	if player.isMoving and !dashDuration.is_stopped() and !isClone:
 		dashClones.emitting = true
 
 # Once the dash is over it starts a cooldown timer
 func _on_dash_duration_timeout() -> void:
-	dashClones.emitting = false
-	hurtbox.isInvulnerable = false
-	sprite.modulate.a = 1
+	if !isClone:
+		hurtbox.isInvulnerable = false
+		dashClones.emitting = false
+		sprite.modulate.a = 1
 	player.playerSpeed = normalSpeed
 	dashCooldown.start()
 

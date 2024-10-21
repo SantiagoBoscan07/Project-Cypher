@@ -1,24 +1,17 @@
-[gd_scene load_steps=49 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=40 format=3 uid="uid://cn434ioddp5cj"]
 
-[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_205wi"]
-[ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
-[ext_resource type="Script" path="res://Scripts/Player/PlayerIdleState.gd" id="2_6kmfq"]
-[ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="2_adtno"]
-[ext_resource type="PackedScene" uid="uid://dppj5rjyutdgr" path="res://Scenes/Player/player_projectile.tscn" id="2_jk383"]
-[ext_resource type="AnimationLibrary" uid="uid://dg2gx1pln2vh" path="res://Scenes/Player/Animations/IdleAnimations.res" id="2_px1f2"]
-[ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="3_gm63e"]
-[ext_resource type="AnimationLibrary" uid="uid://bce40qro0huc1" path="res://Scenes/Player/Animations/WalkingAnimations.res" id="3_qha88"]
-[ext_resource type="Script" path="res://Scripts/Player/PlayerMoveState.gd" id="4_s3erd"]
-[ext_resource type="Script" path="res://Scripts/Debug/StateLabel.gd" id="5_jd4lw"]
-[ext_resource type="Texture2D" uid="uid://d3pum4du6n1l6" path="res://Sprites/Player/barrierPlaceholder.png" id="6_0ursj"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="6_y6idu"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="7_ut3vb"]
-[ext_resource type="Script" path="res://Scripts/Player/Shoot.gd" id="8_4eq7g"]
-[ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="9_86i7t"]
-[ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
-[ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
-[ext_resource type="Script" path="res://Scripts/Player/Barrier.gd" id="15_4i3y8"]
-[ext_resource type="Script" path="res://Scripts/Player/Clone.gd" id="18_oe3cd"]
+[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_onbc1"]
+[ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="2_gtp27"]
+[ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="3_v7xb0"]
+[ext_resource type="AnimationLibrary" uid="uid://dg2gx1pln2vh" path="res://Scenes/Player/Animations/IdleAnimations.res" id="4_chy8t"]
+[ext_resource type="AnimationLibrary" uid="uid://bce40qro0huc1" path="res://Scenes/Player/Animations/WalkingAnimations.res" id="5_m2rlk"]
+[ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="9_25c4n"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerIdleState.gd" id="10_uvr51"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerMoveState.gd" id="11_k28bc"]
+[ext_resource type="Script" path="res://Scripts/Player/Shoot.gd" id="12_8godu"]
+[ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="13_e2xl3"]
+[ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="14_144xw"]
+[ext_resource type="Script" path="res://Scripts/Debug/StateLabel.gd" id="18_ynkad"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
 animation = &"IdleAnimations/idleDown"
@@ -126,10 +119,6 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_qkt3s")
 states/Move/position = Vector2(653, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n8ab7"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_uj0tl"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_n7msu")]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbe"]
-radius = 6.0
-height = 16.0
-
 [sub_resource type="Shader" id="Shader_kyj71"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
 
@@ -176,48 +165,8 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[sub_resource type="GDScript" id="GDScript_owp3k"]
-script/source = "extends Node2D
-class_name Spawner
-@export var bullethell: PackedScene
-@export_range(0,2*PI) var alpha: float = 0.0
-@export var bulletspawner: Marker2D
-@export var power_timer: Timer
-@export var durationTimer: Timer
-@export var player: CharacterBody2D
-var canStorm: bool = true
-var theta: float = 0.0
-var speed = 100
-var direction = Vector2.RIGHT
-
-func _ready():
-	Signals.connect(\"startStorm\", timer)
-
-func get_vector(angle):
-	theta = angle + alpha
-	return Vector2(cos(theta), sin(theta))
-
-func start_storm(angle):
-	var bullethell = bullethell.instantiate()
-	bullethell.position = bulletspawner.global_position
-	bullethell.z_index = player.z_index - 1
-	bullethell.direction = get_vector(angle)
-	get_tree().current_scene.call_deferred(\"add_child\", bullethell)
-
-func _on_bullet_storm_duration_timeout():
-	power_timer.stop()
-
-func timer():
-	power_timer.start()
-	durationTimer.start()
-	start_storm(theta)
-
-func _on_bullet_storm_cooldown_timeout():
-	start_storm(theta)
-"
-
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_205wi")
+[node name="PlayerClone" type="CharacterBody2D"]
+script = ExtResource("1_onbc1")
 playerSpeed = 75
 
 [node name="Body" type="Node2D" parent="."]
@@ -226,7 +175,7 @@ playerSpeed = 75
 
 [node name="PlayerSprite" type="Sprite2D" parent="Body/Sprites"]
 position = Vector2(14, 11)
-texture = ExtResource("1_gaql2")
+texture = ExtResource("2_gtp27")
 hframes = 4
 vframes = 8
 frame = 8
@@ -234,13 +183,13 @@ frame = 8
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2
 position = Vector2(14, 14)
-texture = ExtResource("3_gm63e")
+texture = ExtResource("3_v7xb0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Sprites"]
 root_node = NodePath("../..")
 libraries = {
-"IdleAnimations": ExtResource("2_px1f2"),
-"WalkingAnimations": ExtResource("3_qha88")
+"IdleAnimations": ExtResource("4_chy8t"),
+"WalkingAnimations": ExtResource("5_m2rlk")
 }
 
 [node name="PlayerAnimationTree" type="AnimationTree" parent="Body/Sprites"]
@@ -252,43 +201,10 @@ parameters/conditions/moving = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
 
-[node name="Barrier" type="Sprite2D" parent="Body/Sprites"]
-visible = false
-modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(14, 11)
-texture = ExtResource("6_0ursj")
-
 [node name="Markers" type="Node2D" parent="Body"]
 
 [node name="ShootingPosition" type="Marker2D" parent="Body/Markers"]
 position = Vector2(14, 14)
-
-[node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
-position = Vector2(48, 0)
-
-[node name="CloneMarker2" type="Marker2D" parent="Body/Markers"]
-position = Vector2(-48, 0)
-
-[node name="Areas" type="Node2D" parent="Body"]
-
-[node name="Hitbox" type="Area2D" parent="Body/Areas"]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("6_y6idu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
-visible = false
-position = Vector2(14, 11)
-shape = SubResource("CapsuleShape2D_btcbe")
-
-[node name="Hurtbox" type="Area2D" parent="Body/Areas"]
-collision_mask = 0
-script = ExtResource("7_ut3vb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
-visible = false
-position = Vector2(14, 11)
-shape = SubResource("CapsuleShape2D_btcbe")
 
 [node name="Particles" type="Node2D" parent="Body"]
 
@@ -298,22 +214,22 @@ material = SubResource("ShaderMaterial_ui6qp")
 position = Vector2(14, 12)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_sj58v")
-texture = ExtResource("1_gaql2")
+texture = ExtResource("2_gtp27")
 lifetime = 0.25
 
 [node name="Components" type="Node2D" parent="."]
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
-script = ExtResource("2_adtno")
-initialState = NodePath("PlayerIdleState")
+script = ExtResource("9_25c4n")
+initialState = NodePath("PlayerMoveState")
 
 [node name="PlayerIdleState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("playerAnimationTree", "player")]
-script = ExtResource("2_6kmfq")
+script = ExtResource("10_uvr51")
 playerAnimationTree = NodePath("../../../Body/Sprites/PlayerAnimationTree")
 player = NodePath("../../..")
 
 [node name="PlayerMoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("player", "playerAnimationTree", "marker")]
-script = ExtResource("4_s3erd")
+script = ExtResource("11_k28bc")
 player = NodePath("../../..")
 playerAnimationTree = NodePath("../../../Body/Sprites/PlayerAnimationTree")
 marker = NodePath("../../../Body/Markers/ShootingPosition")
@@ -321,53 +237,23 @@ marker = NodePath("../../../Body/Markers/ShootingPosition")
 [node name="Moveset" type="Node" parent="Components"]
 
 [node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPosition", "player", "shootingTimer")]
-script = ExtResource("8_4eq7g")
+script = ExtResource("12_8godu")
 shootingPosition = NodePath("../../../Body/Markers/ShootingPosition")
 player = NodePath("../../..")
 shootingTimer = NodePath("../../../Timer/ShootingTimer")
 
 [node name="PositionClamp" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("body")]
-script = ExtResource("9_86i7t")
+script = ExtResource("13_e2xl3")
 body = NodePath("../../..")
 
-[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite")]
-script = ExtResource("13_531wn")
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "dashDuration", "dashCooldown", "dashClones", "sprite")]
+script = ExtResource("14_144xw")
 player = NodePath("../../..")
-hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 dashDuration = NodePath("../../../Timer/DashDuration")
 dashCooldown = NodePath("../../../Timer/DashCooldown")
 dashClones = NodePath("../../../Body/Particles/DashParticles")
 sprite = NodePath("../../../Body/Sprites")
-
-[node name="Misc" type="Node" parent="Components"]
-
-[node name="Health" type="Node" parent="Components/Misc"]
-script = ExtResource("13_u21dx")
-
-[node name="Power-Ups" type="Node2D" parent="Components"]
-
-[node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "Hurtbox", "sprite")]
-script = ExtResource("15_4i3y8")
-barrierTimer = NodePath("../../../Timer/BarrierTimer")
-Hurtbox = NodePath("../../../Body/Areas/Hurtbox")
-sprite = NodePath("../../../Body/Sprites/Barrier")
-
-[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "player")]
-position = Vector2(28, 28)
-script = SubResource("GDScript_owp3k")
-bullethell = ExtResource("2_jk383")
-alpha = 1.0
-bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
-power_timer = NodePath("../../../Timer/BulletStormCooldown")
-durationTimer = NodePath("../../../Timer/BulletStormDuration")
-player = NodePath("../../..")
-
-[node name="Clones" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("cloneTimer", "clone1Marker", "clone2Marker")]
-position = Vector2(1, 0)
-script = ExtResource("18_oe3cd")
-cloneTimer = NodePath("../../../Timer/CloneTimer")
-clone1Marker = NodePath("../../../Body/Markers/CloneMarker1")
-clone2Marker = NodePath("../../../Body/Markers/CloneMarker2")
+isClone = true
 
 [node name="Timer" type="Node2D" parent="."]
 position = Vector2(1, 0)
@@ -387,19 +273,6 @@ one_shot = true
 wait_time = 0.05
 autostart = true
 
-[node name="BulletStormCooldown" type="Timer" parent="Timer"]
-wait_time = 0.05
-
-[node name="BulletStormDuration" type="Timer" parent="Timer"]
-wait_time = 5.0
-
-[node name="BarrierTimer" type="Timer" parent="Timer"]
-wait_time = 3.0
-one_shot = true
-
-[node name="CloneTimer" type="Timer" parent="Timer"]
-wait_time = 3.0
-
 [node name="Debug" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -415,14 +288,10 @@ offset_top = -16.0
 offset_right = 74.0
 offset_bottom = 7.0
 text = "State: "
-script = ExtResource("5_jd4lw")
+script = ExtResource("18_ynkad")
 stateMachine = NodePath("../../Components/FiniteStateMachine")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
 [connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
-[connection signal="timeout" from="Timer/BulletStormCooldown" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
-[connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
-[connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
-[connection signal="timeout" from="Timer/CloneTimer" to="Components/Power-Ups/Clones" method="_on_clone_timer_timeout"]
