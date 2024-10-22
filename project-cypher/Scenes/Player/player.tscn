@@ -1,6 +1,6 @@
 [gd_scene load_steps=50 format=3 uid="uid://cls6xfv5lmsj6"]
 
-[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_205wi"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerIdleState.gd" id="2_6kmfq"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="2_adtno"]

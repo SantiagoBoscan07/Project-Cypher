@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://ljywyxyw3kgy"]
+[gd_scene load_steps=14 format=3 uid="uid://bkrjlqsw64uor"]
 
-[ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_lvlc0"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_u8472"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_4pwlu"]
-[ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_qqdsh"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_p8a5o"]
-[ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_vfdcd"]
-[ext_resource type="Script" path="res://Scripts/Enemies/ShootingEnemyScript.gd" id="7_m4qly"]
+[ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_lpssy"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_o4pim"]
+[ext_resource type="Texture2D" uid="uid://du2j4riwnhg8f" path="res://icon.svg" id="2_riexo"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_hidmq"]
+[ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_6oeo5"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_1xhc3"]
+[ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="6_lugd3"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -49,17 +49,31 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
 radius = 6.08276
 
+[sub_resource type="GDScript" id="GDScript_l8w3b"]
+script/source = "extends State
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 3.0
 
-[node name="ShootingEnemy" type="CharacterBody2D"]
+[node name="MovingEnemy" type="CharacterBody2D"]
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Sprites" type="Node2D" parent="Body"]
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
-texture = ExtResource("1_lvlc0")
+texture = ExtResource("1_lpssy")
 centered = false
 hframes = 3
 
@@ -70,12 +84,17 @@ libraries = {
 }
 autoplay = "flying"
 
+[node name="Icon" type="Sprite2D" parent="Body/Sprites"]
+position = Vector2(8, 8)
+scale = Vector2(0.0625, 0.046875)
+texture = ExtResource("2_riexo")
+
 [node name="Areas" type="Node2D" parent="Body"]
 
 [node name="Hurtbox" type="Area2D" parent="Body/Areas"]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("2_u8472")
+script = ExtResource("2_o4pim")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
 visible = false
@@ -84,40 +103,35 @@ shape = SubResource("CircleShape2D_n51yn")
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
 collision_layer = 0
-script = ExtResource("3_4pwlu")
+script = ExtResource("3_hidmq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
 visible = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_n51yn")
 
-[node name="ShootingOrigin" type="Marker2D" parent="Body/Areas"]
-position = Vector2(8, 8)
-
 [node name="Components" type="Node2D" parent="."]
 
 [node name="Misc" type="Node" parent="Components"]
 
 [node name="Health" type="Node" parent="Components/Misc"]
-script = ExtResource("4_qqdsh")
+script = ExtResource("4_6oeo5")
 
 [node name="Hurt" type="Node" parent="Components/Misc" node_paths=PackedStringArray("health", "hurtbox")]
-script = ExtResource("5_p8a5o")
+script = ExtResource("5_1xhc3")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
-[node name="ShootingStateTimer" type="Timer" parent="Components/Misc"]
-wait_time = 0.5
+[node name="ExplosionTimer" type="Timer" parent="Components/Misc"]
+wait_time = 3.0
+one_shot = true
 autostart = true
 
 [node name="FiniteStateMachine" type="Node" parent="Components"]
-script = ExtResource("5_vfdcd")
+script = ExtResource("6_lugd3")
 
-[node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition")]
-script = ExtResource("7_m4qly")
-shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
-
-[node name="Node" type="Node" parent="Components/FiniteStateMachine"]
+[node name="ExplosionState" type="Node" parent="Components/FiniteStateMachine"]
+script = SubResource("GDScript_l8w3b")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -125,5 +139,3 @@ z_index = 1
 z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
-
-[connection signal="timeout" from="Components/Misc/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]

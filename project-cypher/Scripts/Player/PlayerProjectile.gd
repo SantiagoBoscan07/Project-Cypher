@@ -1,5 +1,7 @@
 extends Node2D
 
+#Enemy projectile?
+
 @export var speed = 500.0
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
