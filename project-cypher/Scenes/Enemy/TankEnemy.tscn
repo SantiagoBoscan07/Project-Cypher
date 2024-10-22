@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://oyc4n17nij6i"]
+[gd_scene load_steps=15 format=3 uid="uid://oyc4n17nij6i"]
 
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_kpkqh"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_00oey"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_rlxb3"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kwi8c"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_ylsm5"]
+[ext_resource type="Script" path="res://Scenes/Enemy/MoveState.gd" id="7_j5ssm"]
+[ext_resource type="PackedScene" uid="uid://d3c6m42lou5ci" path="res://Scenes/Misc/projectileSpawner.tscn" id="8_3dd74"]
+[ext_resource type="PackedScene" uid="uid://gbg6ni2haofh" path="res://Scenes/Enemy/EnemyProjectile.tscn" id="9_wnhbw"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -102,8 +105,25 @@ script = ExtResource("5_ylsm5")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
-[node name="FiniteStateMachine" type="Node" parent="Components"]
+[node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kwi8c")
+initialState = NodePath("MoveState")
+
+[node name="MoveState" type="Node" parent="Components/FiniteStateMachine"]
+script = ExtResource("7_j5ssm")
+
+[node name="ShootState" type="Node" parent="Components/FiniteStateMachine"]
+
+[node name="Timers" type="Node2D" parent="Components"]
+
+[node name="MoveTimer" type="Timer" parent="Components/Timers"]
+
+[node name="ShootTimer" type="Timer" parent="Components/Timers"]
+
+[node name="Power" type="Node2D" parent="Components"]
+
+[node name="ProjectileSpawner" parent="Components/Power" instance=ExtResource("8_3dd74")]
+bullethell = ExtResource("9_wnhbw")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -111,3 +131,5 @@ z_index = 1
 z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
+
+[connection signal="timeout" from="Components/Timers/MoveTimer" to="Components/FiniteStateMachine/MoveState" method="_on_move_timer_timeout"]
