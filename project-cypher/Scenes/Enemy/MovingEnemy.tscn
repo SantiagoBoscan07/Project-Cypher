@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://hv8sfmxy5753"]
+
+[ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_crl6k"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_qdf4n"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_bjsyi"]
+[ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_wu48a"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_2cdik"]
+[ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kry7n"]
+
+[sub_resource type="Animation" id="Animation_ma72m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jf1p2"]
+resource_name = "flying"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk1po"]
+_data = {
+"RESET": SubResource("Animation_ma72m"),
+"flying": SubResource("Animation_jf1p2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
+radius = 3.0
+
+[node name="MovingEnemy" type="CharacterBody2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprites" type="Node2D" parent="Body"]
+
+[node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
+texture = ExtResource("1_crl6k")
+centered = false
+hframes = 3
+
+[node name="Animation" type="AnimationPlayer" parent="Body/Sprites"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_dk1po")
+}
+autoplay = "flying"
+
+[node name="Areas" type="Node2D" parent="Body"]
+
+[node name="Hurtbox" type="Area2D" parent="Body/Areas"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_qdf4n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
+visible = false
+position = Vector2(8, 9)
+shape = SubResource("CircleShape2D_n51yn")
+
+[node name="Hitbox" type="Area2D" parent="Body/Areas"]
+collision_layer = 0
+script = ExtResource("3_bjsyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
+visible = false
+position = Vector2(8, 9)
+shape = SubResource("CircleShape2D_n51yn")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="Misc" type="Node" parent="Components"]
+
+[node name="Health" type="Node" parent="Components/Misc"]
+script = ExtResource("4_wu48a")
+
+[node name="Hurt" type="Node" parent="Components/Misc" node_paths=PackedStringArray("health", "hurtbox")]
+script = ExtResource("5_2cdik")
+health = NodePath("../Health")
+hurtbox = NodePath("../../../Body/Areas/Hurtbox")
+
+[node name="FiniteStateMachine" type="Node" parent="Components"]
+script = ExtResource("5_kry7n")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+z_index = 1
+z_as_relative = false
+position = Vector2(8, 9)
+shape = SubResource("CircleShape2D_4omk4")

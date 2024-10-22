@@ -11,7 +11,7 @@ func _ready():
 func _on_hurtbox_entered(hurtbox: Hurtbox):
 	if not hurtbox is Hurtbox: return
 	
-	if hurtbox.is_invicible: return
+	if hurtbox.isInvulnerable: return
 	
 	hit_hurtbox.emit(hurtbox)
 	hurtbox.hurt.emit(self)

@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
 [ext_resource type="Script" path="res://Scripts/Player/Barrier.gd" id="15_4i3y8"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="16_4kicl"]
 [ext_resource type="Script" path="res://Scripts/Player/Clone.gd" id="18_oe3cd"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
@@ -216,13 +217,11 @@ func _on_bullet_storm_cooldown_timeout():
 	start_storm(theta)
 "
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ilu0a"]
-radius = 7.0
-height = 20.0
-
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+z_as_relative = false
 script = ExtResource("1_205wi")
 playerSpeed = 75
+health = NodePath("Components/Misc/Health")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -348,6 +347,11 @@ sprite = NodePath("../../../Body/Sprites")
 [node name="Health" type="Node" parent="Components/Misc"]
 script = ExtResource("13_u21dx")
 
+[node name="Hurt" type="Node" parent="Components/Misc" node_paths=PackedStringArray("health", "hurtbox")]
+script = ExtResource("16_4kicl")
+health = NodePath("../Health")
+hurtbox = NodePath("../../../Body/Areas/Hurtbox")
+
 [node name="Power-Ups" type="Node2D" parent="Components"]
 
 [node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "Hurtbox", "sprite")]
@@ -422,9 +426,10 @@ text = "State: "
 script = ExtResource("5_jd4lw")
 stateMachine = NodePath("../../Components/FiniteStateMachine")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(14, 12)
-shape = SubResource("CapsuleShape2D_ilu0a")
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(14, 11)
+shape = SubResource("CapsuleShape2D_btcbe")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
