@@ -126,8 +126,4 @@ z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(8, 8)
-target_position = Vector2(0, 29)
-
 [connection signal="timeout" from="Components/Misc/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]
