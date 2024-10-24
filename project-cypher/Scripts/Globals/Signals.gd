@@ -9,3 +9,5 @@ signal startStorm
 signal activateBarrier
 # Signal used to start the clones
 signal activateClone
+
+signal enemyStorm

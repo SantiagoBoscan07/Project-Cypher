@@ -8,13 +8,19 @@ class_name ProjectileSpawner
 @export var power_timer: Timer
 @export var durationTimer: Timer
 @export var body: CharacterBody2D
+@export var isPlayer: bool = false
+@export var isEnemy: bool = false
+
 var canStorm: bool = true
 var theta: float = 0.0
 var speed = 100
 var direction = Vector2.RIGHT
 
 func _ready():
-	Signals.connect("startStorm", timer)
+	if isPlayer:
+		Signals.connect("startStorm", timer)
+	if isEnemy:
+		Signals.connect("enemyStorm", timer)
 
 func get_vector(angle):
 	theta = angle + alpha

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=5 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="3_fiu32"]
+[ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="4_anl6r"]
 
 [node name="Test" type="Node2D"]
 
@@ -46,6 +47,9 @@ text = "Projectiles"
 
 [node name="FlyingEnemy" parent="." instance=ExtResource("3_fiu32")]
 position = Vector2(176, 112)
+
+[node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
+position = Vector2(196, 189)
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
