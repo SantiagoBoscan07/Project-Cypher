@@ -114,8 +114,10 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 script = ExtResource("5_kwi8c")
 initialState = NodePath("ShootState")
 
-[node name="MoveState" type="Node" parent="Components/FiniteStateMachine"]
+[node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_o1ea5")
+desiredSpeed = Vector2(20, 20)
+enemy = NodePath("../../..")
 
 [node name="ShootState" type="Node" parent="Components/FiniteStateMachine"]
 script = ExtResource("8_6fb5q")
