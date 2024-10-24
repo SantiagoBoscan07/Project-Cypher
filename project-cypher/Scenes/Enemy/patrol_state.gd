@@ -1,11 +1,18 @@
 extends State
 
+var enemy: CharacterBody2D
+@export var move_speed := 10.0
+var player: CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta):
+#	move_and_slide()
+	
+#	if velocity.length() > 0:
+#		$AnimationPlayer.play("run")
+	
+#	if velocity.x > 0:
+#		$Sprite.flip_h = false
+#	else:
+#		$Sprite.flip_h = true
 	pass
+	

@@ -104,14 +104,18 @@ script = ExtResource("5_2cdik")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
-[node name="FiniteStateMachine" type="Node" parent="Components"]
+[node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kry7n")
+initialState = NodePath("ChaseState")
 
 [node name="PatrolState" type="Node" parent="Components/FiniteStateMachine"]
 script = ExtResource("7_1mrft")
 
-[node name="ChaseState" type="Node" parent="Components/FiniteStateMachine"]
+[node name="ChaseState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_fvbrl")
+enemy = NodePath("../../..")
+desiredSpeed = Vector2(20, 20)
+maxSpeedChange = 20.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
