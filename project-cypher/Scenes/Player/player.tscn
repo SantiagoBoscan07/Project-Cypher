@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
 [ext_resource type="Script" path="res://Scripts/Player/Barrier.gd" id="15_4i3y8"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="16_4kicl"]
+[ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="18_2t5jg"]
 [ext_resource type="Script" path="res://Scripts/Player/Clone.gd" id="18_oe3cd"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
@@ -177,46 +178,6 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[sub_resource type="GDScript" id="GDScript_owp3k"]
-script/source = "extends Node2D
-class_name Spawner
-@export var bullethell: PackedScene
-@export_range(0,2*PI) var alpha: float = 0.0
-@export var bulletspawner: Marker2D
-@export var power_timer: Timer
-@export var durationTimer: Timer
-@export var player: CharacterBody2D
-var canStorm: bool = true
-var theta: float = 0.0
-var speed = 100
-var direction = Vector2.RIGHT
-
-func _ready():
-	Signals.connect(\"startStorm\", timer)
-
-func get_vector(angle):
-	theta = angle + alpha
-	return Vector2(cos(theta), sin(theta))
-
-func start_storm(angle):
-	var bullethell = bullethell.instantiate()
-	bullethell.position = bulletspawner.global_position
-	bullethell.z_index = player.z_index - 1
-	bullethell.direction = get_vector(angle)
-	get_tree().current_scene.call_deferred(\"add_child\", bullethell)
-
-func _on_bullet_storm_duration_timeout():
-	power_timer.stop()
-
-func timer():
-	power_timer.start()
-	durationTimer.start()
-	start_storm(theta)
-
-func _on_bullet_storm_cooldown_timeout():
-	start_storm(theta)
-"
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 z_as_relative = false
 script = ExtResource("1_205wi")
@@ -359,15 +320,15 @@ barrierTimer = NodePath("../../../Timer/BarrierTimer")
 Hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 sprite = NodePath("../../../Body/Sprites/Barrier")
 
-[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "player")]
+[node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "body")]
 position = Vector2(28, 28)
-script = SubResource("GDScript_owp3k")
+script = ExtResource("18_2t5jg")
 bullethell = ExtResource("2_jk383")
 alpha = 1.0
 bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
 power_timer = NodePath("../../../Timer/BulletStormCooldown")
 durationTimer = NodePath("../../../Timer/BulletStormDuration")
-player = NodePath("../../..")
+body = NodePath("../../..")
 
 [node name="Clones" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("cloneTimer", "clone1Marker", "clone2Marker")]
 position = Vector2(1, 0)
@@ -433,7 +394,6 @@ shape = SubResource("CapsuleShape2D_btcbe")
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timer/DashDuration" to="Components/Moveset/Dash" method="_on_dash_duration_timeout"]
-[connection signal="timeout" from="Timer/ProjectileSpeed" to="." method="_on_projectile_speed_timeout"]
 [connection signal="timeout" from="Timer/BulletStormCooldown" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
 [connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
 [connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
