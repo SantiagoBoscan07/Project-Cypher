@@ -5,11 +5,11 @@ extends State
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Enemy/EnemyProjectile.tscn")
 @export var player: CharacterBody2D
 @export var ray_cast: RayCast2D
-@export var SwitchTimer: Timer
+@export var ShootingTimer: Timer
 var projectile
 
 func enter():
-	pass
+	ShootingTimer.start()
 
 func update(_delta):
 	ray_cast.target_position = ray_cast.to_local(player.position)
@@ -26,14 +26,12 @@ func _on_shooting_state_timer_timeout():
 func shoot():
 	projectile = projectilePreload.instantiate()
 	projectile.position = shootingPosition.global_position
-	# modify it so that it shoots towards the player
 	projectile.direction = (ray_cast.target_position).normalized()
 #	projectile.z_index = player.z_index - 1
 	get_tree().current_scene.add_child(projectile)
 
 
-#stateTransition.emit(get_parent().currentState, "BombState")
-
 
 func _on_state_switch_timeout():
-	pass # Replace with function body.
+	ShootingTimer.stop()
+	stateTransition.emit(get_parent().currentState, "BombState")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1a1hamoc5swb"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyBombProjectile.gd" id="1_cpdyk"]
+[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="2_l00tr"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_62og6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n3g2k"]
+radius = 6.0
+height = 14.0
+
+[node name="BombProjectile" type="Node2D"]
+script = ExtResource("1_cpdyk")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="PlaceholderSprite" type="Sprite2D" parent="Body"]
+modulate = Color(0.48059, 0.163089, 0.217554, 1)
+texture = ExtResource("2_l00tr")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
+
+[node name="Marker2D" type="Marker2D" parent="Body"]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("3_62og6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("CapsuleShape2D_n3g2k")
+
+[node name="LifeTime" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="screen_exited" from="Body/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

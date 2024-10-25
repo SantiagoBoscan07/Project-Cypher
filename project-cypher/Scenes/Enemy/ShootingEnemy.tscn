@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ljywyxyw3kgy"]
+[gd_scene load_steps=14 format=3 uid="uid://ljywyxyw3kgy"]
 
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_lvlc0"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_u8472"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_p8a5o"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_vfdcd"]
 [ext_resource type="Script" path="res://Scripts/Enemies/ShootingEnemyScript.gd" id="7_m4qly"]
+[ext_resource type="Script" path="res://Scenes/Enemy/bomb_state.gd" id="8_3pws8"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -110,14 +111,25 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 wait_time = 0.5
 autostart = true
 
+[node name="StateSwitch" type="Timer" parent="Components/Misc"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="StateBombTimer" type="Timer" parent="Components/Misc"]
+one_shot = true
+
 [node name="FiniteStateMachine" type="Node" parent="Components"]
 script = ExtResource("5_vfdcd")
 
-[node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition")]
+[node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "ShootingTimer")]
 script = ExtResource("7_m4qly")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
+ShootingTimer = NodePath("../../Misc/ShootingStateTimer")
 
-[node name="Node" type="Node" parent="Components/FiniteStateMachine"]
+[node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("bombTime")]
+script = ExtResource("8_3pws8")
+bombTime = NodePath("../../Misc/StateBombTimer")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -131,3 +143,5 @@ position = Vector2(8, 8)
 target_position = Vector2(0, 29)
 
 [connection signal="timeout" from="Components/Misc/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]
+[connection signal="timeout" from="Components/Misc/StateSwitch" to="Components/FiniteStateMachine/ShootingState" method="_on_state_switch_timeout"]
+[connection signal="timeout" from="Components/Misc/StateBombTimer" to="Components/FiniteStateMachine/BombState" method="_on_state_bomb_timer_timeout"]

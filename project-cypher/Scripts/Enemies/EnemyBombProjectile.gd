@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var speed = 500.0
+@export var speed = 100.0
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
 
@@ -13,6 +13,6 @@ func _ready():
 func _process(delta):
 	global_position += velocity * delta
 
-# When the projectile leaves the screen it gets deleted
-func _on_visible_on_screen_enabler_2d_screen_exited():
+
+func _on_life_time_timeout():
 	queue_free()
