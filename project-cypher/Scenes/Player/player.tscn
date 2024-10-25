@@ -193,7 +193,6 @@ position = Vector2(14, 11)
 texture = ExtResource("1_gaql2")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2

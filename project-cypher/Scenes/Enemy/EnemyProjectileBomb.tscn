@@ -8,8 +8,9 @@
 radius = 6.0
 height = 14.0
 
-[node name="BombProjectile" type="Node2D"]
+[node name="BombProjectile" type="Node2D" node_paths=PackedStringArray("shootingPosition")]
 script = ExtResource("1_cpdyk")
+shootingPosition = NodePath("Body/Marker2D")
 
 [node name="Body" type="Node2D" parent="."]
 
