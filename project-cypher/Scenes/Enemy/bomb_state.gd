@@ -5,14 +5,13 @@ extends State
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Enemy/EnemyProjectileBomb.tscn")
 var projectile
 @export var bombTime: Timer
-@onready var projectilePosition: Marker2D = $Body/Marker2D
+@export var projectilePosition: Marker2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	pass # Replace with function body.
 
-func _enter():
+func enter():
 	print("boom")
 	shoot()
 	bombTime.start()

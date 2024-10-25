@@ -119,17 +119,20 @@ autostart = true
 [node name="StateBombTimer" type="Timer" parent="Components/Misc"]
 one_shot = true
 
-[node name="FiniteStateMachine" type="Node" parent="Components"]
+[node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_vfdcd")
+initialState = NodePath("ShootingState")
 
 [node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "ShootingTimer")]
 script = ExtResource("7_m4qly")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
 ShootingTimer = NodePath("../../Misc/ShootingStateTimer")
 
-[node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("bombTime")]
+[node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "bombTime", "projectilePosition")]
 script = ExtResource("8_3pws8")
+shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
 bombTime = NodePath("../../Misc/StateBombTimer")
+projectilePosition = NodePath("../../../Body/Areas/ShootingOrigin")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false

@@ -51,9 +51,6 @@ position = Vector2(176, 112)
 [node name="ShootingEnemy" parent="." instance=ExtResource("4_dmhqs")]
 position = Vector2(202, 211)
 
-[node name="FiniteStateMachine" parent="ShootingEnemy/Components" index="1" node_paths=PackedStringArray("initialState")]
-initialState = NodePath("ShootingState")
-
 [node name="ShootingState" parent="ShootingEnemy/Components/FiniteStateMachine" index="0" node_paths=PackedStringArray("player", "ray_cast")]
 player = NodePath("../../../../Player")
 ray_cast = NodePath("../../../RayCast2D")
