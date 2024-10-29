@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=5 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="3_fiu32"]
+[ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="4_dmhqs"]
 
 [node name="Test" type="Node2D"]
 
@@ -48,6 +49,15 @@ text = "Projectiles"
 process_mode = 4
 position = Vector2(176, 112)
 
+[node name="ShootingEnemy" parent="." instance=ExtResource("4_dmhqs")]
+position = Vector2(202, 211)
+
+[node name="ShootingState" parent="ShootingEnemy/Components/FiniteStateMachine" index="0" node_paths=PackedStringArray("player", "ray_cast")]
+player = NodePath("../../../../Player")
+ray_cast = NodePath("../../../RayCast2D")
+
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Projectiles" to="Power-Ups Test" method="_on_projectiles_pressed"]
+
+[editable path="ShootingEnemy"]
