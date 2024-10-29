@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://hv8sfmxy5753"]
+[gd_scene load_steps=14 format=3 uid="uid://hv8sfmxy5753"]
 
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_crl6k"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_qdf4n"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_wu48a"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_2cdik"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kry7n"]
+[ext_resource type="Script" path="res://Scenes/Enemy/patrol_state.gd" id="7_1mrft"]
+[ext_resource type="Script" path="res://Scenes/Enemy/chase_state.gd" id="8_fvbrl"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -102,8 +104,18 @@ script = ExtResource("5_2cdik")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
-[node name="FiniteStateMachine" type="Node" parent="Components"]
+[node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kry7n")
+initialState = NodePath("ChaseState")
+
+[node name="PatrolState" type="Node" parent="Components/FiniteStateMachine"]
+script = ExtResource("7_1mrft")
+
+[node name="ChaseState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_fvbrl")
+enemy = NodePath("../../..")
+desiredSpeed = Vector2(20, 20)
+maxSpeedChange = 20.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false

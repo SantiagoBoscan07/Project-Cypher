@@ -7,7 +7,7 @@
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_bn2ie")]
-position = Vector2(224, 120)
+position = Vector2(219, 52)
 
 [node name="Power-Ups Test" type="Control" parent="."]
 layout_mode = 3
@@ -47,6 +47,14 @@ text = "Projectiles"
 [node name="FlyingEnemy" parent="." instance=ExtResource("3_fiu32")]
 position = Vector2(176, 112)
 
+[node name="ChaseState" parent="FlyingEnemy/Components/FiniteStateMachine" index="1" node_paths=PackedStringArray("player")]
+move_speed = 5.0
+player = NodePath("../../../../Player")
+desiredSpeed = Vector2(5, 5)
+maxSpeedChange = 5.0
+
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Projectiles" to="Power-Ups Test" method="_on_projectiles_pressed"]
+
+[editable path="FlyingEnemy"]
