@@ -11,4 +11,4 @@ func _ready():
 		health.connect("no_health", die)
 
 func die():
-	queue_free()
+	process_mode = 4
