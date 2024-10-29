@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://oyc4n17nij6i"]
+[gd_scene load_steps=17 format=3 uid="uid://oyc4n17nij6i"]
 
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_06ofs"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_kpkqh"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_00oey"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_33jdv"]
@@ -55,7 +56,9 @@ radius = 6.08276
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 3.0
 
-[node name="TankEnemy" type="CharacterBody2D"]
+[node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+script = ExtResource("1_06ofs")
+health = NodePath("Components/Misc/Health")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -114,10 +117,10 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 script = ExtResource("5_kwi8c")
 initialState = NodePath("ShootState")
 
-[node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy")]
+[node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy", "moveTimer")]
 script = ExtResource("7_o1ea5")
-desiredSpeed = Vector2(20, 20)
 enemy = NodePath("../../..")
+moveTimer = NodePath("../../Timers/MoveTimer")
 
 [node name="ShootState" type="Node" parent="Components/FiniteStateMachine"]
 script = ExtResource("8_6fb5q")
@@ -135,12 +138,15 @@ isEnemy = true
 [node name="Timers" type="Node2D" parent="Components"]
 
 [node name="MoveTimer" type="Timer" parent="Components/Timers"]
+wait_time = 5.0
+one_shot = true
 
 [node name="BulletStormCooldown" type="Timer" parent="Components/Timers"]
-wait_time = 0.05
+wait_time = 0.35
 
 [node name="BulletStormDuration" type="Timer" parent="Components/Timers"]
 wait_time = 5.0
+one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
