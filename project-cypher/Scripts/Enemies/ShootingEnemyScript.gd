@@ -3,7 +3,7 @@ extends State
 @export var shootingPosition: Marker2D
 @export var speed = 500.0
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Enemy/EnemyProjectile.tscn")
-@export var player: CharacterBody2D
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 @export var ray_cast: RayCast2D
 @export var ShootingTimer: Timer
 var projectile
@@ -12,11 +12,8 @@ func enter():
 	ShootingTimer.start()
 
 func update(_delta):
-	ray_cast.target_position = ray_cast.to_local(player.position)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func physicsUpdate(_delta):
-	pass
+	if player:
+		ray_cast.target_position = ray_cast.to_local(player.position)
 
 
 func _on_shooting_state_timer_timeout():
@@ -29,7 +26,6 @@ func shoot():
 	projectile.direction = (ray_cast.target_position).normalized()
 #	projectile.z_index = player.z_index - 1
 	get_tree().current_scene.add_child(projectile)
-
 
 
 func _on_state_switch_timeout():

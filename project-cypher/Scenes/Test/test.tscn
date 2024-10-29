@@ -52,12 +52,6 @@ position = Vector2(176, 112)
 [node name="ShootingEnemy" parent="." instance=ExtResource("4_dmhqs")]
 position = Vector2(202, 211)
 
-[node name="ShootingState" parent="ShootingEnemy/Components/FiniteStateMachine" index="0" node_paths=PackedStringArray("player", "ray_cast")]
-player = NodePath("../../../../Player")
-ray_cast = NodePath("../../../RayCast2D")
-
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Projectiles" to="Power-Ups Test" method="_on_projectiles_pressed"]
-
-[editable path="ShootingEnemy"]

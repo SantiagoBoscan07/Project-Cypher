@@ -6,7 +6,7 @@ class_name EnemyFollow
 #Movement speed of the enemy 
 @export var moveSpeed := 30.0
 #Reference to the player
-@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 var playerPos
 var targetPos
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://ljywyxyw3kgy"]
+[gd_scene load_steps=15 format=3 uid="uid://ljywyxyw3kgy"]
 
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_2840j"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_lvlc0"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_u8472"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_4pwlu"]
@@ -53,7 +54,9 @@ radius = 6.08276
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 3.0
 
-[node name="ShootingEnemy" type="CharacterBody2D"]
+[node name="ShootingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+script = ExtResource("1_2840j")
+health = NodePath("Components/Misc/Health")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -124,9 +127,10 @@ one_shot = true
 script = ExtResource("5_vfdcd")
 initialState = NodePath("ShootingState")
 
-[node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "ShootingTimer")]
+[node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "ray_cast", "ShootingTimer")]
 script = ExtResource("7_m4qly")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
+ray_cast = NodePath("../../../Raycast")
 ShootingTimer = NodePath("../../Misc/ShootingStateTimer")
 
 [node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "bombTime", "stateSwitchTimer")]
@@ -142,7 +146,7 @@ z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="Raycast" type="RayCast2D" parent="."]
 position = Vector2(8, 8)
 target_position = Vector2(0, 29)
 
