@@ -117,7 +117,7 @@ one_shot = true
 autostart = true
 
 [node name="StateBombTimer" type="Timer" parent="Components/Misc"]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]

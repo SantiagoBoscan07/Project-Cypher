@@ -45,6 +45,7 @@ offset_bottom = 135.0
 focus_mode = 0
 text = "Projectiles"
 
+<<<<<<< Updated upstream
 [node name="FlyingEnemy" parent="." instance=ExtResource("3_fiu32")]
 position = Vector2(176, 112)
 
@@ -54,6 +55,20 @@ position = Vector2(202, 211)
 [node name="ShootingState" parent="ShootingEnemy/Components/FiniteStateMachine" index="0" node_paths=PackedStringArray("player", "ray_cast")]
 player = NodePath("../../../../Player")
 ray_cast = NodePath("../../../RayCast2D")
+=======
+[node name="MovingEnemy" parent="." instance=ExtResource("3_fiu32")]
+process_mode = 4
+visible = false
+position = Vector2(166, 24)
+
+[node name="ShootingEnemy" parent="." instance=ExtResource("4_dmhqs")]
+position = Vector2(499, 207)
+
+[node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
+process_mode = 4
+visible = false
+position = Vector2(278, 18)
+>>>>>>> Stashed changes
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]

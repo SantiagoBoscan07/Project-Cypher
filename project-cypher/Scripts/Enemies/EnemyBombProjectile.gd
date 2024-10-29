@@ -50,3 +50,6 @@ func _on_life_time_timeout():
 	projectile.position = shootingPosition.global_position
 	projectile.direction = Vector2(-1.0, -1.0).normalized()
 	get_tree().current_scene.add_child(projectile)
+
+func _on_visible_on_screen_enabler_2d_screen_exited():
+	queue_free()
