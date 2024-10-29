@@ -1,5 +1,6 @@
 extends Node2D
 
+
 @export var speed = 500.0
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO

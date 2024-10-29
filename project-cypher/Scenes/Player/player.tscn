@@ -1,6 +1,6 @@
 [gd_scene load_steps=50 format=3 uid="uid://cls6xfv5lmsj6"]
 
-[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_205wi"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerIdleState.gd" id="2_6kmfq"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="2_adtno"]
@@ -178,7 +178,7 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
 z_as_relative = false
 script = ExtResource("1_205wi")
 playerSpeed = 75
@@ -193,7 +193,6 @@ position = Vector2(14, 11)
 texture = ExtResource("1_gaql2")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2
