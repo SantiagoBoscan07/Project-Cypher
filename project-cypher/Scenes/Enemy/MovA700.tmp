@@ -103,20 +103,8 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/DetectionRadius"]
-visible = false
 position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_i1o5d")
-
-[node name="Markers" type="Node2D" parent="Body"]
-
-[node name="Pos1" type="Marker2D" parent="Body/Markers"]
-position = Vector2(0, -20)
-
-[node name="Pos2" type="Marker2D" parent="Body/Markers"]
-position = Vector2(-10, 20)
-
-[node name="Pos3" type="Marker2D" parent="Body/Markers"]
-position = Vector2(10, 20)
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -132,24 +120,16 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kry7n")
-initialState = NodePath("PatrolState")
+initialState = NodePath("ChaseState")
 
 [node name="ChaseState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_fvbrl")
 enemy = NodePath("../../..")
 
-[node name="PatrolState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("area", "enemy", "markerarr", "shufflePosTimer")]
+[node name="PatrolState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("area", "enemy")]
 script = ExtResource("7_1mrft")
 area = NodePath("../../../Body/Areas/DetectionRadius")
 enemy = NodePath("../../..")
-markerarr = [NodePath("../../../Body/Markers/Pos1"), NodePath("../../../Body/Markers/Pos2"), NodePath("../../../Body/Markers/Pos3")]
-shufflePosTimer = NodePath("../../Timer/ShufflePosition")
-
-[node name="Timer" type="Node" parent="Components"]
-
-[node name="ShufflePosition" type="Timer" parent="Components/Timer"]
-wait_time = 2.0
-one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -159,5 +139,3 @@ position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
 [connection signal="area_entered" from="Body/Areas/DetectionRadius" to="Components/FiniteStateMachine/PatrolState" method="_on_detection_radius_area_entered"]
-[connection signal="area_exited" from="Body/Areas/DetectionRadius" to="Components/FiniteStateMachine/ChaseState" method="_on_detection_radius_area_exited"]
-[connection signal="timeout" from="Components/Timer/ShufflePosition" to="Components/FiniteStateMachine/PatrolState" method="_on_shuffle_position_timeout"]

@@ -254,6 +254,16 @@ visible = false
 position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_btcbe")
 
+[node name="Detectable" type="Area2D" parent="Body/Areas" groups=["Detectable"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Detectable"]
+visible = false
+position = Vector2(14, 11)
+shape = SubResource("CapsuleShape2D_btcbe")
+
 [node name="Particles" type="Node2D" parent="Body"]
 
 [node name="DashParticles" type="GPUParticles2D" parent="Body/Particles"]
