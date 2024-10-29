@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_wu48a"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_2cdik"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kry7n"]
-[ext_resource type="Script" path="res://Scenes/Enemy/patrol_state.gd" id="7_1mrft"]
-[ext_resource type="Script" path="res://Scenes/Enemy/chase_state.gd" id="8_fvbrl"]
+[ext_resource type="Script" path="res://Scripts/Enemy/patrol_state.gd" id="7_1mrft"]
+[ext_resource type="Script" path="res://Scripts/Enemy/chase_state.gd" id="8_fvbrl"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_ylsm5"]
 [ext_resource type="Script" path="res://Scripts/Enemy/MoveState.gd" id="7_o1ea5"]
 [ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="8_3y7eu"]
-[ext_resource type="Script" path="res://Scenes/Enemy/TankShoot.gd" id="8_6fb5q"]
+[ext_resource type="Script" path="res://Scripts/Enemy/TankShoot.gd" id="8_6fb5q"]
 [ext_resource type="PackedScene" uid="uid://gbg6ni2haofh" path="res://Scenes/Enemy/EnemyProjectile.tscn" id="10_g2f6s"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
@@ -115,7 +115,7 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kwi8c")
-initialState = NodePath("ShootState")
+initialState = NodePath("MoveState")
 
 [node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy", "moveTimer")]
 script = ExtResource("7_o1ea5")

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_p8a5o"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_vfdcd"]
 [ext_resource type="Script" path="res://Scripts/Enemies/ShootingEnemyScript.gd" id="7_m4qly"]
-[ext_resource type="Script" path="res://Scenes/Enemy/bomb_state.gd" id="8_3pws8"]
+[ext_resource type="Script" path="res://Scripts/Enemy/bomb_state.gd" id="8_3pws8"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001

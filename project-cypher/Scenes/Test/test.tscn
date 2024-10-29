@@ -48,14 +48,18 @@ text = "Projectiles"
 
 [node name="MovingEnemy" parent="." instance=ExtResource("3_fiu32")]
 process_mode = 4
+visible = false
 position = Vector2(176, 112)
-
-[node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
-position = Vector2(304, 160)
 
 [node name="ShootingEnemy" parent="." instance=ExtResource("4_dmhqs")]
 process_mode = 4
+visible = false
 position = Vector2(202, 211)
+
+[node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
+process_mode = 4
+visible = false
+position = Vector2(304, 160)
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
