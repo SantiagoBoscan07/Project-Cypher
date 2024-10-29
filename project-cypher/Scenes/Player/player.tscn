@@ -329,6 +329,7 @@ bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
 power_timer = NodePath("../../../Timer/BulletStormCooldown")
 durationTimer = NodePath("../../../Timer/BulletStormDuration")
 body = NodePath("../../..")
+isPlayer = true
 
 [node name="Clones" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("cloneTimer", "clone1Marker", "clone2Marker")]
 position = Vector2(1, 0)
