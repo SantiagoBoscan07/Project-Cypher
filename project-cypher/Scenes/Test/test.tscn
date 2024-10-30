@@ -63,8 +63,6 @@ visible = false
 position = Vector2(202, 154)
 
 [node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
-process_mode = 4
-visible = false
 position = Vector2(304, 160)
 
 [node name="UI" type="Control" parent="."]
@@ -91,13 +89,13 @@ offset_bottom = 250.373
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_r5akh")
 theme_override_font_sizes/font_size = 16
-text = "HP: 10"
+text = "HP : 10"
 script = ExtResource("6_kkikm")
 
 [node name="DashPanel" parent="UI/Canvas" instance=ExtResource("9_0jqbi")]
-offset_left = 80.0
+offset_left = 117.477
 offset_top = 218.246
-offset_right = 80.0
+offset_right = 117.477
 offset_bottom = 218.246
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
