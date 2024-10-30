@@ -9,5 +9,9 @@ signal startStorm
 signal activateBarrier
 # Signal used to start the clones
 signal activateClone
-
+# Signal used to start enemy storm
 signal enemyStorm
+# Signal used to keep progress of dash bar
+signal dashProgress(time: float)
+# Signal used to update progress of dash bar
+signal dashCooldownProgress(time: float)

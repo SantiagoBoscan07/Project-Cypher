@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Dash
 @export var player: CharacterBody2D
 @export var hurtbox: Hurtbox
 @export var dashDuration: Timer
@@ -28,6 +28,7 @@ func boost():
 	boostSpeed = player.playerSpeed * 2
 	player.playerSpeed = boostSpeed
 	canDash = false
+	Signals.emit_signal("dashProgress", dashDuration.wait_time)
 
 
 # Checks if the player is moving or not while the boost is active
@@ -44,6 +45,7 @@ func _on_dash_duration_timeout() -> void:
 		dashClones.emitting = false
 		sprite.modulate.a = 1
 	player.playerSpeed = normalSpeed
+	Signals.emit_signal("dashCooldownProgress", dashCooldown.wait_time)
 	dashCooldown.start()
 
 # Once the cooldown ends, the dash is active again
