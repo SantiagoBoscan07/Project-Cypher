@@ -158,6 +158,11 @@ z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
+[node name="Enabler" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(8, 7)
+scale = Vector2(0.8, 0.7)
+
 [connection signal="area_entered" from="Body/Areas/DetectionRadius" to="Components/FiniteStateMachine/PatrolState" method="_on_detection_radius_area_entered"]
 [connection signal="area_exited" from="Body/Areas/DetectionRadius" to="Components/FiniteStateMachine/ChaseState" method="_on_detection_radius_area_exited"]
 [connection signal="timeout" from="Components/Timer/ShufflePosition" to="Components/FiniteStateMachine/PatrolState" method="_on_shuffle_position_timeout"]
+[connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

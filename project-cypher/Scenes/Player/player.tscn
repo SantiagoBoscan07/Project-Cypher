@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=51 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="16_4kicl"]
 [ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="18_2t5jg"]
 [ext_resource type="Script" path="res://Scripts/Player/Clone.gd" id="18_oe3cd"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="21_2jt03"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
 animation = &"IdleAnimations/idleDown"
@@ -236,6 +237,7 @@ position = Vector2(-70, 48)
 [node name="Areas" type="Node2D" parent="Body"]
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
+process_mode = 4
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("6_y6idu")
@@ -317,6 +319,7 @@ sprite = NodePath("../../../Body/Sprites")
 
 [node name="Health" type="Node" parent="Components/Misc"]
 script = ExtResource("13_u21dx")
+health = 10
 
 [node name="Hurt" type="Node" parent="Components/Misc" node_paths=PackedStringArray("health", "hurtbox")]
 script = ExtResource("16_4kicl")
@@ -394,6 +397,8 @@ offset_left = 25.0
 offset_top = -16.0
 offset_right = 74.0
 offset_bottom = 7.0
+theme_override_fonts/font = ExtResource("21_2jt03")
+theme_override_font_sizes/font_size = 16
 text = "State: "
 script = ExtResource("5_jd4lw")
 stateMachine = NodePath("../../Components/FiniteStateMachine")

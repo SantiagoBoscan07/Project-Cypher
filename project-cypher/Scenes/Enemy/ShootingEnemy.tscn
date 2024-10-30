@@ -133,9 +133,10 @@ shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
 ray_cast = NodePath("../../../Raycast")
 ShootingTimer = NodePath("../../Misc/ShootingStateTimer")
 
-[node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "bombTime", "stateSwitchTimer")]
+[node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "rayCast", "bombTime", "stateSwitchTimer")]
 script = ExtResource("8_3pws8")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
+rayCast = NodePath("../../../Raycast")
 bombTime = NodePath("../../Misc/StateBombTimer")
 stateSwitchTimer = NodePath("../../Misc/StateSwitch")
 
@@ -150,6 +151,11 @@ shape = SubResource("CircleShape2D_4omk4")
 position = Vector2(8, 8)
 target_position = Vector2(0, 29)
 
+[node name="Enabler" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(8, 7)
+scale = Vector2(0.8, 0.7)
+
 [connection signal="timeout" from="Components/Misc/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]
 [connection signal="timeout" from="Components/Misc/StateSwitch" to="Components/FiniteStateMachine/ShootingState" method="_on_state_switch_timeout"]
 [connection signal="timeout" from="Components/Misc/StateBombTimer" to="Components/FiniteStateMachine/BombState" method="_on_state_bomb_timer_timeout"]
+[connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

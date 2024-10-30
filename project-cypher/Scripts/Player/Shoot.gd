@@ -16,7 +16,7 @@ func _ready():
 			cloneTimer.start()
 
 # If shoot button is pressed it calls the shoot function
-func  _input(event):
+func  _process(delta: float):
 	if Input.is_action_pressed("shoot") and canShoot and !isClone:
 		shoot()
 

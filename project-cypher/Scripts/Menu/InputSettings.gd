@@ -17,10 +17,7 @@ var inputActions: Dictionary = {
 	"shoot": "Shoot",
 	"dash": "Dash",
 	"shuffle": "Shuffle",
-	"decipher": "Decipher",
-	"moveSlotLeft": "Move Slot Left",
-	"moveSlotRight": "Move Slot Right",
-	"pause": "Pause"
+	"decipher": "Decipher"
 }
 
 func _ready():

@@ -155,7 +155,12 @@ z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
+[node name="Enabler" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(8, 7)
+scale = Vector2(0.8, 0.7)
+
 [connection signal="timeout" from="Components/Timers/MoveTimer" to="Components/FiniteStateMachine/MoveState" method="_on_move_timer_timeout"]
 [connection signal="timeout" from="Components/Timers/BulletStormCooldown" to="Components/FiniteStateMachine/ShootState/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
 [connection signal="timeout" from="Components/Timers/BulletStormDuration" to="Components/FiniteStateMachine/ShootState" method="_on_duration_timer_timeout"]
 [connection signal="timeout" from="Components/Timers/BulletStormDuration" to="Components/FiniteStateMachine/ShootState/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
+[connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

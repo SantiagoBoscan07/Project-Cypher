@@ -3,22 +3,13 @@ extends State
 @export var shootingPosition: Marker2D
 @export var speed = 200.0
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Enemy/EnemyProjectileBomb.tscn")
-var projectile
+@export var rayCast: RayCast2D
 @export var bombTime: Timer
 @export var stateSwitchTimer: Timer
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+var projectile
 func enter():
 	shoot()
 	bombTime.start()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 # Loads the projectile scene and creates an instantiate in the scene
 func shoot():
@@ -26,7 +17,7 @@ func shoot():
 	projectile.position = shootingPosition.global_position
 	#projectile.direction = (ray_cast.target_position).normalized()
 	#projectile.z_index = player.z_index - 1
-	projectile.direction = Vector2.UP
+	projectile.direction = (rayCast.target_position).normalized()
 	get_tree().current_scene.add_child(projectile)
 
 

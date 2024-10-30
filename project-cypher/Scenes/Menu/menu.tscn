@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfkii3aeaf0gy"]
+[gd_scene load_steps=7 format=3 uid="uid://dfkii3aeaf0gy"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
 [ext_resource type="Script" path="res://Scripts/Menu/InputSettings.gd" id="2_0iokl"]
 [ext_resource type="PackedScene" uid="uid://u0hqdutq4nw4" path="res://Scenes/Menu/inputButton.tscn" id="2_djfks"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="2_e3qbb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxg43"]
+bg_color = Color(1, 1, 1, 0.392157)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiwc5"]
+bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,12 +27,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameOptions" type="Control" parent="." node_paths=PackedStringArray("inputSettings")]
+[node name="GameOptions" type="Control" parent="." node_paths=PackedStringArray("inputSettings", "playButton", "optionButton")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7le3e")
 inputSettings = NodePath("../InputSettings")
+playButton = NodePath("PanelContainer/MarginContainer/Options/Play Game")
+optionButton = NodePath("../InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu")
 
 [node name="PanelContainer" type="PanelContainer" parent="GameOptions"]
 layout_mode = 1
@@ -45,12 +62,22 @@ layout_mode = 2
 
 [node name="Play Game" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
-focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Play Game"
 
 [node name="Options" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
-focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Input Controller"
 
 [node name="InputSettings" type="Control" parent="." node_paths=PackedStringArray("gameOptions", "actionList")]
@@ -78,10 +105,10 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="InputSettings/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="ControllerSettings" type="VBoxContainer" parent="InputSettings/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -96,18 +123,33 @@ size_flags_horizontal = 3
 
 [node name="InputButton" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList" instance=ExtResource("2_djfks")]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 
 [node name="DefaultButton" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 layout_mode = 2
-focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Reset Default Controller"
 
 [node name="BackMenu" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 layout_mode = 2
-focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Back to Menu"
 
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game" to="GameOptions" method="_on_play_game_pressed"]
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Options" to="GameOptions" method="_on_options_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]
+[connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="GameOptions" method="_on_back_menu_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="InputSettings" method="_on_back_menu_pressed"]

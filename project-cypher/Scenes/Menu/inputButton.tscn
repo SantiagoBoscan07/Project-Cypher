@@ -1,17 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://u0hqdutq4nw4"]
+[gd_scene load_steps=4 format=3 uid="uid://u0hqdutq4nw4"]
+
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="1_2gwvf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxg43"]
 bg_color = Color(1, 1, 1, 0.392157)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiwc5"]
 bg_color = Color(0, 0, 0, 0.392157)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="InputButton" type="Button"]
 custom_minimum_size = Vector2(0, 16)
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 16.0
 grow_horizontal = 2
-focus_mode = 0
+theme_override_fonts/font = ExtResource("1_2gwvf")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
@@ -34,7 +47,8 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 12
+theme_override_fonts/font = ExtResource("1_2gwvf")
+theme_override_font_sizes/font_size = 16
 text = "action name"
 vertical_alignment = 1
 
@@ -46,6 +60,7 @@ mouse_filter = 1
 [node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-theme_override_font_sizes/font_size = 12
+theme_override_fonts/font = ExtResource("1_2gwvf")
+theme_override_font_sizes/font_size = 16
 text = "Input Key"
 vertical_alignment = 1

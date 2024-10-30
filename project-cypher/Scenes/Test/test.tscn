@@ -1,17 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=9 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="3_fiu32"]
 [ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="4_anl6r"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="4_dmhqs"]
+[ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="6_kkikm"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="6_r5akh"]
+[ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="8_geoi4"]
 
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_bn2ie")]
 position = Vector2(387, 52)
+playerSpeed = 100
 
 [node name="Power-Ups Test" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1.0
@@ -47,17 +52,49 @@ focus_mode = 0
 text = "Projectiles"
 
 [node name="MovingEnemy" parent="." instance=ExtResource("3_fiu32")]
+process_mode = 4
+visible = false
 position = Vector2(176, 112)
 
 [node name="ShootingEnemy" parent="." instance=ExtResource("4_dmhqs")]
 process_mode = 4
 visible = false
-position = Vector2(202, 211)
+position = Vector2(202, 154)
 
 [node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
 process_mode = 4
 visible = false
 position = Vector2(304, 160)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Canvas2" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Canvas" type="Sprite2D" parent="UI/Canvas2"]
+position = Vector2(240, 238)
+texture = ExtResource("8_geoi4")
+
+[node name="HealthLabel" type="Label" parent="UI/Canvas2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 224.0
+offset_right = 56.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_r5akh")
+theme_override_font_sizes/font_size = 16
+text = "HP"
+script = ExtResource("6_kkikm")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(480, 173.823)
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
