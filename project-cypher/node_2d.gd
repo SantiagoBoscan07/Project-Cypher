@@ -9,13 +9,11 @@ var cypherDefault: Array[int] = [1, 1, 1] #holds array to check and make sure th
 
 
 
-func _enter_tree():
+func _ready():
 	#generate 1 number from 1-3 3x. Store each value in array[x,y,z]
 	Generate_Numbers()
-	
 	while (cypherArray == cypherDefault):
 		Generate_Numbers()
-	
 	print(cypherArray)
 
 
