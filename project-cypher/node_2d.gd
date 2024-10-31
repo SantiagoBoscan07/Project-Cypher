@@ -22,7 +22,3 @@ func Generate_Numbers():
 	cypherArray[0] = CypherGenerator.randi_range(1,3)
 	cypherArray[1] = CypherGenerator.randi_range(1,3)
 	cypherArray[2] = CypherGenerator.randi_range(1,3)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
