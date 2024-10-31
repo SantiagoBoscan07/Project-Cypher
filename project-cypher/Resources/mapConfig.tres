@@ -1,552 +1,552 @@
-[gd_resource type="Resource" script_class="Config" load_steps=119 format=3]
+[gd_resource type="Resource" script_class="Config" load_steps=117 format=3]
 
-[ext_resource type="Script" path="res://Resources/mapInputResourcet.gd" id="1_n7dxt"]
+[ext_resource type="Script" path="res://Resources/mapInputResourcet.gd" id="1_rex0w"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_qhcps"]
+[sub_resource type="InputEventKey" id="InputEventKey_sacyw"]
 keycode = 4194309
 
-[sub_resource type="InputEventKey" id="InputEventKey_cmr6g"]
+[sub_resource type="InputEventKey" id="InputEventKey_1ycjy"]
 keycode = 4194310
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_meo6i"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ughdr"]
 button_index = 3
 
-[sub_resource type="InputEventKey" id="InputEventKey_wal8e"]
+[sub_resource type="InputEventKey" id="InputEventKey_gprnn"]
 keycode = 32
 unicode = 32
 
-[sub_resource type="InputEventKey" id="InputEventKey_fvgae"]
+[sub_resource type="InputEventKey" id="InputEventKey_5fnkd"]
 keycode = 4194305
 
-[sub_resource type="InputEventKey" id="InputEventKey_blaei"]
+[sub_resource type="InputEventKey" id="InputEventKey_sf6cd"]
 keycode = 4194306
 
-[sub_resource type="InputEventKey" id="InputEventKey_pxegf"]
+[sub_resource type="InputEventKey" id="InputEventKey_v2r52"]
 shift_pressed = true
 keycode = 4194306
 
-[sub_resource type="InputEventKey" id="InputEventKey_afh4m"]
+[sub_resource type="InputEventKey" id="InputEventKey_22t8n"]
 keycode = 4194319
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_o5bhq"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_rwqnx"]
 button_index = 13
 
-[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_vdadf"]
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_rudwi"]
 axis_value = -1.0
 
-[sub_resource type="InputEventKey" id="InputEventKey_5mcat"]
+[sub_resource type="InputEventKey" id="InputEventKey_vdleg"]
 keycode = 4194321
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_a10pg"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ywsyh"]
 button_index = 14
 
-[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_gbucc"]
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_xndvp"]
 axis_value = 1.0
 
-[sub_resource type="InputEventKey" id="InputEventKey_jvkng"]
+[sub_resource type="InputEventKey" id="InputEventKey_qdfkv"]
 keycode = 4194320
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_6jikn"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_mtcuc"]
 button_index = 11
 
-[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_6lpc1"]
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_sfivk"]
 axis = 1
 axis_value = -1.0
 
-[sub_resource type="InputEventKey" id="InputEventKey_xdrp2"]
+[sub_resource type="InputEventKey" id="InputEventKey_irnbc"]
 keycode = 4194322
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_wb6sa"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_sho7y"]
 button_index = 12
 
-[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_07bll"]
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_xfajg"]
 axis = 1
 axis_value = 1.0
 
-[sub_resource type="InputEventKey" id="InputEventKey_vg7vf"]
+[sub_resource type="InputEventKey" id="InputEventKey_xaj8u"]
 keycode = 4194323
 
-[sub_resource type="InputEventKey" id="InputEventKey_ehrtd"]
+[sub_resource type="InputEventKey" id="InputEventKey_x3lme"]
 keycode = 4194324
 
-[sub_resource type="InputEventKey" id="InputEventKey_8qx5r"]
+[sub_resource type="InputEventKey" id="InputEventKey_is7va"]
 keycode = 4194317
 
-[sub_resource type="InputEventKey" id="InputEventKey_de5pr"]
+[sub_resource type="InputEventKey" id="InputEventKey_duvfr"]
 keycode = 4194318
 
-[sub_resource type="InputEventKey" id="InputEventKey_4yx33"]
+[sub_resource type="InputEventKey" id="InputEventKey_xfhay"]
 command_or_control_autoremap = true
 keycode = 88
 unicode = 88
 
-[sub_resource type="InputEventKey" id="InputEventKey_dm17a"]
+[sub_resource type="InputEventKey" id="InputEventKey_mceqn"]
 shift_pressed = true
 keycode = 4194312
 
-[sub_resource type="InputEventKey" id="InputEventKey_358hr"]
+[sub_resource type="InputEventKey" id="InputEventKey_main0"]
 command_or_control_autoremap = true
 keycode = 67
 unicode = 67
 
-[sub_resource type="InputEventKey" id="InputEventKey_ux1na"]
+[sub_resource type="InputEventKey" id="InputEventKey_q6qeh"]
 command_or_control_autoremap = true
 keycode = 4194311
 
-[sub_resource type="InputEventKey" id="InputEventKey_p47le"]
+[sub_resource type="InputEventKey" id="InputEventKey_60ljn"]
 command_or_control_autoremap = true
 keycode = 86
 unicode = 86
 
-[sub_resource type="InputEventKey" id="InputEventKey_r2nkr"]
+[sub_resource type="InputEventKey" id="InputEventKey_k47as"]
 shift_pressed = true
 keycode = 4194311
 
-[sub_resource type="InputEventKey" id="InputEventKey_6xn5c"]
+[sub_resource type="InputEventKey" id="InputEventKey_mll1b"]
 command_or_control_autoremap = true
 keycode = 90
 unicode = 90
 
-[sub_resource type="InputEventKey" id="InputEventKey_5kw00"]
+[sub_resource type="InputEventKey" id="InputEventKey_fluig"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 90
 unicode = 90
 
-[sub_resource type="InputEventKey" id="InputEventKey_5bvl0"]
+[sub_resource type="InputEventKey" id="InputEventKey_7ijjc"]
 command_or_control_autoremap = true
 keycode = 89
 unicode = 89
 
-[sub_resource type="InputEventKey" id="InputEventKey_6ag3k"]
+[sub_resource type="InputEventKey" id="InputEventKey_h2u7o"]
 ctrl_pressed = true
 keycode = 32
 unicode = 32
 
-[sub_resource type="InputEventKey" id="InputEventKey_0jm8e"]
+[sub_resource type="InputEventKey" id="InputEventKey_ox76c"]
 keycode = 4194309
 
-[sub_resource type="InputEventKey" id="InputEventKey_mrljd"]
+[sub_resource type="InputEventKey" id="InputEventKey_b2yll"]
 keycode = 4194310
 
-[sub_resource type="InputEventKey" id="InputEventKey_t6gsy"]
+[sub_resource type="InputEventKey" id="InputEventKey_a4hpi"]
 keycode = 4194306
 
-[sub_resource type="InputEventKey" id="InputEventKey_voq4d"]
+[sub_resource type="InputEventKey" id="InputEventKey_g3m6a"]
 keycode = 4194309
 
-[sub_resource type="InputEventKey" id="InputEventKey_7ro2e"]
+[sub_resource type="InputEventKey" id="InputEventKey_s36in"]
 keycode = 4194310
 
-[sub_resource type="InputEventKey" id="InputEventKey_julc1"]
+[sub_resource type="InputEventKey" id="InputEventKey_k6327"]
 command_or_control_autoremap = true
 keycode = 4194309
 
-[sub_resource type="InputEventKey" id="InputEventKey_b1f6g"]
+[sub_resource type="InputEventKey" id="InputEventKey_imdf0"]
 command_or_control_autoremap = true
 keycode = 4194310
 
-[sub_resource type="InputEventKey" id="InputEventKey_ywvvk"]
+[sub_resource type="InputEventKey" id="InputEventKey_xxu7x"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194309
 
-[sub_resource type="InputEventKey" id="InputEventKey_e17ot"]
+[sub_resource type="InputEventKey" id="InputEventKey_bvpev"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194310
 
-[sub_resource type="InputEventKey" id="InputEventKey_liuxb"]
+[sub_resource type="InputEventKey" id="InputEventKey_iow50"]
 keycode = 4194306
 
-[sub_resource type="InputEventKey" id="InputEventKey_kyvb4"]
+[sub_resource type="InputEventKey" id="InputEventKey_mj7hs"]
 shift_pressed = true
 keycode = 4194306
 
-[sub_resource type="InputEventKey" id="InputEventKey_4egye"]
+[sub_resource type="InputEventKey" id="InputEventKey_tause"]
 keycode = 4194308
 
-[sub_resource type="InputEventKey" id="InputEventKey_rnd0c"]
+[sub_resource type="InputEventKey" id="InputEventKey_kxboq"]
 shift_pressed = true
 keycode = 4194308
 
-[sub_resource type="InputEventKey" id="InputEventKey_tvpef"]
+[sub_resource type="InputEventKey" id="InputEventKey_ixq4g"]
 command_or_control_autoremap = true
 keycode = 4194308
 
-[sub_resource type="InputEventKey" id="InputEventKey_otewg"]
+[sub_resource type="InputEventKey" id="InputEventKey_yb0wt"]
 alt_pressed = true
 keycode = 4194308
 
-[sub_resource type="InputEventKey" id="InputEventKey_455pn"]
+[sub_resource type="InputEventKey" id="InputEventKey_hxhrx"]
 command_or_control_autoremap = true
 keycode = 4194308
 
-[sub_resource type="InputEventKey" id="InputEventKey_nwj1w"]
+[sub_resource type="InputEventKey" id="InputEventKey_r8rt4"]
 keycode = 4194312
 
-[sub_resource type="InputEventKey" id="InputEventKey_yuu0p"]
+[sub_resource type="InputEventKey" id="InputEventKey_nyi6h"]
 command_or_control_autoremap = true
 keycode = 4194312
 
-[sub_resource type="InputEventKey" id="InputEventKey_k6w6r"]
+[sub_resource type="InputEventKey" id="InputEventKey_s353t"]
 alt_pressed = true
 keycode = 4194312
 
-[sub_resource type="InputEventKey" id="InputEventKey_xgfcc"]
+[sub_resource type="InputEventKey" id="InputEventKey_1fi5c"]
 command_or_control_autoremap = true
 keycode = 4194312
 
-[sub_resource type="InputEventKey" id="InputEventKey_aa6cl"]
+[sub_resource type="InputEventKey" id="InputEventKey_peo7x"]
 keycode = 4194319
 
-[sub_resource type="InputEventKey" id="InputEventKey_bhwgr"]
+[sub_resource type="InputEventKey" id="InputEventKey_4hc5o"]
 command_or_control_autoremap = true
 keycode = 4194319
 
-[sub_resource type="InputEventKey" id="InputEventKey_tstsc"]
+[sub_resource type="InputEventKey" id="InputEventKey_y5e6v"]
 alt_pressed = true
 keycode = 4194319
 
-[sub_resource type="InputEventKey" id="InputEventKey_ed5wm"]
+[sub_resource type="InputEventKey" id="InputEventKey_ycn8s"]
 keycode = 4194321
 
-[sub_resource type="InputEventKey" id="InputEventKey_2o0nh"]
+[sub_resource type="InputEventKey" id="InputEventKey_76e5s"]
 command_or_control_autoremap = true
 keycode = 4194321
 
-[sub_resource type="InputEventKey" id="InputEventKey_qhv8x"]
+[sub_resource type="InputEventKey" id="InputEventKey_34eyj"]
 alt_pressed = true
 keycode = 4194321
 
-[sub_resource type="InputEventKey" id="InputEventKey_vvko8"]
+[sub_resource type="InputEventKey" id="InputEventKey_50es1"]
 keycode = 4194320
 
-[sub_resource type="InputEventKey" id="InputEventKey_errrs"]
+[sub_resource type="InputEventKey" id="InputEventKey_py7r3"]
 keycode = 4194322
 
-[sub_resource type="InputEventKey" id="InputEventKey_xiyke"]
+[sub_resource type="InputEventKey" id="InputEventKey_wqdfd"]
 keycode = 4194317
 
-[sub_resource type="InputEventKey" id="InputEventKey_tj4wo"]
+[sub_resource type="InputEventKey" id="InputEventKey_1q0ni"]
 ctrl_pressed = true
 keycode = 65
 unicode = 65
 
-[sub_resource type="InputEventKey" id="InputEventKey_u34e4"]
+[sub_resource type="InputEventKey" id="InputEventKey_u8iik"]
 command_or_control_autoremap = true
 keycode = 4194319
 
-[sub_resource type="InputEventKey" id="InputEventKey_ihbdc"]
+[sub_resource type="InputEventKey" id="InputEventKey_cip8t"]
 keycode = 4194317
 
-[sub_resource type="InputEventKey" id="InputEventKey_t26x2"]
+[sub_resource type="InputEventKey" id="InputEventKey_ywoj4"]
 keycode = 4194318
 
-[sub_resource type="InputEventKey" id="InputEventKey_2nvgn"]
+[sub_resource type="InputEventKey" id="InputEventKey_omifc"]
 ctrl_pressed = true
 keycode = 69
 unicode = 69
 
-[sub_resource type="InputEventKey" id="InputEventKey_wxcyd"]
+[sub_resource type="InputEventKey" id="InputEventKey_75uvg"]
 command_or_control_autoremap = true
 keycode = 4194321
 
-[sub_resource type="InputEventKey" id="InputEventKey_f2vqq"]
+[sub_resource type="InputEventKey" id="InputEventKey_2mdf6"]
 keycode = 4194318
 
-[sub_resource type="InputEventKey" id="InputEventKey_xca36"]
+[sub_resource type="InputEventKey" id="InputEventKey_rhmsr"]
 keycode = 4194323
 
-[sub_resource type="InputEventKey" id="InputEventKey_ck0kf"]
+[sub_resource type="InputEventKey" id="InputEventKey_osr48"]
 keycode = 4194324
 
-[sub_resource type="InputEventKey" id="InputEventKey_coelc"]
+[sub_resource type="InputEventKey" id="InputEventKey_hn53b"]
 command_or_control_autoremap = true
 keycode = 4194317
 
-[sub_resource type="InputEventKey" id="InputEventKey_gn7ii"]
+[sub_resource type="InputEventKey" id="InputEventKey_kwhto"]
 command_or_control_autoremap = true
 keycode = 4194320
 
-[sub_resource type="InputEventKey" id="InputEventKey_4ct1p"]
+[sub_resource type="InputEventKey" id="InputEventKey_koxxm"]
 command_or_control_autoremap = true
 keycode = 4194317
 
-[sub_resource type="InputEventKey" id="InputEventKey_j3yfc"]
+[sub_resource type="InputEventKey" id="InputEventKey_hwew2"]
 command_or_control_autoremap = true
 keycode = 4194318
 
-[sub_resource type="InputEventKey" id="InputEventKey_s5iyc"]
+[sub_resource type="InputEventKey" id="InputEventKey_jcvmm"]
 command_or_control_autoremap = true
 keycode = 4194322
 
-[sub_resource type="InputEventKey" id="InputEventKey_wakvh"]
+[sub_resource type="InputEventKey" id="InputEventKey_2iahn"]
 command_or_control_autoremap = true
 keycode = 4194318
 
-[sub_resource type="InputEventKey" id="InputEventKey_ynsq1"]
+[sub_resource type="InputEventKey" id="InputEventKey_jyg51"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194322
 
-[sub_resource type="InputEventKey" id="InputEventKey_vsp6x"]
+[sub_resource type="InputEventKey" id="InputEventKey_wbb1l"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 76
 unicode = 76
 
-[sub_resource type="InputEventKey" id="InputEventKey_ggklh"]
+[sub_resource type="InputEventKey" id="InputEventKey_6tpnj"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194320
 
-[sub_resource type="InputEventKey" id="InputEventKey_5nomm"]
+[sub_resource type="InputEventKey" id="InputEventKey_yqleh"]
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 79
 unicode = 79
 
-[sub_resource type="InputEventKey" id="InputEventKey_4tt23"]
+[sub_resource type="InputEventKey" id="InputEventKey_m2a6l"]
 command_or_control_autoremap = true
 keycode = 4194320
 
-[sub_resource type="InputEventKey" id="InputEventKey_ontew"]
+[sub_resource type="InputEventKey" id="InputEventKey_b1fau"]
 command_or_control_autoremap = true
 alt_pressed = true
 keycode = 4194320
 
-[sub_resource type="InputEventKey" id="InputEventKey_qs2io"]
+[sub_resource type="InputEventKey" id="InputEventKey_b1t0f"]
 command_or_control_autoremap = true
 keycode = 4194322
 
-[sub_resource type="InputEventKey" id="InputEventKey_7krcp"]
+[sub_resource type="InputEventKey" id="InputEventKey_tlubv"]
 command_or_control_autoremap = true
 alt_pressed = true
 keycode = 4194322
 
-[sub_resource type="InputEventKey" id="InputEventKey_ge40x"]
+[sub_resource type="InputEventKey" id="InputEventKey_i6l5q"]
 command_or_control_autoremap = true
 keycode = 65
 unicode = 65
 
-[sub_resource type="InputEventKey" id="InputEventKey_d4mjl"]
+[sub_resource type="InputEventKey" id="InputEventKey_7b52l"]
 alt_pressed = true
 keycode = 71
 unicode = 71
 
-[sub_resource type="InputEventKey" id="InputEventKey_nbm58"]
+[sub_resource type="InputEventKey" id="InputEventKey_fxbyy"]
 ctrl_pressed = true
 meta_pressed = true
 keycode = 71
 unicode = 71
 
-[sub_resource type="InputEventKey" id="InputEventKey_sf3yo"]
+[sub_resource type="InputEventKey" id="InputEventKey_y6ut7"]
 command_or_control_autoremap = true
 keycode = 68
 unicode = 68
 
-[sub_resource type="InputEventKey" id="InputEventKey_4jxvo"]
+[sub_resource type="InputEventKey" id="InputEventKey_j35cg"]
 command_or_control_autoremap = true
 alt_pressed = true
 keycode = 68
 unicode = 68
 
-[sub_resource type="InputEventKey" id="InputEventKey_3mqrg"]
+[sub_resource type="InputEventKey" id="InputEventKey_lr1uv"]
 keycode = 4194305
 
-[sub_resource type="InputEventKey" id="InputEventKey_28exm"]
+[sub_resource type="InputEventKey" id="InputEventKey_bjvbv"]
 keycode = 4194311
 
-[sub_resource type="InputEventKey" id="InputEventKey_divlx"]
+[sub_resource type="InputEventKey" id="InputEventKey_2oi70"]
 keycode = 4194370
 
-[sub_resource type="InputEventKey" id="InputEventKey_47xk7"]
+[sub_resource type="InputEventKey" id="InputEventKey_5gl2m"]
 keycode = 4194309
 
-[sub_resource type="InputEventKey" id="InputEventKey_tm0ce"]
+[sub_resource type="InputEventKey" id="InputEventKey_wtv5c"]
 keycode = 4194310
 
-[sub_resource type="InputEventKey" id="InputEventKey_iesin"]
+[sub_resource type="InputEventKey" id="InputEventKey_eigip"]
 command_or_control_autoremap = true
 keycode = 68
 unicode = 68
 
-[sub_resource type="InputEventKey" id="InputEventKey_owlpk"]
+[sub_resource type="InputEventKey" id="InputEventKey_xac5r"]
 keycode = 4194312
 
-[sub_resource type="InputEventKey" id="InputEventKey_n0l3c"]
+[sub_resource type="InputEventKey" id="InputEventKey_sbn0j"]
 keycode = 4194308
 
-[sub_resource type="InputEventKey" id="InputEventKey_lf80o"]
+[sub_resource type="InputEventKey" id="InputEventKey_wwrt4"]
 keycode = 4194336
 
-[sub_resource type="InputEventKey" id="InputEventKey_lp2fs"]
+[sub_resource type="InputEventKey" id="InputEventKey_dv0k4"]
 keycode = 72
 unicode = 72
 
-[sub_resource type="InputEventKey" id="InputEventKey_h0peh"]
+[sub_resource type="InputEventKey" id="InputEventKey_k4nlm"]
 command_or_control_autoremap = true
 keycode = 96
 unicode = 96
 
-[sub_resource type="InputEventKey" id="InputEventKey_opqho"]
+[sub_resource type="InputEventKey" id="InputEventKey_b58xi"]
 pressed = true
-keycode = 4194320
-physical_keycode = 4194320
-key_label = 4194320
+keycode = 87
+physical_keycode = 87
+key_label = 87
+unicode = 119
 
-[sub_resource type="InputEventKey" id="InputEventKey_xa217"]
+[sub_resource type="InputEventKey" id="InputEventKey_15uke"]
 pressed = true
-keycode = 4194322
-physical_keycode = 4194322
-key_label = 4194322
+keycode = 83
+physical_keycode = 83
+key_label = 83
+unicode = 115
 
-[sub_resource type="InputEventKey" id="InputEventKey_pbu52"]
-device = -1
-physical_keycode = 4194319
+[sub_resource type="InputEventKey" id="InputEventKey_5qoby"]
+pressed = true
+keycode = 65
+physical_keycode = 65
+key_label = 65
+unicode = 97
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ey6hm"]
-device = -1
-button_index = 13
+[sub_resource type="InputEventKey" id="InputEventKey_4nnkn"]
+pressed = true
+keycode = 68
+physical_keycode = 68
+key_label = 68
+unicode = 100
 
-[sub_resource type="InputEventKey" id="InputEventKey_1acgg"]
-device = -1
-physical_keycode = 4194321
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_yx70f"]
-device = -1
-button_index = 14
-
-[sub_resource type="InputEventKey" id="InputEventKey_yqijo"]
+[sub_resource type="InputEventKey" id="InputEventKey_3ckjf"]
 device = -1
 physical_keycode = 32
 unicode = 32
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_luth6"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_r6w8g"]
 device = -1
 
-[sub_resource type="InputEventKey" id="InputEventKey_pnswn"]
+[sub_resource type="InputEventKey" id="InputEventKey_ytn4w"]
 device = -1
 physical_keycode = 4194325
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_qnnqv"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_s31f4"]
 device = -1
 button_index = 1
 
-[sub_resource type="InputEventKey" id="InputEventKey_a7lg3"]
+[sub_resource type="InputEventKey" id="InputEventKey_ehapv"]
 device = -1
 physical_keycode = 81
 unicode = 113
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_dmgyj"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_noma8"]
 device = -1
 button_index = 3
 
-[sub_resource type="InputEventKey" id="InputEventKey_oiunm"]
+[sub_resource type="InputEventKey" id="InputEventKey_0o6kp"]
 device = -1
 physical_keycode = 69
 unicode = 101
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_kixr8"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_kx4j3"]
 device = -1
 button_index = 2
 
-[sub_resource type="InputEventKey" id="InputEventKey_qg14c"]
+[sub_resource type="InputEventKey" id="InputEventKey_ljbsv"]
 device = -1
 physical_keycode = 4194305
 
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_whoyg"]
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_74ghg"]
 device = -1
 button_index = 6
 
 [resource]
-script = ExtResource("1_n7dxt")
+script = ExtResource("1_rex0w")
 input_map = {
-"dash": Array[InputEvent]([SubResource("InputEventKey_pnswn"), SubResource("InputEventJoypadButton_qnnqv")]),
-"decipher": Array[InputEvent]([SubResource("InputEventKey_oiunm"), SubResource("InputEventJoypadButton_kixr8")]),
-"moveDown": Array[InputEvent]([SubResource("InputEventKey_xa217")]),
-"moveLeft": Array[InputEvent]([SubResource("InputEventKey_pbu52"), SubResource("InputEventJoypadButton_ey6hm")]),
-"moveRight": Array[InputEvent]([SubResource("InputEventKey_1acgg"), SubResource("InputEventJoypadButton_yx70f")]),
-"moveUp": Array[InputEvent]([SubResource("InputEventKey_opqho")]),
-"pause": Array[InputEvent]([SubResource("InputEventKey_qg14c"), SubResource("InputEventJoypadButton_whoyg")]),
-"shoot": Array[InputEvent]([SubResource("InputEventKey_yqijo"), SubResource("InputEventJoypadButton_luth6")]),
-"shuffle": Array[InputEvent]([SubResource("InputEventKey_a7lg3"), SubResource("InputEventJoypadButton_dmgyj")]),
-"ui_accept": Array[InputEvent]([SubResource("InputEventKey_qhcps"), SubResource("InputEventKey_cmr6g")]),
-"ui_cancel": Array[InputEvent]([SubResource("InputEventKey_fvgae")]),
-"ui_copy": Array[InputEvent]([SubResource("InputEventKey_358hr"), SubResource("InputEventKey_ux1na")]),
-"ui_cut": Array[InputEvent]([SubResource("InputEventKey_4yx33"), SubResource("InputEventKey_dm17a")]),
-"ui_down": Array[InputEvent]([SubResource("InputEventKey_xdrp2"), SubResource("InputEventJoypadButton_wb6sa"), SubResource("InputEventJoypadMotion_07bll")]),
-"ui_end": Array[InputEvent]([SubResource("InputEventKey_de5pr")]),
-"ui_filedialog_refresh": Array[InputEvent]([SubResource("InputEventKey_lf80o")]),
-"ui_filedialog_show_hidden": Array[InputEvent]([SubResource("InputEventKey_lp2fs")]),
-"ui_filedialog_up_one_level": Array[InputEvent]([SubResource("InputEventKey_n0l3c")]),
-"ui_focus_next": Array[InputEvent]([SubResource("InputEventKey_blaei")]),
-"ui_focus_prev": Array[InputEvent]([SubResource("InputEventKey_pxegf")]),
-"ui_graph_delete": Array[InputEvent]([SubResource("InputEventKey_owlpk")]),
-"ui_graph_duplicate": Array[InputEvent]([SubResource("InputEventKey_iesin")]),
-"ui_home": Array[InputEvent]([SubResource("InputEventKey_8qx5r")]),
-"ui_left": Array[InputEvent]([SubResource("InputEventKey_afh4m"), SubResource("InputEventJoypadButton_o5bhq"), SubResource("InputEventJoypadMotion_vdadf")]),
-"ui_menu": Array[InputEvent]([SubResource("InputEventKey_divlx")]),
-"ui_page_down": Array[InputEvent]([SubResource("InputEventKey_ehrtd")]),
-"ui_page_up": Array[InputEvent]([SubResource("InputEventKey_vg7vf")]),
-"ui_paste": Array[InputEvent]([SubResource("InputEventKey_p47le"), SubResource("InputEventKey_r2nkr")]),
-"ui_redo": Array[InputEvent]([SubResource("InputEventKey_5kw00"), SubResource("InputEventKey_5bvl0")]),
-"ui_right": Array[InputEvent]([SubResource("InputEventKey_5mcat"), SubResource("InputEventJoypadButton_a10pg"), SubResource("InputEventJoypadMotion_gbucc")]),
-"ui_select": Array[InputEvent]([SubResource("InputEventJoypadButton_meo6i"), SubResource("InputEventKey_wal8e")]),
-"ui_swap_input_direction": Array[InputEvent]([SubResource("InputEventKey_h0peh")]),
-"ui_text_add_selection_for_next_occurrence": Array[InputEvent]([SubResource("InputEventKey_sf3yo")]),
-"ui_text_backspace": Array[InputEvent]([SubResource("InputEventKey_4egye"), SubResource("InputEventKey_rnd0c")]),
+"dash": Array[InputEvent]([SubResource("InputEventKey_ytn4w"), SubResource("InputEventJoypadButton_s31f4")]),
+"decipher": Array[InputEvent]([SubResource("InputEventKey_0o6kp"), SubResource("InputEventJoypadButton_kx4j3")]),
+"moveDown": Array[InputEvent]([SubResource("InputEventKey_15uke")]),
+"moveLeft": Array[InputEvent]([SubResource("InputEventKey_5qoby")]),
+"moveRight": Array[InputEvent]([SubResource("InputEventKey_4nnkn")]),
+"moveUp": Array[InputEvent]([SubResource("InputEventKey_b58xi")]),
+"pause": Array[InputEvent]([SubResource("InputEventKey_ljbsv"), SubResource("InputEventJoypadButton_74ghg")]),
+"shoot": Array[InputEvent]([SubResource("InputEventKey_3ckjf"), SubResource("InputEventJoypadButton_r6w8g")]),
+"shuffle": Array[InputEvent]([SubResource("InputEventKey_ehapv"), SubResource("InputEventJoypadButton_noma8")]),
+"ui_accept": Array[InputEvent]([SubResource("InputEventKey_sacyw"), SubResource("InputEventKey_1ycjy")]),
+"ui_cancel": Array[InputEvent]([SubResource("InputEventKey_5fnkd")]),
+"ui_copy": Array[InputEvent]([SubResource("InputEventKey_main0"), SubResource("InputEventKey_q6qeh")]),
+"ui_cut": Array[InputEvent]([SubResource("InputEventKey_xfhay"), SubResource("InputEventKey_mceqn")]),
+"ui_down": Array[InputEvent]([SubResource("InputEventKey_irnbc"), SubResource("InputEventJoypadButton_sho7y"), SubResource("InputEventJoypadMotion_xfajg")]),
+"ui_end": Array[InputEvent]([SubResource("InputEventKey_duvfr")]),
+"ui_filedialog_refresh": Array[InputEvent]([SubResource("InputEventKey_wwrt4")]),
+"ui_filedialog_show_hidden": Array[InputEvent]([SubResource("InputEventKey_dv0k4")]),
+"ui_filedialog_up_one_level": Array[InputEvent]([SubResource("InputEventKey_sbn0j")]),
+"ui_focus_next": Array[InputEvent]([SubResource("InputEventKey_sf6cd")]),
+"ui_focus_prev": Array[InputEvent]([SubResource("InputEventKey_v2r52")]),
+"ui_graph_delete": Array[InputEvent]([SubResource("InputEventKey_xac5r")]),
+"ui_graph_duplicate": Array[InputEvent]([SubResource("InputEventKey_eigip")]),
+"ui_home": Array[InputEvent]([SubResource("InputEventKey_is7va")]),
+"ui_left": Array[InputEvent]([SubResource("InputEventKey_22t8n"), SubResource("InputEventJoypadButton_rwqnx"), SubResource("InputEventJoypadMotion_rudwi")]),
+"ui_menu": Array[InputEvent]([SubResource("InputEventKey_2oi70")]),
+"ui_page_down": Array[InputEvent]([SubResource("InputEventKey_x3lme")]),
+"ui_page_up": Array[InputEvent]([SubResource("InputEventKey_xaj8u")]),
+"ui_paste": Array[InputEvent]([SubResource("InputEventKey_60ljn"), SubResource("InputEventKey_k47as")]),
+"ui_redo": Array[InputEvent]([SubResource("InputEventKey_fluig"), SubResource("InputEventKey_7ijjc")]),
+"ui_right": Array[InputEvent]([SubResource("InputEventKey_vdleg"), SubResource("InputEventJoypadButton_ywsyh"), SubResource("InputEventJoypadMotion_xndvp")]),
+"ui_select": Array[InputEvent]([SubResource("InputEventJoypadButton_ughdr"), SubResource("InputEventKey_gprnn")]),
+"ui_swap_input_direction": Array[InputEvent]([SubResource("InputEventKey_k4nlm")]),
+"ui_text_add_selection_for_next_occurrence": Array[InputEvent]([SubResource("InputEventKey_y6ut7")]),
+"ui_text_backspace": Array[InputEvent]([SubResource("InputEventKey_tause"), SubResource("InputEventKey_kxboq")]),
 "ui_text_backspace_all_to_left": Array[InputEvent]([]),
-"ui_text_backspace_all_to_left.macos": Array[InputEvent]([SubResource("InputEventKey_455pn")]),
-"ui_text_backspace_word": Array[InputEvent]([SubResource("InputEventKey_tvpef")]),
-"ui_text_backspace_word.macos": Array[InputEvent]([SubResource("InputEventKey_otewg")]),
-"ui_text_caret_add_above": Array[InputEvent]([SubResource("InputEventKey_ggklh")]),
-"ui_text_caret_add_above.macos": Array[InputEvent]([SubResource("InputEventKey_5nomm")]),
-"ui_text_caret_add_below": Array[InputEvent]([SubResource("InputEventKey_ynsq1")]),
-"ui_text_caret_add_below.macos": Array[InputEvent]([SubResource("InputEventKey_vsp6x")]),
-"ui_text_caret_document_end": Array[InputEvent]([SubResource("InputEventKey_j3yfc")]),
-"ui_text_caret_document_end.macos": Array[InputEvent]([SubResource("InputEventKey_s5iyc"), SubResource("InputEventKey_wakvh")]),
-"ui_text_caret_document_start": Array[InputEvent]([SubResource("InputEventKey_coelc")]),
-"ui_text_caret_document_start.macos": Array[InputEvent]([SubResource("InputEventKey_gn7ii"), SubResource("InputEventKey_4ct1p")]),
-"ui_text_caret_down": Array[InputEvent]([SubResource("InputEventKey_errrs")]),
-"ui_text_caret_left": Array[InputEvent]([SubResource("InputEventKey_aa6cl")]),
-"ui_text_caret_line_end": Array[InputEvent]([SubResource("InputEventKey_t26x2")]),
-"ui_text_caret_line_end.macos": Array[InputEvent]([SubResource("InputEventKey_2nvgn"), SubResource("InputEventKey_wxcyd"), SubResource("InputEventKey_f2vqq")]),
-"ui_text_caret_line_start": Array[InputEvent]([SubResource("InputEventKey_xiyke")]),
-"ui_text_caret_line_start.macos": Array[InputEvent]([SubResource("InputEventKey_tj4wo"), SubResource("InputEventKey_u34e4"), SubResource("InputEventKey_ihbdc")]),
-"ui_text_caret_page_down": Array[InputEvent]([SubResource("InputEventKey_ck0kf")]),
-"ui_text_caret_page_up": Array[InputEvent]([SubResource("InputEventKey_xca36")]),
-"ui_text_caret_right": Array[InputEvent]([SubResource("InputEventKey_ed5wm")]),
-"ui_text_caret_up": Array[InputEvent]([SubResource("InputEventKey_vvko8")]),
-"ui_text_caret_word_left": Array[InputEvent]([SubResource("InputEventKey_bhwgr")]),
-"ui_text_caret_word_left.macos": Array[InputEvent]([SubResource("InputEventKey_tstsc")]),
-"ui_text_caret_word_right": Array[InputEvent]([SubResource("InputEventKey_2o0nh")]),
-"ui_text_caret_word_right.macos": Array[InputEvent]([SubResource("InputEventKey_qhv8x")]),
-"ui_text_clear_carets_and_selection": Array[InputEvent]([SubResource("InputEventKey_3mqrg")]),
-"ui_text_completion_accept": Array[InputEvent]([SubResource("InputEventKey_0jm8e"), SubResource("InputEventKey_mrljd")]),
-"ui_text_completion_query": Array[InputEvent]([SubResource("InputEventKey_6ag3k")]),
-"ui_text_completion_replace": Array[InputEvent]([SubResource("InputEventKey_t6gsy")]),
-"ui_text_dedent": Array[InputEvent]([SubResource("InputEventKey_kyvb4")]),
-"ui_text_delete": Array[InputEvent]([SubResource("InputEventKey_nwj1w")]),
+"ui_text_backspace_all_to_left.macos": Array[InputEvent]([SubResource("InputEventKey_hxhrx")]),
+"ui_text_backspace_word": Array[InputEvent]([SubResource("InputEventKey_ixq4g")]),
+"ui_text_backspace_word.macos": Array[InputEvent]([SubResource("InputEventKey_yb0wt")]),
+"ui_text_caret_add_above": Array[InputEvent]([SubResource("InputEventKey_6tpnj")]),
+"ui_text_caret_add_above.macos": Array[InputEvent]([SubResource("InputEventKey_yqleh")]),
+"ui_text_caret_add_below": Array[InputEvent]([SubResource("InputEventKey_jyg51")]),
+"ui_text_caret_add_below.macos": Array[InputEvent]([SubResource("InputEventKey_wbb1l")]),
+"ui_text_caret_document_end": Array[InputEvent]([SubResource("InputEventKey_hwew2")]),
+"ui_text_caret_document_end.macos": Array[InputEvent]([SubResource("InputEventKey_jcvmm"), SubResource("InputEventKey_2iahn")]),
+"ui_text_caret_document_start": Array[InputEvent]([SubResource("InputEventKey_hn53b")]),
+"ui_text_caret_document_start.macos": Array[InputEvent]([SubResource("InputEventKey_kwhto"), SubResource("InputEventKey_koxxm")]),
+"ui_text_caret_down": Array[InputEvent]([SubResource("InputEventKey_py7r3")]),
+"ui_text_caret_left": Array[InputEvent]([SubResource("InputEventKey_peo7x")]),
+"ui_text_caret_line_end": Array[InputEvent]([SubResource("InputEventKey_ywoj4")]),
+"ui_text_caret_line_end.macos": Array[InputEvent]([SubResource("InputEventKey_omifc"), SubResource("InputEventKey_75uvg"), SubResource("InputEventKey_2mdf6")]),
+"ui_text_caret_line_start": Array[InputEvent]([SubResource("InputEventKey_wqdfd")]),
+"ui_text_caret_line_start.macos": Array[InputEvent]([SubResource("InputEventKey_1q0ni"), SubResource("InputEventKey_u8iik"), SubResource("InputEventKey_cip8t")]),
+"ui_text_caret_page_down": Array[InputEvent]([SubResource("InputEventKey_osr48")]),
+"ui_text_caret_page_up": Array[InputEvent]([SubResource("InputEventKey_rhmsr")]),
+"ui_text_caret_right": Array[InputEvent]([SubResource("InputEventKey_ycn8s")]),
+"ui_text_caret_up": Array[InputEvent]([SubResource("InputEventKey_50es1")]),
+"ui_text_caret_word_left": Array[InputEvent]([SubResource("InputEventKey_4hc5o")]),
+"ui_text_caret_word_left.macos": Array[InputEvent]([SubResource("InputEventKey_y5e6v")]),
+"ui_text_caret_word_right": Array[InputEvent]([SubResource("InputEventKey_76e5s")]),
+"ui_text_caret_word_right.macos": Array[InputEvent]([SubResource("InputEventKey_34eyj")]),
+"ui_text_clear_carets_and_selection": Array[InputEvent]([SubResource("InputEventKey_lr1uv")]),
+"ui_text_completion_accept": Array[InputEvent]([SubResource("InputEventKey_ox76c"), SubResource("InputEventKey_b2yll")]),
+"ui_text_completion_query": Array[InputEvent]([SubResource("InputEventKey_h2u7o")]),
+"ui_text_completion_replace": Array[InputEvent]([SubResource("InputEventKey_a4hpi")]),
+"ui_text_dedent": Array[InputEvent]([SubResource("InputEventKey_mj7hs")]),
+"ui_text_delete": Array[InputEvent]([SubResource("InputEventKey_r8rt4")]),
 "ui_text_delete_all_to_right": Array[InputEvent]([]),
-"ui_text_delete_all_to_right.macos": Array[InputEvent]([SubResource("InputEventKey_xgfcc")]),
-"ui_text_delete_word": Array[InputEvent]([SubResource("InputEventKey_yuu0p")]),
-"ui_text_delete_word.macos": Array[InputEvent]([SubResource("InputEventKey_k6w6r")]),
-"ui_text_indent": Array[InputEvent]([SubResource("InputEventKey_liuxb")]),
-"ui_text_newline": Array[InputEvent]([SubResource("InputEventKey_voq4d"), SubResource("InputEventKey_7ro2e")]),
-"ui_text_newline_above": Array[InputEvent]([SubResource("InputEventKey_ywvvk"), SubResource("InputEventKey_e17ot")]),
-"ui_text_newline_blank": Array[InputEvent]([SubResource("InputEventKey_julc1"), SubResource("InputEventKey_b1f6g")]),
-"ui_text_scroll_down": Array[InputEvent]([SubResource("InputEventKey_qs2io")]),
-"ui_text_scroll_down.macos": Array[InputEvent]([SubResource("InputEventKey_7krcp")]),
-"ui_text_scroll_up": Array[InputEvent]([SubResource("InputEventKey_4tt23")]),
-"ui_text_scroll_up.macos": Array[InputEvent]([SubResource("InputEventKey_ontew")]),
-"ui_text_select_all": Array[InputEvent]([SubResource("InputEventKey_ge40x")]),
-"ui_text_select_word_under_caret": Array[InputEvent]([SubResource("InputEventKey_d4mjl")]),
-"ui_text_select_word_under_caret.macos": Array[InputEvent]([SubResource("InputEventKey_nbm58")]),
-"ui_text_skip_selection_for_next_occurrence": Array[InputEvent]([SubResource("InputEventKey_4jxvo")]),
-"ui_text_submit": Array[InputEvent]([SubResource("InputEventKey_47xk7"), SubResource("InputEventKey_tm0ce")]),
-"ui_text_toggle_insert_mode": Array[InputEvent]([SubResource("InputEventKey_28exm")]),
-"ui_undo": Array[InputEvent]([SubResource("InputEventKey_6xn5c")]),
-"ui_up": Array[InputEvent]([SubResource("InputEventKey_jvkng"), SubResource("InputEventJoypadButton_6jikn"), SubResource("InputEventJoypadMotion_6lpc1")])
+"ui_text_delete_all_to_right.macos": Array[InputEvent]([SubResource("InputEventKey_1fi5c")]),
+"ui_text_delete_word": Array[InputEvent]([SubResource("InputEventKey_nyi6h")]),
+"ui_text_delete_word.macos": Array[InputEvent]([SubResource("InputEventKey_s353t")]),
+"ui_text_indent": Array[InputEvent]([SubResource("InputEventKey_iow50")]),
+"ui_text_newline": Array[InputEvent]([SubResource("InputEventKey_g3m6a"), SubResource("InputEventKey_s36in")]),
+"ui_text_newline_above": Array[InputEvent]([SubResource("InputEventKey_xxu7x"), SubResource("InputEventKey_bvpev")]),
+"ui_text_newline_blank": Array[InputEvent]([SubResource("InputEventKey_k6327"), SubResource("InputEventKey_imdf0")]),
+"ui_text_scroll_down": Array[InputEvent]([SubResource("InputEventKey_b1t0f")]),
+"ui_text_scroll_down.macos": Array[InputEvent]([SubResource("InputEventKey_tlubv")]),
+"ui_text_scroll_up": Array[InputEvent]([SubResource("InputEventKey_m2a6l")]),
+"ui_text_scroll_up.macos": Array[InputEvent]([SubResource("InputEventKey_b1fau")]),
+"ui_text_select_all": Array[InputEvent]([SubResource("InputEventKey_i6l5q")]),
+"ui_text_select_word_under_caret": Array[InputEvent]([SubResource("InputEventKey_7b52l")]),
+"ui_text_select_word_under_caret.macos": Array[InputEvent]([SubResource("InputEventKey_fxbyy")]),
+"ui_text_skip_selection_for_next_occurrence": Array[InputEvent]([SubResource("InputEventKey_j35cg")]),
+"ui_text_submit": Array[InputEvent]([SubResource("InputEventKey_5gl2m"), SubResource("InputEventKey_wtv5c")]),
+"ui_text_toggle_insert_mode": Array[InputEvent]([SubResource("InputEventKey_bjvbv")]),
+"ui_undo": Array[InputEvent]([SubResource("InputEventKey_mll1b")]),
+"ui_up": Array[InputEvent]([SubResource("InputEventKey_qdfkv"), SubResource("InputEventJoypadButton_mtcuc"), SubResource("InputEventJoypadMotion_sfivk")])
 }
