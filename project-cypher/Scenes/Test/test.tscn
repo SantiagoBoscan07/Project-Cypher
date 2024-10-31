@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="6_kkikm"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="6_r5akh"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="8_geoi4"]
-[ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
 
 [node name="Test" type="Node2D"]
 
