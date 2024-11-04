@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signals="*res://Scripts/Globals/Signals.gd"
+PlayerCypherArray="*res://Scripts/ImplementationCode.gd"
 
 [display]
 
