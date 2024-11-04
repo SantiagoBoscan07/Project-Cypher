@@ -123,6 +123,7 @@ size_flags_horizontal = 3
 
 [node name="InputButton" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList" instance=ExtResource("2_djfks")]
 layout_mode = 2
+focus_mode = 0
 theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
