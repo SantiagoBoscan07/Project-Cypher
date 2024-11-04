@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=13 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
 [ext_resource type="Script" path="res://Scripts/ImplementationCode.gd" id="10_hnctj"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
+[ext_resource type="Script" path="res://Scripts/StateSwitch.gd" id="12_s65ei"]
 
 [node name="Test" type="Node2D"]
 
@@ -109,6 +110,9 @@ offset_left = 162.635
 offset_top = 215.668
 offset_right = 162.635
 offset_bottom = 215.668
+
+[node name="StateSwitch" type="Node" parent="UI/Canvas"]
+script = ExtResource("12_s65ei")
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
