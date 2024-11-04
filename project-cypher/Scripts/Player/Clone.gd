@@ -27,3 +27,4 @@ func _on_clone_timer_timeout() -> void:
 	#print('Clone disappeared.')
 	cloneObject1.queue_free()
 	cloneObject2.queue_free()
+	Signals.emit_signal("endPowerUp")

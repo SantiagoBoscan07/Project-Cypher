@@ -111,6 +111,7 @@ offset_left = 162.635
 offset_top = 215.668
 offset_right = 162.635
 offset_bottom = 215.668
+waitTime = 1.0
 
 [node name="StateSwitch" type="Node" parent="UI/Canvas"]
 script = ExtResource("12_s65ei")

@@ -35,6 +35,8 @@ func start_storm(angle):
 
 func _on_bullet_storm_duration_timeout():
 	power_timer.stop()
+	if isPlayer:
+		Signals.emit_signal("endPowerUp")
 
 func timer():
 	power_timer.start()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhkmpvny5c00a"]
+[gd_scene load_steps=3 format=3 uid="uid://dhkmpvny5c00a"]
 
 [ext_resource type="Script" path="res://bar.gd" id="1_07emo"]
+[ext_resource type="Script" path="res://Scenes/Menu/node_2d.gd" id="2_luilw"]
 
 [node name="Bar" type="Control" node_paths=PackedStringArray("barTimer")]
 layout_mode = 3
@@ -13,7 +14,11 @@ script = ExtResource("1_07emo")
 barTimer = NodePath("DecipherBarTimer")
 
 [node name="DecipherBarTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 2.0
 one_shot = true
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("barTimer")]
+script = ExtResource("2_luilw")
+barTimer = NodePath("../DecipherBarTimer")
 
 [connection signal="timeout" from="DecipherBarTimer" to="." method="_on_decipher_bar_timer_timeout"]
