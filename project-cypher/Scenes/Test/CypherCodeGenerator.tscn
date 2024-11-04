@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_d61ca"]
 
-[node name="Node2D" type="Node2D"]
+[node name="CypherCodeGenerator" type="Node2D"]
 script = ExtResource("1_d61ca")

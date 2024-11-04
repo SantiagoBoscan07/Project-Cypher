@@ -1,7 +1,7 @@
 extends Node
 var current_state: String ="state1"
 
-# Create dictionary that stores all the states
+# Create dictionary that stores all the states: playable and cypher state
 
 # Create a variable that stores the current state
 

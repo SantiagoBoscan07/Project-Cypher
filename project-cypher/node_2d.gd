@@ -11,6 +11,8 @@ var cypherDefault: Array[int] = [1, 1, 1] #holds array to check and make sure th
 
 func _ready():
 	#generate 1 number from 1-3 3x. Store each value in array[x,y,z]
+	# Instead of generating numbers in ready, they are going to be generated when the decipher button is pressed
+	# Add connectivity with the bar
 	Generate_Numbers()
 	while (cypherArray == cypherDefault):
 		Generate_Numbers()
