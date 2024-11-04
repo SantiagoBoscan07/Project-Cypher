@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=11 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
@@ -8,7 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="6_kkikm"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="6_r5akh"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="8_geoi4"]
-[ext_resource type="PackedScene" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
+[ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
+[ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
 
 [node name="Test" type="Node2D"]
 
@@ -97,6 +98,13 @@ offset_left = 117.477
 offset_top = 218.246
 offset_right = 117.477
 offset_bottom = 218.246
+
+[node name="Bar" parent="UI/Canvas" instance=ExtResource("10_kuo7b")]
+layout_mode = 1
+offset_left = 162.635
+offset_top = 215.668
+offset_right = 162.635
+offset_bottom = 215.668
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]

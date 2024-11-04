@@ -13,12 +13,9 @@ func _ready() -> void:
 	barTimer.start()
 
 func _process(delta):
-	if waitTime > 0:
-		#print(waitTime)
-		waitTime -= delta
-		
 	if Input.is_action_just_pressed("decipher") and inputPressed:
 		print("Cypher Activated!")
+		# for showcase demo, select random number 1-3 and activate corresponding powerup
 		inputPressed = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
