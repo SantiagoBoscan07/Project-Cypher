@@ -15,10 +15,3 @@ signal enemyStorm
 signal dashProgress(time: float)
 # Signal used to update progress of dash bar
 signal dashCooldownProgress(time: float)
-# Create signal to switch states
-# We need to define the signal 
-signal state_changed(new_state: String)
-
-# State Variable 
-
-	
