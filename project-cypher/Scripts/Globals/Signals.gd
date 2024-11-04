@@ -17,3 +17,5 @@ signal dashProgress(time: float)
 signal dashCooldownProgress(time: float)
 
 signal state_changed
+#signal to end powerup
+signal endPowerUp

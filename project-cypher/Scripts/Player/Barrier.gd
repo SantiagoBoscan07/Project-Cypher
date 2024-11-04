@@ -21,3 +21,4 @@ func turnOffSprite():
 func _on_barrier_timer_timeout() -> void:
 	turnOffSprite()
 	Hurtbox.isInvulnerable = false
+	Signals.emit_signal("endPowerUp")
