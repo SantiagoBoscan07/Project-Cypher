@@ -76,52 +76,67 @@ keycode = 4194317
 keycode = 4194318
 
 [sub_resource type="InputEventKey" id="InputEventKey_hgeg4"]
+
 command_or_control_autoremap = true
 keycode = 88
 unicode = 88
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_q4656"]
 shift_pressed = true
 keycode = 4194312
 
 [sub_resource type="InputEventKey" id="InputEventKey_mxgbw"]
+
 command_or_control_autoremap = true
 keycode = 67
 unicode = 67
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_4c08r"]
 command_or_control_autoremap = true
 keycode = 4194311
 
 [sub_resource type="InputEventKey" id="InputEventKey_wee2c"]
+
 command_or_control_autoremap = true
 keycode = 86
 unicode = 86
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_tfc4e"]
 shift_pressed = true
 keycode = 4194311
 
 [sub_resource type="InputEventKey" id="InputEventKey_oi4yy"]
+
 command_or_control_autoremap = true
 keycode = 90
 unicode = 90
 
+
+
 [sub_resource type="InputEventKey" id="InputEventKey_cdcq2"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 90
 unicode = 90
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_6rb1l"]
+
 command_or_control_autoremap = true
 keycode = 89
 unicode = 89
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_40d3r"]
+
 ctrl_pressed = true
 keycode = 32
 unicode = 32
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_ouubn"]
 keycode = 4194309
@@ -147,14 +162,18 @@ command_or_control_autoremap = true
 keycode = 4194310
 
 [sub_resource type="InputEventKey" id="InputEventKey_43lpb"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194309
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_or3ib"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194310
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_lsk1x"]
 keycode = 4194306
@@ -229,9 +248,11 @@ keycode = 4194322
 keycode = 4194317
 
 [sub_resource type="InputEventKey" id="InputEventKey_laajn"]
+
 ctrl_pressed = true
 keycode = 65
 unicode = 65
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_37xuj"]
 command_or_control_autoremap = true
@@ -244,9 +265,11 @@ keycode = 4194317
 keycode = 4194318
 
 [sub_resource type="InputEventKey" id="InputEventKey_y2xxk"]
+
 ctrl_pressed = true
 keycode = 69
 unicode = 69
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_sw6cf"]
 command_or_control_autoremap = true
@@ -286,71 +309,93 @@ command_or_control_autoremap = true
 keycode = 4194318
 
 [sub_resource type="InputEventKey" id="InputEventKey_0cmv6"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194322
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_2f7ed"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 76
 unicode = 76
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_teasl"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 4194320
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_miltw"]
+
 command_or_control_autoremap = true
 shift_pressed = true
 keycode = 79
 unicode = 79
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_hd6aw"]
 command_or_control_autoremap = true
 keycode = 4194320
 
 [sub_resource type="InputEventKey" id="InputEventKey_s77te"]
+
 command_or_control_autoremap = true
 alt_pressed = true
 keycode = 4194320
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_lly1l"]
 command_or_control_autoremap = true
 keycode = 4194322
 
 [sub_resource type="InputEventKey" id="InputEventKey_ve7q6"]
+
 command_or_control_autoremap = true
 alt_pressed = true
 keycode = 4194322
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_gaihs"]
+
 command_or_control_autoremap = true
 keycode = 65
 unicode = 65
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_wkk64"]
+
 alt_pressed = true
 keycode = 71
 unicode = 71
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_4ue27"]
+
 ctrl_pressed = true
 meta_pressed = true
 keycode = 71
 unicode = 71
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_fmohv"]
+
 command_or_control_autoremap = true
 keycode = 68
 unicode = 68
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_ihe7t"]
+
 command_or_control_autoremap = true
 alt_pressed = true
 keycode = 68
 unicode = 68
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_xairm"]
 keycode = 4194305
@@ -368,9 +413,11 @@ keycode = 4194309
 keycode = 4194310
 
 [sub_resource type="InputEventKey" id="InputEventKey_n68lj"]
+
 command_or_control_autoremap = true
 keycode = 68
 unicode = 68
+
 
 [sub_resource type="InputEventKey" id="InputEventKey_t636p"]
 keycode = 4194312
@@ -386,42 +433,54 @@ keycode = 72
 unicode = 72
 
 [sub_resource type="InputEventKey" id="InputEventKey_5sba7"]
+
 command_or_control_autoremap = true
 keycode = 96
 unicode = 96
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_sse7o"]
+
 pressed = true
 keycode = 87
 physical_keycode = 87
 key_label = 87
 unicode = 119
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_u6l6e"]
+
 pressed = true
 keycode = 83
 physical_keycode = 83
 key_label = 83
 unicode = 115
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_piruw"]
+
 pressed = true
 keycode = 65
 physical_keycode = 65
 key_label = 65
 unicode = 97
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_snkil"]
+
 pressed = true
 keycode = 68
 physical_keycode = 68
 key_label = 68
 unicode = 100
 
+
 [sub_resource type="InputEventKey" id="InputEventKey_ksbig"]
+
 device = -1
 physical_keycode = 32
 unicode = 32
+
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_p0k5p"]
 device = -1
@@ -435,18 +494,22 @@ device = -1
 button_index = 1
 
 [sub_resource type="InputEventKey" id="InputEventKey_7v0fk"]
+
 device = -1
 physical_keycode = 81
 unicode = 113
+
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_6iby0"]
 device = -1
 button_index = 3
 
 [sub_resource type="InputEventKey" id="InputEventKey_a4q8c"]
+
 device = -1
 physical_keycode = 69
 unicode = 101
+
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_5qwk5"]
 device = -1
@@ -457,10 +520,12 @@ device = -1
 physical_keycode = 4194305
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_0lfnf"]
+
 device = -1
 button_index = 6
 
 [resource]
+
 script = ExtResource("1_m4ti3")
 input_map = {
 "dash": Array[InputEvent]([SubResource("InputEventKey_qse6w"), SubResource("InputEventJoypadButton_fx58n")]),
@@ -549,4 +614,5 @@ input_map = {
 "ui_text_toggle_insert_mode": Array[InputEvent]([SubResource("InputEventKey_mbtmp")]),
 "ui_undo": Array[InputEvent]([SubResource("InputEventKey_oi4yy")]),
 "ui_up": Array[InputEvent]([SubResource("InputEventKey_e1gtk"), SubResource("InputEventJoypadButton_uaccf"), SubResource("InputEventJoypadMotion_hpy4q")])
+
 }
