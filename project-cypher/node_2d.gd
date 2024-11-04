@@ -20,7 +20,7 @@ func _ready():
 	Generate_Numbers()
 	while (cypherArray == cypherDefault):
 		Generate_Numbers()
-	print(cypherArray)
+	#print(cypherArray)
 
 
 

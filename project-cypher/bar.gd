@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _process(delta):
 	if Input.is_action_just_pressed("decipher") and inputPressed:
-		print("Cypher Activated!")
+		#print("Cypher Activated!")
 		# for showcase demo, select random number 1-3 and activate corresponding powerup
 		powerInt = RandomPowerUp.randi_range(1, 3)
 		match powerInt:
