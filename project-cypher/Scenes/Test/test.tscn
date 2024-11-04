@@ -78,6 +78,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Slots" type="Node" parent="UI/Canvas"]
+script = ExtResource("10_hnctj")
+
 [node name="Canvas" type="Sprite2D" parent="UI/Canvas"]
 position = Vector2(240, 238)
 texture = ExtResource("8_geoi4")
@@ -106,9 +109,6 @@ offset_left = 162.635
 offset_top = 215.668
 offset_right = 162.635
 offset_bottom = 215.668
-
-[node name="Node" type="Node" parent="."]
-script = ExtResource("10_hnctj")
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]
