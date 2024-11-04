@@ -7,10 +7,9 @@ enum states {
 }
 
 # Create a variable that stores the current state
-var current_state = states.playableState
-
-# Signal for state change
-signal state_changed()
+var current_state = states.playableState:
+	set(value): 
+		current_state = value
 
 func _ready() -> void:
 	Signals.connect("state_changed", change_state)
