@@ -2,20 +2,25 @@ extends Control
 
 @export var barTimer : Timer
 @export var waitTime : float = 10.0
+@export var progressBar: TextureProgressBar
 var inputPressed : bool = false
 var RandomPowerUp = RandomNumberGenerator.new()
 var powerInt: int
+var isFilling: bool
 
-#function that starts a timer
-#function if you press the decypher mode, is going to activate (for testing, just print(cypher activated))
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# FIXME: Add way for timer to know when to start
+	Signals.connect("endPowerUp", endPowerUp)
+	progressBar.max_value = barTimer.wait_time
+	progressBar.value = barTimer.wait_time
 	barTimer.start()
+	isFilling = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("decipher") and inputPressed:
+	if isFilling:
+		progressBar.value -= delta
+	if Input.is_action_pressed("decipher") and inputPressed:
 		#print("Cypher Activated!")
 		# for showcase demo, select random number 1-3 and activate corresponding powerup
 		powerInt = RandomPowerUp.randi_range(1, 3)
@@ -23,16 +28,12 @@ func _process(delta):
 			1: barrier()
 			2: clone()
 			3: storm()
-		
+		progressBar.value = progressBar.max_value
 		inputPressed = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
-
 func _on_decipher_bar_timer_timeout() -> void:
-	print("Time out!")
+	isFilling = false
 	inputPressed = true
-
 
 # If the button is pressed, the barrier will show up
 func barrier() -> void:
@@ -45,3 +46,9 @@ func clone() -> void:
 # If the button is pressed, the projectiles will show up
 func storm() -> void:
 	Signals.emit_signal("startStorm")
+
+func endPowerUp():
+	progressBar.max_value = barTimer.wait_time
+	progressBar.value = barTimer.wait_time
+	isFilling = true
+	barTimer.start()

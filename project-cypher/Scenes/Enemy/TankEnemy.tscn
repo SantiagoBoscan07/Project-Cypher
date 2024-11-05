@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://oyc4n17nij6i"]
+[gd_scene load_steps=19 format=3 uid="uid://oyc4n17nij6i"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_06ofs"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_kpkqh"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_rlxb3"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kwi8c"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_ylsm5"]
+[ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="7_4n3x2"]
 [ext_resource type="Script" path="res://Scripts/Enemy/MoveState.gd" id="7_o1ea5"]
 [ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="8_3y7eu"]
 [ext_resource type="Script" path="res://Scripts/Enemy/TankShoot.gd" id="8_6fb5q"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_hdprn"]
 [ext_resource type="PackedScene" uid="uid://gbg6ni2haofh" path="res://Scenes/Enemy/EnemyProjectile.tscn" id="10_g2f6s"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
@@ -113,17 +115,28 @@ script = ExtResource("5_ylsm5")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
+[node name="PositionClamp" type="Node" parent="Components/Misc"]
+script = ExtResource("7_4n3x2")
+
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kwi8c")
-initialState = NodePath("MoveState")
+initialState = NodePath("EntryState")
+
+[node name="EntryState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("secondState", "enemy", "entryTimer")]
+script = ExtResource("8_hdprn")
+secondState = NodePath("../MoveState")
+enemy = NodePath("../../..")
+entryTimer = NodePath("../../Timers/EntryTimer")
 
 [node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy", "moveTimer")]
 script = ExtResource("7_o1ea5")
+moveSpeed = 15.0
 enemy = NodePath("../../..")
 moveTimer = NodePath("../../Timers/MoveTimer")
 
-[node name="ShootState" type="Node" parent="Components/FiniteStateMachine"]
+[node name="ShootState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("projectileSpawner")]
 script = ExtResource("8_6fb5q")
+projectileSpawner = NodePath("ProjectileSpawner")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/FiniteStateMachine/ShootState" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "body")]
 script = ExtResource("8_3y7eu")
@@ -133,7 +146,6 @@ bulletspawner = NodePath("../../../../Body/ShootPosition")
 power_timer = NodePath("../../../Timers/BulletStormCooldown")
 durationTimer = NodePath("../../../Timers/BulletStormDuration")
 body = NodePath("../../../..")
-isEnemy = true
 
 [node name="Timers" type="Node2D" parent="Components"]
 
@@ -146,6 +158,9 @@ wait_time = 0.35
 
 [node name="BulletStormDuration" type="Timer" parent="Components/Timers"]
 wait_time = 5.0
+one_shot = true
+
+[node name="EntryTimer" type="Timer" parent="Components/Timers"]
 one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -163,4 +178,5 @@ scale = Vector2(0.8, 0.7)
 [connection signal="timeout" from="Components/Timers/BulletStormCooldown" to="Components/FiniteStateMachine/ShootState/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]
 [connection signal="timeout" from="Components/Timers/BulletStormDuration" to="Components/FiniteStateMachine/ShootState" method="_on_duration_timer_timeout"]
 [connection signal="timeout" from="Components/Timers/BulletStormDuration" to="Components/FiniteStateMachine/ShootState/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
+[connection signal="timeout" from="Components/Timers/EntryTimer" to="Components/FiniteStateMachine/EntryState" method="_on_entry_timer_timeout"]
 [connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

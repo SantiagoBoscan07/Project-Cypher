@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=15 format=3 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
@@ -9,10 +9,11 @@
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="6_r5akh"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="8_geoi4"]
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
-[ext_resource type="Script" path="res://Scripts/ImplementationCode.gd" id="10_hnctj"]
+[ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="10_hnctj"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
-[ext_resource type="Script" path="res://Scripts/StateSwitch.gd" id="12_s65ei"]
+[ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="12_s65ei"]
 [ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="13_u2fm0"]
+[ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="14_jig0j"]
 
 [node name="Test" type="Node2D"]
 
@@ -67,6 +68,8 @@ visible = false
 position = Vector2(202, 154)
 
 [node name="TankEnemy" parent="." instance=ExtResource("4_anl6r")]
+process_mode = 4
+visible = false
 position = Vector2(304, 160)
 
 [node name="UI" type="Control" parent="."]
@@ -117,6 +120,31 @@ waitTime = 1.0
 script = ExtResource("12_s65ei")
 
 [node name="CypherCodeGenerator" parent="UI/Canvas" instance=ExtResource("13_u2fm0")]
+
+[node name="Marker2D" type="Marker2D" parent="UI/Canvas"]
+position = Vector2(496, 176.891)
+
+[node name="Spawner" parent="." instance=ExtResource("14_jig0j")]
+spawnTime = 3.0
+spawnerDuration = 6.0
+objectToSpawn = ExtResource("4_anl6r")
+spawnUp = true
+nextWave = NodePath("")
+
+[node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
+process_mode = 4
+spawnTime = 3.0
+spawnerDuration = 9.0
+objectToSpawn = ExtResource("3_fiu32")
+spawnleft = true
+nextWave = NodePath("../Spawner3")
+
+[node name="Spawner3" parent="." instance=ExtResource("14_jig0j")]
+process_mode = 4
+spawnTime = 2.0
+spawnerDuration = 12.0
+objectToSpawn = ExtResource("3_fiu32")
+spawnRight = true
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]

@@ -11,10 +11,6 @@ var index = 0:
 var markerPos
 var targetPos
 
-# starts timer when entering the state
-func enter():
-	shufflePosTimer.start()
-
 # If the player enteres the radius, then it changes to chase state
 func _on_detection_radius_area_entered(area: Area2D):
 	if area.is_in_group("Detectable"):

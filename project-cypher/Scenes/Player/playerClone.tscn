@@ -170,6 +170,7 @@ radius = 6.0
 height = 16.0
 
 [node name="PlayerClone" type="CharacterBody2D"]
+modulate = Color(1, 1, 1, 0.784314)
 script = ExtResource("1_onbc1")
 playerSpeed = 75
 
@@ -182,8 +183,10 @@ position = Vector2(14, 11)
 texture = ExtResource("2_gtp27")
 hframes = 4
 vframes = 8
+frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
+visible = false
 z_index = -2
 position = Vector2(14, 14)
 texture = ExtResource("3_v7xb0")

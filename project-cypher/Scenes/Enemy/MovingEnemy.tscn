@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://hv8sfmxy5753"]
+[gd_scene load_steps=18 format=3 uid="uid://hv8sfmxy5753"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_3dtxn"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_crl6k"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_2cdik"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kry7n"]
 [ext_resource type="Script" path="res://Scripts/Enemy/patrol_state.gd" id="7_1mrft"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_4b5oo"]
 [ext_resource type="Script" path="res://Scripts/Enemy/chase_state.gd" id="8_fvbrl"]
+[ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="11_dwy3j"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -52,7 +54,7 @@ _data = {
 radius = 6.08276
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i1o5d"]
-radius = 150.0
+radius = 129.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 3.0
@@ -130,9 +132,19 @@ script = ExtResource("5_2cdik")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
+[node name="PositionClamp" type="Node" parent="Components/Misc" node_paths=PackedStringArray("body")]
+script = ExtResource("11_dwy3j")
+body = NodePath("../../..")
+
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kry7n")
-initialState = NodePath("PatrolState")
+initialState = NodePath("EntryState")
+
+[node name="EntryState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("secondState", "enemy", "entryTimer")]
+script = ExtResource("8_4b5oo")
+secondState = NodePath("../ChaseState")
+enemy = NodePath("../../..")
+entryTimer = NodePath("../../Timer/EntryTimer")
 
 [node name="ChaseState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_fvbrl")
@@ -150,6 +162,11 @@ shufflePosTimer = NodePath("../../Timer/ShufflePosition")
 [node name="ShufflePosition" type="Timer" parent="Components/Timer"]
 wait_time = 2.0
 one_shot = true
+autostart = true
+
+[node name="EntryTimer" type="Timer" parent="Components/Timer"]
+wait_time = 0.5
+one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -165,4 +182,5 @@ scale = Vector2(0.8, 0.7)
 [connection signal="area_entered" from="Body/Areas/DetectionRadius" to="Components/FiniteStateMachine/PatrolState" method="_on_detection_radius_area_entered"]
 [connection signal="area_exited" from="Body/Areas/DetectionRadius" to="Components/FiniteStateMachine/ChaseState" method="_on_detection_radius_area_exited"]
 [connection signal="timeout" from="Components/Timer/ShufflePosition" to="Components/FiniteStateMachine/PatrolState" method="_on_shuffle_position_timeout"]
+[connection signal="timeout" from="Components/Timer/EntryTimer" to="Components/FiniteStateMachine/EntryState" method="_on_entry_timer_timeout"]
 [connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

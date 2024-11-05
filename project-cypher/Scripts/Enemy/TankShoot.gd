@@ -1,7 +1,9 @@
 extends State
 
+@export var projectileSpawner: ProjectileSpawner
+
 func enter():
-	Signals.emit_signal("enemyStorm")
+	projectileSpawner.timer()
 
 
 func _on_duration_timer_timeout() -> void:

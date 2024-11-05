@@ -3,8 +3,18 @@
 [ext_resource type="Script" path="res://Scripts/Enemies/Spawner.gd" id="1_11vtg"]
 [ext_resource type="Script" path="res://Scripts/Enemy/SpawnerNode.gd" id="2_84t6k"]
 
-[node name="Spawner" type="Node2D"]
+[node name="Spawner" type="Node2D" node_paths=PackedStringArray("spawnTimer", "spawnerDurationTimer", "spawnerNode")]
 script = ExtResource("1_11vtg")
+spawnTimer = NodePath("SpawnTimer")
+spawnerDurationTimer = NodePath("SpawnDuration")
+spawnerNode = NodePath("SpawnerNode")
 
 [node name="SpawnerNode" type="Node2D" parent="."]
 script = ExtResource("2_84t6k")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="SpawnDuration" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnDuration" to="." method="_on_spawn_duration_timeout"]

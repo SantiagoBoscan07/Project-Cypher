@@ -228,10 +228,10 @@ texture = ExtResource("6_0ursj")
 position = Vector2(14, 14)
 
 [node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
-position = Vector2(70, 48)
+position = Vector2(70, 0)
 
 [node name="CloneMarker2" type="Marker2D" parent="Body/Markers"]
-position = Vector2(-70, 48)
+position = Vector2(-70, 0)
 
 [node name="Areas" type="Node2D" parent="Body"]
 
@@ -359,10 +359,10 @@ wait_time = 0.3
 one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="Timer"]
-wait_time = 5.0
 one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timer"]
+wait_time = 0.5
 one_shot = true
 
 [node name="ProjectileSpeed" type="Timer" parent="Timer"]
@@ -373,14 +373,16 @@ autostart = true
 wait_time = 0.05
 
 [node name="BulletStormDuration" type="Timer" parent="Timer"]
-wait_time = 5.0
+wait_time = 10.0
+one_shot = true
 
 [node name="BarrierTimer" type="Timer" parent="Timer"]
-wait_time = 3.0
+wait_time = 10.0
 one_shot = true
 
 [node name="CloneTimer" type="Timer" parent="Timer"]
-wait_time = 10.0
+wait_time = 15.0
+one_shot = true
 
 [node name="Debug" type="Control" parent="."]
 visible = false

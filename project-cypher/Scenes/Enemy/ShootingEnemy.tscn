@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ljywyxyw3kgy"]
+[gd_scene load_steps=16 format=3 uid="uid://ljywyxyw3kgy"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_2840j"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_lvlc0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_vfdcd"]
 [ext_resource type="Script" path="res://Scripts/Enemies/ShootingEnemyScript.gd" id="7_m4qly"]
 [ext_resource type="Script" path="res://Scripts/Enemy/bomb_state.gd" id="8_3pws8"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_grifg"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -125,17 +126,25 @@ one_shot = true
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_vfdcd")
-initialState = NodePath("ShootingState")
+initialState = NodePath("EntryState")
+
+[node name="EntryState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("secondState", "enemy", "entryTimer")]
+script = ExtResource("8_grifg")
+secondState = NodePath("../ShootingState")
+enemy = NodePath("../../..")
+entryTimer = NodePath("../../../Timer/EntryTimer")
 
 [node name="ShootingState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "ray_cast", "ShootingTimer")]
 script = ExtResource("7_m4qly")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
+speed = 30.0
 ray_cast = NodePath("../../../Raycast")
 ShootingTimer = NodePath("../../Misc/ShootingStateTimer")
 
 [node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "rayCast", "bombTime", "stateSwitchTimer")]
 script = ExtResource("8_3pws8")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
+speed = 20.0
 rayCast = NodePath("../../../Raycast")
 bombTime = NodePath("../../Misc/StateBombTimer")
 stateSwitchTimer = NodePath("../../Misc/StateSwitch")
@@ -146,6 +155,10 @@ z_index = 1
 z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
+
+[node name="Timer" type="Node" parent="."]
+
+[node name="EntryTimer" type="Timer" parent="Timer"]
 
 [node name="Raycast" type="RayCast2D" parent="."]
 position = Vector2(8, 8)
@@ -158,4 +171,5 @@ scale = Vector2(0.8, 0.7)
 [connection signal="timeout" from="Components/Misc/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]
 [connection signal="timeout" from="Components/Misc/StateSwitch" to="Components/FiniteStateMachine/ShootingState" method="_on_state_switch_timeout"]
 [connection signal="timeout" from="Components/Misc/StateBombTimer" to="Components/FiniteStateMachine/BombState" method="_on_state_bomb_timer_timeout"]
+[connection signal="timeout" from="Timer/EntryTimer" to="Components/FiniteStateMachine/EntryState" method="_on_entry_timer_timeout"]
 [connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

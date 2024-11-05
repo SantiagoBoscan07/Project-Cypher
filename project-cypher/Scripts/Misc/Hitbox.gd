@@ -2,6 +2,7 @@ extends Area2D
 class_name Hitbox
 
 @export var damage = 1
+@export var isProjectile: bool = false
 
 signal hit_hurtbox(hurtbox)
 
@@ -15,3 +16,5 @@ func _on_hurtbox_entered(hurtbox: Hurtbox):
 	
 	hit_hurtbox.emit(hurtbox)
 	hurtbox.hurt.emit(self)
+	if isProjectile:
+		owner.call_deferred("queue_free")

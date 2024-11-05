@@ -9,7 +9,6 @@ class_name ProjectileSpawner
 @export var durationTimer: Timer
 @export var body: CharacterBody2D
 @export var isPlayer: bool = false
-@export var isEnemy: bool = false
 
 var canStorm: bool = true
 var theta: float = 0.0
@@ -19,8 +18,6 @@ var direction = Vector2.RIGHT
 func _ready():
 	if isPlayer:
 		Signals.connect("startStorm", timer)
-	if isEnemy:
-		Signals.connect("enemyStorm", timer)
 
 func get_vector(angle):
 	theta = angle + alpha
@@ -41,7 +38,6 @@ func _on_bullet_storm_duration_timeout():
 func timer():
 	power_timer.start()
 	durationTimer.start()
-	start_storm(theta)
 
 func _on_bullet_storm_cooldown_timeout():
 	start_storm(theta)

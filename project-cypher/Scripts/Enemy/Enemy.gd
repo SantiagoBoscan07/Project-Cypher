@@ -1,6 +1,15 @@
 extends CharacterBody2D
 
 @export var health: Health
+var upEntrance: bool = false:
+	set(value):
+		upEntrance = value
+var leftEntrance: bool = false:
+	set(value):
+		leftEntrance = value
+var rightEntrance: bool = false:
+	set(value):
+		rightEntrance = value
 
 func _ready():
 	if health:

@@ -7,6 +7,5 @@ func _ready():
 	Signals.connect("endPowerUp", endPowerUp)
 
 func endPowerUp():
-	#print("power down")
 	barTimer.start()
 	
