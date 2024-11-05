@@ -26,12 +26,12 @@ func boost():
 		hurtbox.isInvulnerable = true
 		sprite.modulate.a = 0.5
 		dashClones.emitting = true
+		hitbox.process_mode = 0
+		collision.set_deferred("disabled", 1)
 	normalSpeed = player.playerSpeed
 	boostSpeed = player.playerSpeed * 2
 	player.playerSpeed = boostSpeed
 	canDash = false
-	hitbox.process_mode = 0
-	collision.set_deferred("disabled", 1)
 	Signals.emit_signal("dashProgress", dashDuration.wait_time)
 
 
@@ -48,9 +48,9 @@ func _on_dash_duration_timeout() -> void:
 		hurtbox.isInvulnerable = false
 		dashClones.emitting = false
 		sprite.modulate.a = 1
+		collision.set_deferred("disabled", 0)
+		hitbox.process_mode = 4
 	player.playerSpeed = normalSpeed
-	collision.set_deferred("disabled", 0)
-	hitbox.process_mode = 4
 	Signals.emit_signal("dashCooldownProgress", dashCooldown.wait_time)
 	dashCooldown.start()
 
