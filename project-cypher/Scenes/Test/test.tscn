@@ -110,10 +110,10 @@ offset_bottom = 218.246
 
 [node name="Bar" parent="UI/Canvas" instance=ExtResource("10_kuo7b")]
 layout_mode = 1
-offset_left = 162.635
-offset_top = 215.668
-offset_right = 162.635
-offset_bottom = 215.668
+offset_left = 174.54
+offset_top = 218.503
+offset_right = 174.54
+offset_bottom = 218.503
 waitTime = 1.0
 
 [node name="StateSwitch" type="Node" parent="UI/Canvas"]
@@ -126,24 +126,24 @@ position = Vector2(496, 176.891)
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
 spawnTime = 3.0
-spawnerDuration = 6.0
-objectToSpawn = ExtResource("4_anl6r")
+spawnerDuration = 12.0
+objectToSpawn = ExtResource("3_fiu32")
 spawnUp = true
 nextWave = NodePath("../Spawner2")
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
 process_mode = 4
-spawnTime = 3.0
-spawnerDuration = 9.0
-objectToSpawn = ExtResource("3_fiu32")
+spawnTime = 4.0
+spawnerDuration = 16.0
+objectToSpawn = ExtResource("4_dmhqs")
 spawnleft = true
 nextWave = NodePath("../Spawner3")
 
 [node name="Spawner3" parent="." instance=ExtResource("14_jig0j")]
 process_mode = 4
-spawnTime = 2.0
-spawnerDuration = 12.0
-objectToSpawn = ExtResource("4_dmhqs")
+spawnTime = 5.0
+spawnerDuration = 10.0
+objectToSpawn = ExtResource("4_anl6r")
 spawnRight = true
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
