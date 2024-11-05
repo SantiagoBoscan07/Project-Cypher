@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=55 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
 [ext_resource type="Script" path="res://Scripts/Player/Barrier.gd" id="15_4i3y8"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="16_4kicl"]
+[ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="17_5wl1q"]
 [ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="18_2t5jg"]
 [ext_resource type="Script" path="res://Scripts/Player/Clone.gd" id="18_oe3cd"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="21_2jt03"]
@@ -129,6 +130,44 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_qkt3s")
 states/Move/position = Vector2(653, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n8ab7"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_uj0tl"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_n7msu")]
 
+[sub_resource type="Animation" id="Animation_wq2fd"]
+resource_name = "flash"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.486275, 0.427451, 0.501961, 0.784314), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7ujb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50vyj"]
+_data = {
+"RESET": SubResource("Animation_7ujb7"),
+"flash": SubResource("Animation_wq2fd")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbe"]
 radius = 6.0
 height = 16.0
@@ -179,11 +218,14 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "flash", "hurtbox", "iframeTimer") groups=["Player"]]
 z_as_relative = false
 script = ExtResource("1_205wi")
 playerSpeed = 75
 health = NodePath("Components/Misc/Health")
+flash = NodePath("Components/Misc/Flash")
+hurtbox = NodePath("Body/Areas/Hurtbox")
+iframeTimer = NodePath("Timer/IFrameDuration")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -221,6 +263,11 @@ visible = false
 modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(14, 11)
 texture = ExtResource("6_0ursj")
+
+[node name="FlashAnimation" type="AnimationPlayer" parent="Body/Sprites"]
+libraries = {
+"": SubResource("AnimationLibrary_50vyj")
+}
 
 [node name="Markers" type="Node2D" parent="Body"]
 
@@ -325,6 +372,10 @@ script = ExtResource("16_4kicl")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
+[node name="Flash" type="Node" parent="Components/Misc" node_paths=PackedStringArray("flash")]
+script = ExtResource("17_5wl1q")
+flash = NodePath("../../../Body/Sprites/FlashAnimation")
+
 [node name="Power-Ups" type="Node2D" parent="Components"]
 
 [node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "Hurtbox", "sprite")]
@@ -384,6 +435,9 @@ one_shot = true
 wait_time = 15.0
 one_shot = true
 
+[node name="IFrameDuration" type="Timer" parent="Timer"]
+one_shot = true
+
 [node name="Debug" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -416,3 +470,4 @@ shape = SubResource("CapsuleShape2D_btcbe")
 [connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
 [connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
 [connection signal="timeout" from="Timer/CloneTimer" to="Components/Power-Ups/Clones" method="_on_clone_timer_timeout"]
+[connection signal="timeout" from="Timer/IFrameDuration" to="." method="_on_i_frame_duration_timeout"]

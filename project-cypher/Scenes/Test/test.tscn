@@ -124,12 +124,12 @@ script = ExtResource("12_s65ei")
 [node name="Marker2D" type="Marker2D" parent="UI/Canvas"]
 position = Vector2(496, 176.891)
 
-[node name="Spawner" parent="." instance=ExtResource("14_jig0j")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
 spawnTime = 3.0
 spawnerDuration = 6.0
 objectToSpawn = ExtResource("4_anl6r")
 spawnUp = true
-nextWave = NodePath("")
+nextWave = NodePath("../Spawner2")
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
 process_mode = 4
@@ -143,7 +143,7 @@ nextWave = NodePath("../Spawner3")
 process_mode = 4
 spawnTime = 2.0
 spawnerDuration = 12.0
-objectToSpawn = ExtResource("3_fiu32")
+objectToSpawn = ExtResource("4_dmhqs")
 spawnRight = true
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]

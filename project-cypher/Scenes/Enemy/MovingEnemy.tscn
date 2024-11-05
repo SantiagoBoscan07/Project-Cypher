@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://hv8sfmxy5753"]
+[gd_scene load_steps=22 format=3 uid="uid://hv8sfmxy5753"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_3dtxn"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_crl6k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kry7n"]
 [ext_resource type="Script" path="res://Scripts/Enemy/patrol_state.gd" id="7_1mrft"]
 [ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_4b5oo"]
+[ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="8_8suhi"]
 [ext_resource type="Script" path="res://Scripts/Enemy/chase_state.gd" id="8_fvbrl"]
 [ext_resource type="Script" path="res://Scripts/Player/PositionClamp.gd" id="11_dwy3j"]
 
@@ -50,6 +51,43 @@ _data = {
 "flying": SubResource("Animation_jf1p2")
 }
 
+[sub_resource type="Animation" id="Animation_cqsdo"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.486275, 0.427451, 0.501961, 0.784314), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0cqpd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6cel"]
+_data = {
+"RESET": SubResource("Animation_0cqpd"),
+"flash": SubResource("Animation_cqsdo")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
 radius = 6.08276
 
@@ -59,9 +97,11 @@ radius = 129.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 3.0
 
-[node name="MovingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
+[node name="MovingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash")]
 script = ExtResource("1_3dtxn")
 health = NodePath("Components/Misc/Health")
+hurtbox = NodePath("Body/Areas/Hurtbox")
+flash = NodePath("Components/Misc/Flash")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -78,6 +118,11 @@ libraries = {
 "": SubResource("AnimationLibrary_dk1po")
 }
 autoplay = "flying"
+
+[node name="Flash" type="AnimationPlayer" parent="Body/Sprites"]
+libraries = {
+"": SubResource("AnimationLibrary_t6cel")
+}
 
 [node name="Areas" type="Node2D" parent="Body"]
 
@@ -135,6 +180,10 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 [node name="PositionClamp" type="Node" parent="Components/Misc" node_paths=PackedStringArray("body")]
 script = ExtResource("11_dwy3j")
 body = NodePath("../../..")
+
+[node name="Flash" type="Node" parent="Components/Misc" node_paths=PackedStringArray("flash")]
+script = ExtResource("8_8suhi")
+flash = NodePath("../../../Body/Sprites/Flash")
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kry7n")
