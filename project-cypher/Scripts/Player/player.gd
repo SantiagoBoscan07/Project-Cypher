@@ -12,7 +12,9 @@ func _ready():
 	if health:
 		health.connect("no_health", die)
 
-
+func _unhandled_input(event: InputEvent):
+	if Input.is_action_just_pressed("pause"):
+		get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")
 
 func die():
 	if lastChance:

@@ -50,6 +50,21 @@ _data = {
 "flying": SubResource("Animation_jf1p2")
 }
 
+[sub_resource type="Animation" id="Animation_yuhnm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_k5ega"]
 resource_name = "flash"
 length = 0.2
@@ -66,21 +81,6 @@ tracks/0/keys = {
 "values": [Color(0.486275, 0.427451, 0.501961, 0.784314), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_yuhnm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../..:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vkjqo"]
 _data = {
 "RESET": SubResource("Animation_yuhnm"),
@@ -93,7 +93,7 @@ radius = 6.08276
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 3.0
 
-[node name="ShootingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash")]
+[node name="ShootingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
 script = ExtResource("1_2840j")
 health = NodePath("Components/Misc/Health")
 hurtbox = NodePath("Body/Areas/Hurtbox")
@@ -156,19 +156,6 @@ script = ExtResource("5_p8a5o")
 health = NodePath("../Health")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 
-[node name="ShootingStateTimer" type="Timer" parent="Components/Misc"]
-wait_time = 0.5
-autostart = true
-
-[node name="StateSwitch" type="Timer" parent="Components/Misc"]
-wait_time = 2.0
-one_shot = true
-autostart = true
-
-[node name="StateBombTimer" type="Timer" parent="Components/Misc"]
-wait_time = 3.0
-one_shot = true
-
 [node name="Flash" type="Node" parent="Components/Misc" node_paths=PackedStringArray("flash")]
 script = ExtResource("7_wqafv")
 flash = NodePath("../../../Body/Sprites/Flash")
@@ -188,15 +175,15 @@ script = ExtResource("7_m4qly")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
 speed = 30.0
 ray_cast = NodePath("../../../Raycast")
-ShootingTimer = NodePath("../../Misc/ShootingStateTimer")
+ShootingTimer = NodePath("../../../Timer/ShootingStateTimer")
 
 [node name="BombState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("shootingPosition", "rayCast", "bombTime", "stateSwitchTimer")]
 script = ExtResource("8_3pws8")
 shootingPosition = NodePath("../../../Body/Areas/ShootingOrigin")
 speed = 20.0
 rayCast = NodePath("../../../Raycast")
-bombTime = NodePath("../../Misc/StateBombTimer")
-stateSwitchTimer = NodePath("../../Misc/StateSwitch")
+bombTime = NodePath("../../../Timer/StateBombTimer")
+stateSwitchTimer = NodePath("../../../Timer/StateSwitch")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -208,6 +195,20 @@ shape = SubResource("CircleShape2D_4omk4")
 [node name="Timer" type="Node" parent="."]
 
 [node name="EntryTimer" type="Timer" parent="Timer"]
+one_shot = true
+
+[node name="ShootingStateTimer" type="Timer" parent="Timer"]
+wait_time = 1.25
+one_shot = true
+
+[node name="StateSwitch" type="Timer" parent="Timer"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="StateBombTimer" type="Timer" parent="Timer"]
+wait_time = 3.0
+one_shot = true
 
 [node name="Raycast" type="RayCast2D" parent="."]
 position = Vector2(8, 8)
@@ -217,8 +218,8 @@ target_position = Vector2(0, 29)
 position = Vector2(8, 7)
 scale = Vector2(0.8, 0.7)
 
-[connection signal="timeout" from="Components/Misc/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]
-[connection signal="timeout" from="Components/Misc/StateSwitch" to="Components/FiniteStateMachine/ShootingState" method="_on_state_switch_timeout"]
-[connection signal="timeout" from="Components/Misc/StateBombTimer" to="Components/FiniteStateMachine/BombState" method="_on_state_bomb_timer_timeout"]
 [connection signal="timeout" from="Timer/EntryTimer" to="Components/FiniteStateMachine/EntryState" method="_on_entry_timer_timeout"]
+[connection signal="timeout" from="Timer/ShootingStateTimer" to="Components/FiniteStateMachine/ShootingState" method="_on_shooting_state_timer_timeout"]
+[connection signal="timeout" from="Timer/StateSwitch" to="Components/FiniteStateMachine/ShootingState" method="_on_state_switch_timeout"]
+[connection signal="timeout" from="Timer/StateBombTimer" to="Components/FiniteStateMachine/BombState" method="_on_state_bomb_timer_timeout"]
 [connection signal="screen_exited" from="Enabler" to="." method="_on_enabler_screen_exited"]

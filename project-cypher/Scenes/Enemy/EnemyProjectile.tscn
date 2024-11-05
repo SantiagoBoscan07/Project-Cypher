@@ -8,10 +8,10 @@
 radius = 6.0
 height = 14.0
 
-[node name="PlayerProjectile" type="Node2D"]
+[node name="PlayerProjectile" type="Node2D" groups=["Enemy"]]
 z_index = -1
 script = ExtResource("1_a66dg")
-speed = 100.0
+speed = 70.0
 
 [node name="Body" type="Node2D" parent="."]
 

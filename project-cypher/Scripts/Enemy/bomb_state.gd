@@ -7,6 +7,7 @@ extends State
 @export var bombTime: Timer
 @export var stateSwitchTimer: Timer
 var projectile
+
 func enter():
 	shoot()
 	bombTime.start()

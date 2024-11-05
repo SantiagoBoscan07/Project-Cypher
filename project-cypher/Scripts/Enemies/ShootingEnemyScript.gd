@@ -17,6 +17,7 @@ func update(_delta):
 
 
 func _on_shooting_state_timer_timeout():
+	ShootingTimer.start()
 	shoot()
 
 # Loads the projectile scene and creates an instantiate in the scene

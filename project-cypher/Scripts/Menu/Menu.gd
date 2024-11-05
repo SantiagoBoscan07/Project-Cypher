@@ -21,3 +21,7 @@ func _on_options_pressed():
 
 func _on_back_menu_pressed() -> void:
 	playButton.grab_focus()
+
+
+func _on_play_game_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Levels/level1.tscn")

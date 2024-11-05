@@ -68,7 +68,17 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
-text = "Play Game"
+text = "Test Scene"
+
+[node name="Play Game2" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
+text = "Level 1"
 
 [node name="Options" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
@@ -150,6 +160,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Back to Menu"
 
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game" to="GameOptions" method="_on_play_game_pressed"]
+[connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game2" to="GameOptions" method="_on_play_game_2_pressed"]
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Options" to="GameOptions" method="_on_options_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="GameOptions" method="_on_back_menu_pressed"]

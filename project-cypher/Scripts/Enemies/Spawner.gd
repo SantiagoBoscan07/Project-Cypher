@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_category("Timer")
-@export var spawnTime:float
+@export var spawnTime:float = 1.0
 @export var spawnerDuration: float
 @export_category("Object")
 @export var objectToSpawn: PackedScene
