@@ -1,7 +1,6 @@
 extends Node2D
 class_name Dash
 @export var player: CharacterBody2D
-@export var hurtbox: Hurtbox
 @export var dashDuration: Timer
 @export var dashCooldown: Timer
 @export var dashClones: GPUParticles2D
@@ -23,7 +22,6 @@ func _physics_process(delta):
 func boost():
 	dashDuration.start()
 	if !isClone:
-		hurtbox.isInvulnerable = true
 		sprite.modulate.a = 0.5
 		dashClones.emitting = true
 		hitbox.process_mode = 0
@@ -45,7 +43,6 @@ func shadowCloneBehavior():
 # Once the dash is over it starts a cooldown timer
 func _on_dash_duration_timeout() -> void:
 	if !isClone:
-		hurtbox.isInvulnerable = false
 		dashClones.emitting = false
 		sprite.modulate.a = 1
 		collision.set_deferred("disabled", 0)

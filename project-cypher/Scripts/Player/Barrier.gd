@@ -1,18 +1,18 @@
 extends Node2D
 @export var barrierTimer: Timer
 #@export var barrierBlink: Timer
-@export var Hurtbox: Hurtbox
+@export var invulnerableNode: Invulnerable
 #@export var blinkAnimation: AnimationPlayer
 @export var sprite : Sprite2D
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	Signals.connect("activateBarrier", activateBarrier)
 	turnOffSprite()
 
 func activateBarrier():
 	sprite.visible = true
-	Hurtbox.isInvulnerable = true
+	invulnerableNode.iFrame(barrierTimer.wait_time)
 	barrierTimer.start()
 
 func turnOffSprite():
@@ -20,5 +20,4 @@ func turnOffSprite():
 
 func _on_barrier_timer_timeout() -> void:
 	turnOffSprite()
-	Hurtbox.isInvulnerable = false
 	Signals.emit_signal("endPowerUp")

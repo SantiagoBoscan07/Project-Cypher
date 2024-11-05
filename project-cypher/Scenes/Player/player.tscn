@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=56 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="17_5wl1q"]
 [ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="18_2t5jg"]
 [ext_resource type="Script" path="res://Scripts/Player/Clone.gd" id="18_oe3cd"]
+[ext_resource type="Script" path="res://Scripts/Player/Invulnerable.gd" id="18_qixb1"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="21_2jt03"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr412"]
@@ -218,14 +219,11 @@ alpha_curve = SubResource("CurveTexture_vehsm")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "flash", "hurtbox", "iframeTimer") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
 z_as_relative = false
 script = ExtResource("1_205wi")
 playerSpeed = 75
 health = NodePath("Components/Misc/Health")
-flash = NodePath("Components/Misc/Flash")
-hurtbox = NodePath("Body/Areas/Hurtbox")
-iframeTimer = NodePath("Timer/IFrameDuration")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -352,10 +350,9 @@ shootingTimer = NodePath("../../../Timer/ShootingTimer")
 script = ExtResource("9_86i7t")
 body = NodePath("../../..")
 
-[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite", "hitbox", "collision")]
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "dashDuration", "dashCooldown", "dashClones", "sprite", "hitbox", "collision")]
 script = ExtResource("13_531wn")
 player = NodePath("../../..")
-hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 dashDuration = NodePath("../../../Timer/DashDuration")
 dashCooldown = NodePath("../../../Timer/DashCooldown")
 dashClones = NodePath("../../../Body/Particles/DashParticles")
@@ -378,12 +375,18 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 script = ExtResource("17_5wl1q")
 flash = NodePath("../../../Body/Sprites/FlashAnimation")
 
+[node name="Invulnerable" type="Node" parent="Components/Misc" node_paths=PackedStringArray("hurtbox", "flash", "iFrameTimer")]
+script = ExtResource("18_qixb1")
+hurtbox = NodePath("../../../Body/Areas/Hurtbox")
+flash = NodePath("../Flash")
+iFrameTimer = NodePath("../../../Timer/IFrameDuration")
+
 [node name="Power-Ups" type="Node2D" parent="Components"]
 
-[node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "Hurtbox", "sprite")]
+[node name="Barrier" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("barrierTimer", "invulnerableNode", "sprite")]
 script = ExtResource("15_4i3y8")
 barrierTimer = NodePath("../../../Timer/BarrierTimer")
-Hurtbox = NodePath("../../../Body/Areas/Hurtbox")
+invulnerableNode = NodePath("../../Misc/Invulnerable")
 sprite = NodePath("../../../Body/Sprites/Barrier")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "body")]
@@ -430,7 +433,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="BarrierTimer" type="Timer" parent="Timer"]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [node name="CloneTimer" type="Timer" parent="Timer"]
@@ -472,4 +475,4 @@ shape = SubResource("CapsuleShape2D_btcbe")
 [connection signal="timeout" from="Timer/BulletStormDuration" to="Components/Power-Ups/ProjectileSpawner" method="_on_bullet_storm_duration_timeout"]
 [connection signal="timeout" from="Timer/BarrierTimer" to="Components/Power-Ups/Barrier" method="_on_barrier_timer_timeout"]
 [connection signal="timeout" from="Timer/CloneTimer" to="Components/Power-Ups/Clones" method="_on_clone_timer_timeout"]
-[connection signal="timeout" from="Timer/IFrameDuration" to="." method="_on_i_frame_duration_timeout"]
+[connection signal="timeout" from="Timer/IFrameDuration" to="Components/Misc/Invulnerable" method="_on_i_frame_duration_timeout"]

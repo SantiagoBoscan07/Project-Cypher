@@ -15,7 +15,7 @@ signal enemyStorm
 signal dashProgress(time: float)
 # Signal used to update progress of dash bar
 signal dashCooldownProgress(time: float)
-
+# Signal to change states
 signal state_changed
 #signal to end powerup
 signal endPowerUp
