@@ -10,10 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="8_geoi4"]
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="9_0jqbi"]
 [ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="10_hnctj"]
-[ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="12_s65ei"]
-[ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="13_u2fm0"]
-[ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="14_jig0j"]
+[ext_resource type="PackedScene" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="13_u2fm0"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy/spawner.tscn" id="14_jig0j"]
 
 [node name="Test" type="Node2D"]
 

@@ -130,6 +130,21 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_qkt3s")
 states/Move/position = Vector2(653, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n8ab7"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_uj0tl"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_n7msu")]
 
+[sub_resource type="Animation" id="Animation_7ujb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_wq2fd"]
 resource_name = "flash"
 length = 0.5
@@ -145,21 +160,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.486275, 0.427451, 0.501961, 0.784314), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_7ujb7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../..:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50vyj"]
@@ -352,7 +352,7 @@ shootingTimer = NodePath("../../../Timer/ShootingTimer")
 script = ExtResource("9_86i7t")
 body = NodePath("../../..")
 
-[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite")]
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "hurtbox", "dashDuration", "dashCooldown", "dashClones", "sprite", "hitbox", "collision")]
 script = ExtResource("13_531wn")
 player = NodePath("../../..")
 hurtbox = NodePath("../../../Body/Areas/Hurtbox")
@@ -360,6 +360,8 @@ dashDuration = NodePath("../../../Timer/DashDuration")
 dashCooldown = NodePath("../../../Timer/DashCooldown")
 dashClones = NodePath("../../../Body/Particles/DashParticles")
 sprite = NodePath("../../../Body/Sprites")
+hitbox = NodePath("../../../Body/Areas/Hitbox")
+collision = NodePath("../../../Collision")
 
 [node name="Misc" type="Node" parent="Components"]
 

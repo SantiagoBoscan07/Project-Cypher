@@ -7,6 +7,8 @@ class_name Dash
 @export var dashClones: GPUParticles2D
 @export var sprite: Node2D
 @export var isClone: bool = false
+@export var hitbox: Hitbox
+@export var collision: CollisionShape2D
 var canDash: bool = true
 var boostSpeed
 var normalSpeed
@@ -28,6 +30,8 @@ func boost():
 	boostSpeed = player.playerSpeed * 2
 	player.playerSpeed = boostSpeed
 	canDash = false
+	hitbox.process_mode = 0
+	collision.set_deferred("disabled", 1)
 	Signals.emit_signal("dashProgress", dashDuration.wait_time)
 
 
@@ -45,6 +49,8 @@ func _on_dash_duration_timeout() -> void:
 		dashClones.emitting = false
 		sprite.modulate.a = 1
 	player.playerSpeed = normalSpeed
+	collision.set_deferred("disabled", 0)
+	hitbox.process_mode = 4
 	Signals.emit_signal("dashCooldownProgress", dashCooldown.wait_time)
 	dashCooldown.start()
 
