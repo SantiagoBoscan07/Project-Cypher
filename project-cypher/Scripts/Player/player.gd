@@ -23,3 +23,7 @@ func die():
 		lastChance = false
 	else:
 		process_mode = 4
+
+func test():
+	print("Cypher State enabled")
+	process_mode = 4

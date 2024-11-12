@@ -27,3 +27,6 @@ func die():
 
 func _on_enabler_screen_exited():
 	call_deferred("queue_free")
+
+func test():
+	process_mode = 4

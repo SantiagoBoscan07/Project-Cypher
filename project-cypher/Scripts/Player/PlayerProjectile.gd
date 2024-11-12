@@ -16,3 +16,6 @@ func _process(delta):
 # When the projectile leaves the screen it gets deleted
 func _on_visible_on_screen_enabler_2d_screen_exited():
 	queue_free()
+
+func test():
+	process_mode = 4

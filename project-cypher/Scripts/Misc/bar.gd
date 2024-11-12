@@ -1,8 +1,10 @@
 extends Control
 
 @export var barTimer : Timer
+@export var testSwitchLogic : Timer
 @export var waitTime : float = 10.0
 @export var progressBar: TextureProgressBar
+var players
 var enemies
 var inputPressed : bool = false
 var RandomPowerUp = RandomNumberGenerator.new()
@@ -24,9 +26,14 @@ func _process(delta):
 	if Input.is_action_pressed("decipher") and inputPressed:
 		#print("Cypher Activated!")
 		# for showcase demo, select random number 1-3 and activate corresponding powerup
+		testSwitchLogic.start()
 		enemies = get_tree().get_nodes_in_group("Enemy")
 		for enemy in enemies:
-			enemy.call_deferred("queue_free")
+			enemy.call_deferred("test")
+		
+		players = get_tree().get_nodes_in_group("Player")
+		for player in players:
+			player.call_deferred("test")
 		powerInt = RandomPowerUp.randi_range(1, 3)
 		match powerInt:
 			1: barrier()
@@ -56,3 +63,15 @@ func endPowerUp():
 	progressBar.value = barTimer.wait_time
 	isFilling = true
 	barTimer.start()
+
+# create a timer, within the bar scene called it testSwitchLogic
+# whenever that timer timeout, it changes the process mode of the player back to 0
+# timer is going to be activated whenever the player process mode is put 4
+
+
+func _on_test_switch_logic_timeout() -> void:
+	for player in players:
+		player.process_mode = 0
+	for enemy in enemies:
+		enemy.process_mode = 0
+	print("Test switch ended!")
