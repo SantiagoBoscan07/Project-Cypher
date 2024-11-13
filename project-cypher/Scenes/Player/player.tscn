@@ -1,7 +1,6 @@
-[gd_scene load_steps=57 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=56 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
-[ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="1_gaql2"]
 [ext_resource type="Texture2D" uid="uid://dvoi5rf77b4d5" path="res://Sprites/Player/player-Sheet.png" id="2_6gwev"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerIdleState.gd" id="2_6kmfq"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="2_adtno"]
@@ -235,8 +234,10 @@ position = Vector2(14, 11)
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
+frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
+modulate = Color(1, 1, 1, 0.784314)
 z_index = -2
 position = Vector2(14, 14)
 texture = ExtResource("3_gm63e")
@@ -319,7 +320,7 @@ material = SubResource("ShaderMaterial_ui6qp")
 position = Vector2(14, 12)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_sj58v")
-texture = ExtResource("1_gaql2")
+texture = ExtResource("2_6gwev")
 lifetime = 0.25
 
 [node name="Components" type="Node2D" parent="."]

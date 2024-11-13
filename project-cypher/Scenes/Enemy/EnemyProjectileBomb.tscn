@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1a1hamoc5swb"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/EnemyBombProjectile.gd" id="1_cpdyk"]
-[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="2_l00tr"]
+[ext_resource type="Texture2D" uid="uid://bnne0dcxn1k0k" path="res://Sprites/Enemy/bomb2.png" id="2_db6ks"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_62og6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n3g2k"]
-radius = 6.0
-height = 14.0
+radius = 4.0
+height = 10.0
 
 [node name="BombProjectile" type="Node2D" node_paths=PackedStringArray("shootingPosition") groups=["Enemy"]]
 script = ExtResource("1_cpdyk")
@@ -16,10 +16,11 @@ speed = 50.0
 [node name="Body" type="Node2D" parent="."]
 
 [node name="PlaceholderSprite" type="Sprite2D" parent="Body"]
-modulate = Color(0.48059, 0.163089, 0.217554, 1)
-texture = ExtResource("2_l00tr")
+texture = ExtResource("2_db6ks")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
+position = Vector2(0, 1.19209e-07)
+scale = Vector2(0.8, 0.7)
 
 [node name="Marker2D" type="Marker2D" parent="Body"]
 
@@ -30,6 +31,7 @@ isProjectile = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_n3g2k")
 
 [node name="LifeTime" type="Timer" parent="."]

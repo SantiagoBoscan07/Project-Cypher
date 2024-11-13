@@ -18,7 +18,6 @@
 
 [node name="Player" parent="." instance=ExtResource("1_bn2ie")]
 position = Vector2(387, 52)
-playerSpeed = 50.0
 
 [node name="Power-Ups Test" type="Control" parent="."]
 layout_mode = 3
