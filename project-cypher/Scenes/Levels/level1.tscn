@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=14 format=4 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_2lu3h"]
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_aq3ig"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="9_syut3"]
-[ext_resource type="PackedScene" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="10_hgem5"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="11_cpe0t"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
@@ -53,18 +52,17 @@ offset_top = 218.246
 offset_right = 117.477
 offset_bottom = 218.246
 
-[node name="Bar" parent="UI/Canvas" instance=ExtResource("8_2lu3h")]
+[node name="Bar" parent="UI/Canvas" node_paths=PackedStringArray("slots") instance=ExtResource("8_2lu3h")]
 layout_mode = 1
 offset_left = 174.54
 offset_top = 218.503
 offset_right = 174.54
 offset_bottom = 218.503
 waitTime = 1.0
+slots = NodePath("../Slots")
 
 [node name="StateSwitch" type="Node" parent="UI/Canvas"]
 script = ExtResource("9_aq3ig")
-
-[node name="CypherCodeGenerator" parent="UI/Canvas" instance=ExtResource("10_hgem5")]
 
 [node name="Marker2D" type="Marker2D" parent="UI/Canvas"]
 position = Vector2(496, 176.891)
@@ -104,14 +102,14 @@ objectToSpawn = ExtResource("12_uu113")
 spawnUp = true
 
 [node name="Spawner4_2" parent="Spawner4" instance=ExtResource("11_cpe0t")]
-spawnTime = 7.0
-spawnerDuration = 14.0
+spawnTime = 2.0
+spawnerDuration = 8.0
 objectToSpawn = ExtResource("13_b1fi8")
 spawnleft = true
 
 [node name="Spawner4_3" parent="Spawner4" instance=ExtResource("11_cpe0t")]
-spawnTime = 9.0
-spawnerDuration = 27.0
+spawnTime = 6.0
+spawnerDuration = 13.0
 objectToSpawn = ExtResource("14_atlcv")
 spawnRight = true
 

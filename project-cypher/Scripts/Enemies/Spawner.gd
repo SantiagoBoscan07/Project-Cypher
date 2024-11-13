@@ -20,7 +20,7 @@ extends Node2D
 var enemyCount: int = 0:
 	set(value):
 		enemyCount = value
-
+var isFinished: bool = false
 
 func _ready():
 	spawnTimer.wait_time = spawnTime
@@ -41,9 +41,13 @@ func handleSpawn(object: PackedScene):
 		spawnerNode.spawn(2, Vector2(448,randf_range(32,176)))
 
 func checkEnemy():
+	if isFinished:
+		return
 	enemyCount = enemyCount - 1
+	#print(name)
 	#print(enemyCount)
 	if enemyCount <= 0:
+		isFinished = true
 		if nextWave:
 			for wave in nextWave:
 				wave.process_mode = 0
@@ -55,6 +59,7 @@ func enemyCounter():
 	if isSubet:
 		for wave in spawnerSubset:
 			enemyCount += wave.enemyCount
+			#print(enemyCount)
 	else:
 		enemyCount = spawnerDuration / spawnTime
 	#print(enemyCount)

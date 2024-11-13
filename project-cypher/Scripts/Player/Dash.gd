@@ -26,11 +26,12 @@ func boost():
 		dashClones.emitting = true
 		hitbox.process_mode = 0
 		player.set_collision_mask_value(1, false)
+		Signals.emit_signal("dashProgress", dashDuration.wait_time)
 	normalSpeed = player.playerSpeed
 	boostSpeed = player.playerSpeed * 2
 	player.playerSpeed = boostSpeed
 	canDash = false
-	Signals.emit_signal("dashProgress", dashDuration.wait_time)
+
 
 
 # Checks if the player is moving or not while the boost is active
@@ -47,8 +48,8 @@ func _on_dash_duration_timeout() -> void:
 		sprite.modulate.a = 1
 		player.set_collision_mask_value(1, true)
 		hitbox.process_mode = 4
+		Signals.emit_signal("dashCooldownProgress", dashCooldown.wait_time)
 	player.playerSpeed = normalSpeed
-	Signals.emit_signal("dashCooldownProgress", dashCooldown.wait_time)
 	dashCooldown.start()
 
 # Once the cooldown ends, the dash is active again

@@ -19,3 +19,5 @@ signal dashCooldownProgress(time: float)
 signal state_changed
 #signal to end powerup
 signal endPowerUp
+# signal to end cypher minigame
+signal endCypher

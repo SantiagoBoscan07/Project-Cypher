@@ -1,12 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsx638c06je4o"]
+[gd_scene load_steps=7 format=3 uid="uid://dsx638c06je4o"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="1_eihbr"]
+[ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="2_c62gr"]
+[ext_resource type="Texture2D" uid="uid://drni5chsmigu3" path="res://Sprites/UI/ShuffleSlots-Sheet.png" id="2_ku14i"]
+[ext_resource type="Texture2D" uid="uid://dfpax3c4nvcsr" path="res://Sprites/UI/arrow.png" id="3_ufsv7"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="5_4q7fg"]
 
-[node name="Slots" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxlkt"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="Slots" type="Control" node_paths=PackedStringArray("slots", "arrows", "codeGenerator")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Slots" type="Node" parent="."]
 script = ExtResource("1_eihbr")
+slots = [NodePath("Panel/Slot"), NodePath("Panel/Slot2"), NodePath("Panel/Slot3")]
+arrows = [NodePath("Panel/Slot/Arrow"), NodePath("Panel/Slot2/Arrow"), NodePath("Panel/Slot3/Arrow")]
+codeGenerator = NodePath("CypherCodeGenerator")
+
+[node name="CypherCodeGenerator" parent="." node_paths=PackedStringArray("label") instance=ExtResource("2_c62gr")]
+label = NodePath("../Panel/Label")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 440.0
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxlkt")
+
+[node name="Slot" type="Sprite2D" parent="Panel"]
+position = Vector2(48, 80)
+texture = ExtResource("2_ku14i")
+centered = false
+hframes = 4
+
+[node name="Arrow" type="Sprite2D" parent="Panel/Slot"]
+visible = false
+position = Vector2(24, -18)
+texture = ExtResource("3_ufsv7")
+centered = false
+
+[node name="Slot2" type="Sprite2D" parent="Panel"]
+position = Vector2(208, 80)
+texture = ExtResource("2_ku14i")
+centered = false
+hframes = 4
+
+[node name="Arrow" type="Sprite2D" parent="Panel/Slot2"]
+visible = false
+position = Vector2(24, -18)
+texture = ExtResource("3_ufsv7")
+centered = false
+
+[node name="Slot3" type="Sprite2D" parent="Panel"]
+position = Vector2(368, 80)
+texture = ExtResource("2_ku14i")
+centered = false
+hframes = 4
+
+[node name="Arrow" type="Sprite2D" parent="Panel/Slot3"]
+visible = false
+position = Vector2(24, -18)
+texture = ExtResource("3_ufsv7")
+centered = false
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.5
+offset_top = 14.0
+offset_right = 237.5
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_fonts/font = ExtResource("5_4q7fg")
+theme_override_font_sizes/font_size = 50
+text = "SECRET CODE: 1 1 1"

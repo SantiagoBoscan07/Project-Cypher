@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ct46fv3vxxh1g" path="res://Sprites/UI/cypherbar1.png" id="3_51mjw"]
 [ext_resource type="Texture2D" uid="uid://d1pdk6ywuepu8" path="res://Sprites/UI/cypherbar2.png" id="3_gs47y"]
 
-[node name="Bar" type="Control" node_paths=PackedStringArray("barTimer", "testSwitchLogic", "progressBar")]
+[node name="Bar" type="Control" node_paths=PackedStringArray("barTimer", "progressBar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_07emo")
 barTimer = NodePath("DecipherBarTimer")
-testSwitchLogic = NodePath("TestSwitchLogic")
 progressBar = NodePath("TextureProgressBar")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
@@ -34,9 +33,4 @@ centered = false
 [node name="DecipherBarTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="TestSwitchLogic" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [connection signal="timeout" from="DecipherBarTimer" to="." method="_on_decipher_bar_timer_timeout"]
-[connection signal="timeout" from="TestSwitchLogic" to="." method="_on_test_switch_logic_timeout"]
