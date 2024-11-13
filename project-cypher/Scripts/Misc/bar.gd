@@ -71,7 +71,9 @@ func endPowerUp():
 
 func _on_test_switch_logic_timeout() -> void:
 	for player in players:
-		player.process_mode = 0
+		if player:
+			player.process_mode = 0
 	for enemy in enemies:
-		enemy.process_mode = 0
+		if enemy:
+			enemy.process_mode = 0
 	print("Test switch ended!")

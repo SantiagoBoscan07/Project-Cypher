@@ -14,7 +14,7 @@ func setPlayerCypherArray(value):
 		playerCypherArray[playerArrayIndex] = cypherRange
 	else:
 		playerCypherArray[playerArrayIndex] = tempVal
-	print(playerCypherArray)
+	#print(playerCypherArray)
 
 	
 func getPlayerCypherArray():

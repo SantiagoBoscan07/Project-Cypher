@@ -6,9 +6,12 @@ extends State
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 @export var ray_cast: RayCast2D
 @export var ShootingTimer: Timer
+@export var animation: AnimationPlayer
+@export var stateSwitchTimer: Timer
 var projectile
 
 func enter():
+	stateSwitchTimer.start()
 	ShootingTimer.start()
 
 func update(_delta):
@@ -18,7 +21,7 @@ func update(_delta):
 
 func _on_shooting_state_timer_timeout():
 	ShootingTimer.start()
-	shoot()
+	animation.play("shoot")
 
 # Loads the projectile scene and creates an instantiate in the scene
 func shoot():
@@ -27,8 +30,14 @@ func shoot():
 	projectile.direction = (ray_cast.target_position).normalized()
 #	projectile.z_index = player.z_index - 1
 	get_tree().current_scene.add_child(projectile)
+	animation.play("idle")
 
 
 func _on_state_switch_timeout():
 	ShootingTimer.stop()
 	stateTransition.emit(get_parent().currentState, "BombState")
+
+
+func _on_animation_animation_finished(anim_name: StringName):
+	if anim_name == "shoot":
+		shoot()

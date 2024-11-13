@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Store values for the player that are used in other nodes
 signal oneMore()
-@export var playerSpeed: int = 50
+@export var playerSpeed: float = 50
 @export var health: Health
 var lastChance: bool = true
 var lastDirectionFacing: Vector2

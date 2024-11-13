@@ -1,25 +1,26 @@
 [gd_scene load_steps=5 format=3 uid="uid://gbg6ni2haofh"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerProjectile.gd" id="1_a66dg"]
-[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="2_yfmop"]
+[ext_resource type="Texture2D" uid="uid://bxcf1a2f2vct2" path="res://Sprites/Enemy/enemyProjectile1.png" id="2_8r67p"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_kcgc0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n3g2k"]
-radius = 6.0
-height = 14.0
+radius = 3.0
+height = 6.0
 
 [node name="PlayerProjectile" type="Node2D" groups=["Enemy"]]
 z_index = -1
 script = ExtResource("1_a66dg")
-speed = 70.0
+speed = 40.0
 
 [node name="Body" type="Node2D" parent="."]
 
-[node name="PlaceholderSprite" type="Sprite2D" parent="Body"]
-modulate = Color(0.48059, 0.163089, 0.217554, 1)
-texture = ExtResource("2_yfmop")
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_8r67p")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
+position = Vector2(5.96046e-08, 5.96046e-08)
+scale = Vector2(0.5, 0.5)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0

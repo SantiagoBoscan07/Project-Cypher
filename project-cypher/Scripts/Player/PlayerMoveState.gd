@@ -29,11 +29,11 @@ func physicsUpdate(_delta: float):
 
 # Calls getInput and transition to idle state
 func update(_delta: float):
-	getInput()
+	getInput(_delta)
 	idleTransition()
 
 # Gets input from movement buttons and gives a direction depending on the inputs provided
-func getInput():
+func getInput(_delta):
 	var horizontalDirection = Input.get_axis("moveLeft", "moveRight")
 	var verticalDirection = Input.get_axis("moveUp", "moveDown")
 	if player:

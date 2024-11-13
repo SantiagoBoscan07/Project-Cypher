@@ -223,7 +223,7 @@ anim_speed_max = 1.0
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
 z_as_relative = false
 script = ExtResource("1_205wi")
-playerSpeed = 75.0
+playerSpeed = 500.0
 health = NodePath("Components/Misc/Health")
 
 [node name="Body" type="Node2D" parent="."]
@@ -235,6 +235,7 @@ position = Vector2(14, 11)
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
+frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 z_index = -2

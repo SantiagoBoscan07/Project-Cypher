@@ -4,13 +4,12 @@ extends State
 @export var speed = 200.0
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Enemy/EnemyProjectileBomb.tscn")
 @export var rayCast: RayCast2D
-@export var bombTime: Timer
 @export var stateSwitchTimer: Timer
+@export var animation: AnimationPlayer
 var projectile
 
 func enter():
-	shoot()
-	bombTime.start()
+	animation.play("bomb")
 
 # Loads the projectile scene and creates an instantiate in the scene
 func shoot():
@@ -22,6 +21,9 @@ func shoot():
 	get_tree().current_scene.add_child(projectile)
 
 
-func _on_state_bomb_timer_timeout():
-	stateSwitchTimer.start()
-	stateTransition.emit(get_parent().currentState, "ShootingState")
+func _on_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "bomb":
+		shoot()
+		animation.play("idle")
+		stateSwitchTimer.start()
+		stateTransition.emit(get_parent().currentState, "ShootingState")

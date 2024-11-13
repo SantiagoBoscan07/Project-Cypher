@@ -18,7 +18,6 @@
 
 [node name="Player" parent="." instance=ExtResource("1_sa34c")]
 position = Vector2(240, 135)
-playerSpeed = 100
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
