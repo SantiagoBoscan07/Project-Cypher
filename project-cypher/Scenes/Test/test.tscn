@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="10_hnctj"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="12_s65ei"]
-[ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="13_u2fm0"]
+[ext_resource type="PackedScene" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="13_u2fm0"]
 [ext_resource type="PackedScene" uid="uid://c6on2mej18s4t" path="res://Scenes/Misc/Obstacles.tscn" id="14_7k4b0"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="14_jig0j"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="15_o2kos"]
@@ -108,18 +108,16 @@ script = ExtResource("12_s65ei")
 [node name="Marker2D" type="Marker2D" parent="UI/Canvas"]
 position = Vector2(496, 176.891)
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
+[node name="Spawner" parent="." instance=ExtResource("14_jig0j")]
 spawnTime = 3.0
 objectToSpawn = ExtResource("4_anl6r")
 spawnUp = true
-nextWave = NodePath("../Spawner2")
 
-[node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
+[node name="Spawner2" parent="." instance=ExtResource("14_jig0j")]
 process_mode = 4
 spawnTime = 4.0
 objectToSpawn = ExtResource("4_dmhqs")
 spawnleft = true
-nextWave = NodePath("../Spawner3")
 
 [node name="Spawner3" parent="." instance=ExtResource("14_jig0j")]
 process_mode = 4

@@ -10,18 +10,24 @@ extends Node2D
 @export var spawnleft: bool = false
 @export var spawnRight: bool = false
 @export_category("Wave Manager")
-@export var nextWave: Node2D
+@export var nextWave: Array[Node2D]
 @export var spawnTimer: Timer
 @export var spawnerDurationTimer: Timer
 @export var spawnerNode: SpawnerNode
+@export var isFirst: bool
+@export var isSubet: bool = false
+@export var spawnerSubset: Array[Node2D]
 var enemyCount: int = 0:
 	set(value):
 		enemyCount = value
+
 
 func _ready():
 	spawnTimer.wait_time = spawnTime
 	spawnerDurationTimer.wait_time = spawnerDuration
 	enemyCounter()
+	if !isFirst:
+		process_mode = 4
 	spawnerDurationTimer.start()
 	spawnTimer.start()
 
@@ -39,13 +45,18 @@ func checkEnemy():
 	#print(enemyCount)
 	if enemyCount <= 0:
 		if nextWave:
-			nextWave.process_mode = 0
-			nextWave.add_to_group("Spawner")
-			nextWave.add_to_group("Enemy")
-		call_deferred("queue_free")
+			for wave in nextWave:
+				wave.process_mode = 0
+				wave.add_to_group("Spawner")
+				wave.add_to_group("Enemy")
+			call_deferred("queue_free")
 
 func enemyCounter():
-	enemyCount = spawnerDuration / spawnTime
+	if isSubet:
+		for wave in spawnerSubset:
+			enemyCount += wave.enemyCount
+	else:
+		enemyCount = spawnerDuration / spawnTime
 	#print(enemyCount)
 
 func _on_spawn_timer_timeout() -> void:

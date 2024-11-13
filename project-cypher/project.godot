@@ -34,7 +34,6 @@ window/stretch/mode="canvas_items"
 Player=""
 Detectable=""
 Enemy=""
-Spawner=""
 
 [input]
 

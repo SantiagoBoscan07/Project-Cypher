@@ -18,6 +18,7 @@ func physicsUpdate(_delta):
 		enemy.position += Vector2(entrySpeed * -1, 0) * _delta
 	elif enemy.leftEntrance:
 		enemy.position += Vector2(entrySpeed, 0) * _delta
+	enemy.move_and_slide()
 
 func _on_entry_timer_timeout() -> void:
 	stateTransition.emit(get_parent().currentState, secondState.name)
