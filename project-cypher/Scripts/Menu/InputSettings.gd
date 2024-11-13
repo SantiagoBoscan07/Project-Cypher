@@ -16,7 +16,6 @@ var inputActions: Dictionary = {
 	"moveRight": "Move Right",
 	"shoot": "Shoot",
 	"dash": "Dash",
-	"shuffle": "Shuffle",
 	"decipher": "Decipher"
 }
 
@@ -31,7 +30,7 @@ func createActionList():
 	var actionLabel
 	var inputLabel
 	var events
-	InputMap.load_from_project_settings()
+	#InputMap.load_from_project_settings()
 	for item in actionList.get_children():
 		item.queue_free()
 	for action in inputActions:

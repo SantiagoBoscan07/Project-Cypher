@@ -1,6 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://cn434ioddp5cj"]
+[gd_scene load_steps=42 format=3 uid="uid://cn434ioddp5cj"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_onbc1"]
+[ext_resource type="Texture2D" uid="uid://dvoi5rf77b4d5" path="res://Sprites/Player/player-Sheet.png" id="2_3b8sm"]
 [ext_resource type="Texture2D" uid="uid://di4ox8hmebocu" path="res://Sprites/Player/PlayerPlaceholder.png" id="2_gtp27"]
 [ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="3_v7xb0"]
 [ext_resource type="AnimationLibrary" uid="uid://dg2gx1pln2vh" path="res://Scenes/Player/Animations/IdleAnimations.res" id="4_chy8t"]
@@ -180,7 +181,7 @@ playerSpeed = 75
 
 [node name="PlayerSprite" type="Sprite2D" parent="Body/Sprites"]
 position = Vector2(14, 11)
-texture = ExtResource("2_gtp27")
+texture = ExtResource("2_3b8sm")
 hframes = 4
 vframes = 8
 frame = 8
@@ -242,9 +243,9 @@ marker = NodePath("../../../Body/Markers/ShootingPosition")
 
 [node name="Moveset" type="Node" parent="Components"]
 
-[node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPosition", "player", "shootingTimer", "cloneTimer")]
+[node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPositionArray", "player", "shootingTimer", "cloneTimer")]
 script = ExtResource("12_8godu")
-shootingPosition = NodePath("../../../Body/Markers/ShootingPosition")
+shootingPositionArray = [NodePath("../../../Body/Markers/ShootingPosition")]
 player = NodePath("../../..")
 shootingTimer = NodePath("../../../Timer/ShootingTimer")
 isClone = true
@@ -306,6 +307,7 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 visible = false
 position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_qidwr")
+disabled = true
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Timer/DashCooldown" to="Components/Moveset/Dash" method="_on_dash_cooldown_timeout"]

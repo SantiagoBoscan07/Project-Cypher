@@ -29,18 +29,18 @@ func _process(delta):
 		testSwitchLogic.start()
 		enemies = get_tree().get_nodes_in_group("Enemy")
 		for enemy in enemies:
-			enemy.call_deferred("test")
-		
+			enemy.process_mode = 4
 		players = get_tree().get_nodes_in_group("Player")
 		for player in players:
-			player.call_deferred("test")
-		powerInt = RandomPowerUp.randi_range(1, 3)
-		match powerInt:
-			1: barrier()
-			2: clone()
-			3: storm()
+			player.process_mode = 4
+		#powerInt = RandomPowerUp.randi_range(1, 3)
+		#match powerInt:
+			#1: barrier()
+			#2: clone()
+			#3: storm()
 		progressBar.value = progressBar.max_value
 		inputPressed = false
+		#endPowerUp()
 
 func _on_decipher_bar_timer_timeout() -> void:
 	isFilling = false

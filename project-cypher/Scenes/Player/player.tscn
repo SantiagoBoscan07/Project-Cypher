@@ -237,6 +237,7 @@ position = Vector2(14, 11)
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
+frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)
@@ -273,8 +274,16 @@ libraries = {
 
 [node name="Markers" type="Node2D" parent="Body"]
 
-[node name="ShootingPosition" type="Marker2D" parent="Body/Markers"]
-position = Vector2(14, 14)
+[node name="ShootingMarkers" type="Node2D" parent="Body/Markers"]
+
+[node name="ShootingPosition" type="Marker2D" parent="Body/Markers/ShootingMarkers"]
+position = Vector2(14, 12)
+
+[node name="ShootingPosition2" type="Marker2D" parent="Body/Markers/ShootingMarkers"]
+position = Vector2(6, 4)
+
+[node name="ShootingPosition3" type="Marker2D" parent="Body/Markers/ShootingMarkers"]
+position = Vector2(22, 4)
 
 [node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
 position = Vector2(70, 0)
@@ -340,13 +349,13 @@ player = NodePath("../../..")
 script = ExtResource("4_s3erd")
 player = NodePath("../../..")
 playerAnimationTree = NodePath("../../../Body/Sprites/PlayerAnimationTree")
-marker = NodePath("../../../Body/Markers/ShootingPosition")
+marker = NodePath("../../../Body/Markers/ShootingMarkers/ShootingPosition")
 
 [node name="Moveset" type="Node" parent="Components"]
 
-[node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPosition", "player", "shootingTimer")]
+[node name="Shoot" type="Node" parent="Components/Moveset" node_paths=PackedStringArray("shootingPositionArray", "player", "shootingTimer")]
 script = ExtResource("8_4eq7g")
-shootingPosition = NodePath("../../../Body/Markers/ShootingPosition")
+shootingPositionArray = [NodePath("../../../Body/Markers/ShootingMarkers/ShootingPosition")]
 player = NodePath("../../..")
 shootingTimer = NodePath("../../../Timer/ShootingTimer")
 
@@ -398,7 +407,7 @@ position = Vector2(28, 28)
 script = ExtResource("18_2t5jg")
 bullethell = ExtResource("2_jk383")
 alpha = 1.0
-bulletspawner = NodePath("../../../Body/Markers/ShootingPosition")
+bulletspawner = NodePath("../../../Body/Markers/ShootingMarkers/ShootingPosition")
 power_timer = NodePath("../../../Timer/BulletStormCooldown")
 durationTimer = NodePath("../../../Timer/BulletStormDuration")
 body = NodePath("../../..")

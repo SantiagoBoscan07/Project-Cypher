@@ -14,7 +14,7 @@ func _ready():
 
 func _unhandled_input(event: InputEvent):
 	if Input.is_action_just_pressed("pause"):
-		get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")
+		call_deferred("test")
 
 func die():
 	if lastChance:
@@ -22,8 +22,7 @@ func die():
 		oneMore.emit()
 		lastChance = false
 	else:
-		process_mode = 4
+		call_deferred("test")
 
 func test():
-	print("Cypher State enabled")
-	process_mode = 4
+	get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")

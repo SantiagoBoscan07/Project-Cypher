@@ -1,19 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=15 format=4 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
-[ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="3_nmxmm"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="5_io4vl"]
 [ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="6_erp85"]
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="7_ppt10"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_2lu3h"]
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_aq3ig"]
+[ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="9_syut3"]
 [ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="10_hgem5"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="11_cpe0t"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
 [ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="14_atlcv"]
-[ext_resource type="PackedScene" uid="uid://bse18hx5xvo4y" path="res://Scenes/Misc/box.tscn" id="14_j3u3i"]
+[ext_resource type="PackedScene" uid="uid://c6on2mej18s4t" path="res://Scenes/Misc/Obstacles.tscn" id="14_l5mny"]
 
 [node name="Test" type="Node2D"]
 
@@ -30,9 +30,6 @@ offset_bottom = 40.0
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Slots" type="Node" parent="UI/Canvas"]
-script = ExtResource("3_nmxmm")
 
 [node name="Canvas" type="Sprite2D" parent="UI/Canvas"]
 position = Vector2(240, 238)
@@ -72,7 +69,9 @@ script = ExtResource("9_aq3ig")
 [node name="Marker2D" type="Marker2D" parent="UI/Canvas"]
 position = Vector2(496, 176.891)
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Spawner"] instance=ExtResource("11_cpe0t")]
+[node name="Slots" parent="UI/Canvas" instance=ExtResource("9_syut3")]
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Enemy", "Spawner"] instance=ExtResource("11_cpe0t")]
 spawnTime = 0.75
 spawnerDuration = 5.0
 objectToSpawn = ExtResource("12_uu113")
@@ -116,5 +115,6 @@ spawnerDuration = 27.0
 objectToSpawn = ExtResource("14_atlcv")
 spawnRight = true
 
-[node name="Box" parent="." instance=ExtResource("14_j3u3i")]
-position = Vector2(96, 96)
+[node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
+position = Vector2(-32, 16)
+tile_map_data = PackedByteArray("AAARAAUAAAAAAAAAAQASAAUAAAAAAAAAAQATAAUAAAAAAAAAAQAUAAUAAAAAAAAAAQAVAAUAAAAAAAAAAQAQAAUAAAAAAAAAAQAPAAUAAAAAAAAAAQAOAAUAAAAAAAAAAQAYAAQAAAAAAAAAAQAZAAQAAAAAAAAAAQAaAAQAAAAAAAAAAQALAAQAAAAAAAAAAQAKAAQAAAAAAAAAAQAJAAQAAAAAAAAAAQA=")

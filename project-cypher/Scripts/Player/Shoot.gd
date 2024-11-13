@@ -1,7 +1,7 @@
 extends Node
 class_name Shoot
 
-@export var shootingPosition: Marker2D
+@export var shootingPositionArray: Array[Marker2D]
 @export var player: CharacterBody2D
 @export var shootingTimer: Timer
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Player/playerProjectile.tscn")
@@ -24,13 +24,14 @@ func  _process(delta: float):
 func shoot():
 	if !isClone:
 		shootingTimer.start()
-	projectile = projectilePreload.instantiate()
-	projectile.position = shootingPosition.global_position
-	if player.lastDirectionFacing == Vector2.ZERO:
-		player.lastDirectionFacing = Vector2.DOWN
-	projectile.direction = player.lastDirectionFacing
-	projectile.z_index = player.z_index - 1
-	get_tree().current_scene.add_child(projectile)
+	for marker in shootingPositionArray:
+		projectile = projectilePreload.instantiate()
+		projectile.position = marker.global_position
+		if player.lastDirectionFacing == Vector2.ZERO:
+			player.lastDirectionFacing = Vector2.DOWN
+		projectile.direction = player.lastDirectionFacing
+		projectile.z_index = player.z_index - 1
+		get_tree().current_scene.add_child(projectile)
 	canShoot = false
 
 # Once the timer runs out, the player can shoot again

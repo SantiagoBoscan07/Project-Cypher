@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/TankShoot.gd" id="8_6fb5q"]
 [ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_hdprn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="8_ym6rj"]
-[ext_resource type="PackedScene" uid="uid://gbg6ni2haofh" path="res://Scenes/Enemy/EnemyProjectile.tscn" id="10_g2f6s"]
+[ext_resource type="PackedScene" uid="uid://ddpgqfoubcjyp" path="res://Scenes/Enemy/TankProjectile.tscn" id="15_11lhv"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -219,7 +219,7 @@ animation = NodePath("../../../Body/Sprites/Animation")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/FiniteStateMachine/ShootState" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "body")]
 script = ExtResource("8_3y7eu")
-bullethell = ExtResource("10_g2f6s")
+bullethell = ExtResource("15_11lhv")
 alpha = 1.0
 bulletspawner = NodePath("../../../../Body/ShootPosition")
 power_timer = NodePath("../../../Timers/BulletStormCooldown")
@@ -233,7 +233,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="BulletStormCooldown" type="Timer" parent="Components/Timers"]
-wait_time = 0.75
+wait_time = 0.25
 
 [node name="BulletStormDuration" type="Timer" parent="Components/Timers"]
 wait_time = 5.0

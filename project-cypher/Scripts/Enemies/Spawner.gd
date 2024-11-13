@@ -36,16 +36,17 @@ func handleSpawn(object: PackedScene):
 
 func checkEnemy():
 	enemyCount = enemyCount - 1
-	print(enemyCount)
+	#print(enemyCount)
 	if enemyCount <= 0:
 		if nextWave:
 			nextWave.process_mode = 0
 			nextWave.add_to_group("Spawner")
+			nextWave.add_to_group("Enemy")
 		call_deferred("queue_free")
 
 func enemyCounter():
 	enemyCount = spawnerDuration / spawnTime
-	print(enemyCount)
+	#print(enemyCount)
 
 func _on_spawn_timer_timeout() -> void:
 	if objectToSpawn:
