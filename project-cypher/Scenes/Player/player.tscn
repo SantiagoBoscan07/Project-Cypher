@@ -237,7 +237,6 @@ position = Vector2(14, 11)
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)
@@ -258,8 +257,8 @@ tree_root = SubResource("AnimationNodeStateMachine_3c2f2")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/moving = false
-parameters/Idle/blend_position = Vector2(0, 0)
-parameters/Move/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(-0.00759494, -0.0106384)
+parameters/Move/blend_position = Vector2(-0.00759494, -0.0319149)
 
 [node name="Barrier" type="Sprite2D" parent="Body/Sprites"]
 visible = false

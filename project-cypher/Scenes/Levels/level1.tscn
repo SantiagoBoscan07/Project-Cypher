@@ -68,6 +68,7 @@ script = ExtResource("9_aq3ig")
 position = Vector2(496, 176.891)
 
 [node name="Slots" parent="UI/Canvas" instance=ExtResource("9_syut3")]
+visible = false
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Enemy", "Spawner"] instance=ExtResource("11_cpe0t")]
 spawnTime = 0.75

@@ -96,7 +96,7 @@ radius = 6.08276
 radius = 129.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
-radius = 3.0
+radius = 5.0
 
 [node name="MovingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
 script = ExtResource("1_3dtxn")
@@ -109,6 +109,7 @@ flash = NodePath("Components/Misc/Flash")
 [node name="Sprites" type="Node2D" parent="Body"]
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
+z_index = 1
 texture = ExtResource("1_crl6k")
 centered = false
 hframes = 3

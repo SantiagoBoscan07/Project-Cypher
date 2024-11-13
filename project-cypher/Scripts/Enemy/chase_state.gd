@@ -24,6 +24,7 @@ func physicsUpdate(_delta: float):
 		targetPos = (playerPos - enemy.position).normalized()
 		if enemy.position.distance_to(playerPos) > 3:
 			enemy.position += targetPos * moveSpeed * _delta
+		enemy.move_and_slide()
 
 # If the player exits the detectable, it changes to patrol state
 func _on_detection_radius_area_exited(area: Area2D) -> void:

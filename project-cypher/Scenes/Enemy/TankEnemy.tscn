@@ -117,9 +117,10 @@ radius = 8.0
 height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
-radius = 8.0
+radius = 9.0
 
 [node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
+collision_mask = 5
 script = ExtResource("1_06ofs")
 health = NodePath("Components/Misc/Health")
 hurtbox = NodePath("Body/Areas/Hurtbox")
@@ -243,7 +244,6 @@ one_shot = true
 one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
