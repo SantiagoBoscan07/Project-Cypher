@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2itxdgu752kd"]
+[gd_scene load_steps=18 format=4 uid="uid://b2itxdgu752kd"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_bn2ie"]
 [ext_resource type="Script" path="res://Scripts/Debug/PowerUpTest.gd" id="2_8j84a"]
@@ -12,7 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="10_kuo7b"]
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="12_s65ei"]
 [ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="13_u2fm0"]
+[ext_resource type="PackedScene" uid="uid://bse18hx5xvo4y" path="res://Scenes/Misc/box.tscn" id="14_31n4m"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="14_jig0j"]
+[ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="15_o2kos"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ebrwo"]
+scenes/1/scene = ExtResource("14_31n4m")
+
+[sub_resource type="TileSet" id="TileSet_3wvel"]
+sources/0 = SubResource("TileSetScenesCollectionSource_ebrwo")
 
 [node name="Test" type="Node2D"]
 
@@ -20,6 +28,7 @@
 position = Vector2(387, 52)
 
 [node name="Power-Ups Test" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1.0
@@ -108,15 +117,13 @@ position = Vector2(496, 176.891)
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
 spawnTime = 3.0
-spawnerDuration = 12.0
-objectToSpawn = ExtResource("4_dmhqs")
+objectToSpawn = ExtResource("4_anl6r")
 spawnUp = true
 nextWave = NodePath("../Spawner2")
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("14_jig0j")]
 process_mode = 4
 spawnTime = 4.0
-spawnerDuration = 16.0
 objectToSpawn = ExtResource("4_dmhqs")
 spawnleft = true
 nextWave = NodePath("../Spawner3")
@@ -124,9 +131,15 @@ nextWave = NodePath("../Spawner3")
 [node name="Spawner3" parent="." instance=ExtResource("14_jig0j")]
 process_mode = 4
 spawnTime = 5.0
-spawnerDuration = 10.0
 objectToSpawn = ExtResource("4_anl6r")
 spawnRight = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAAQAAAAAAAAAAQAEAAUAAAAAAAAAAQAEAAYAAAAAAAAAAQAEAAcAAAAAAAAAAQAEAAgAAAAAAAAAAQAFAAgAAAAAAAAAAQAEAAMAAAAAAAAAAQAFAAMAAAAAAAAAAQAGAAIAAAAAAAAAAQAGAAMAAAAAAAAAAQAGAAQAAAAAAAAAAQAGAAUAAAAAAAAAAQAGAAYAAAAAAAAAAQAGAAcAAAAAAAAAAQAGAAgAAAAAAAAAAQAGAAkAAAAAAAAAAQAGAAoAAAAAAAAAAQAHAAoAAAAAAAAAAQAHAAsAAAAAAAAAAQAIAAsAAAAAAAAAAQAJAAsAAAAAAAAAAQAKAAoAAAAAAAAAAQAKAAkAAAAAAAAAAQALAAsAAAAAAAAAAQAMAAsAAAAAAAAAAQANAAsAAAAAAAAAAQAOAAsAAAAAAAAAAQAOAAoAAAAAAAAAAQAOAAkAAAAAAAAAAQAOAAgAAAAAAAAAAQAOAAcAAAAAAAAAAQAOAAIAAAAAAAAAAQAOAAEAAAAAAAAAAQANAAAAAAAAAAAAAQAMAAAAAAAAAAAAAQALAAAAAAAAAAAAAQAKAAAAAAAAAAAAAQAJAAAAAAAAAAAAAQAIAAAAAAAAAAAAAQAIAAEAAAAAAAAAAQAHAAEAAAAAAAAAAQAHAAIAAAAAAAAAAQAKAAMAAAAAAAAAAQAKAAQAAAAAAAAAAQAKAAUAAAAAAAAAAQALAAIAAAAAAAAAAQAMAAIAAAAAAAAAAQANAAIAAAAAAAAAAQAPAAIAAAAAAAAAAQALAAYAAAAAAAAAAQAMAAYAAAAAAAAAAQANAAYAAAAAAAAAAQAOAAYAAAAAAAAAAQAPAAUAAAAAAAAAAQAPAAQAAAAAAAAAAQAPAAMAAAAAAAAAAQA=")
+tile_set = SubResource("TileSet_3wvel")
+
+[node name="MovingEnemy" parent="." instance=ExtResource("15_o2kos")]
+position = Vector2(304, 128)
 
 [connection signal="pressed" from="Power-Ups Test/Barrier" to="Power-Ups Test" method="_on_barrier_pressed"]
 [connection signal="pressed" from="Power-Ups Test/Clone" to="Power-Ups Test" method="_on_clone_pressed"]

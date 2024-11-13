@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://oyc4n17nij6i"]
+[gd_scene load_steps=26 format=3 uid="uid://oyc4n17nij6i"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_06ofs"]
-[ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_kpkqh"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_00oey"]
+[ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="2_6n40y"]
+[ext_resource type="Texture2D" uid="uid://db6qm2tbkf3ow" path="res://Sprites/Enemy/bear-Sheet.png" id="2_sioru"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_33jdv"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_rlxb3"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_kwi8c"]
@@ -30,9 +31,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_jf1p2"]
-resource_name = "flying"
-length = 0.6
+[sub_resource type="Animation" id="Animation_k4ixs"]
+resource_name = "idle"
+length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,16 +42,34 @@ tracks/0/path = NodePath("Sprites/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.266667, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.233333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 1]
+"values": [0, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_vgrhy"]
+resource_name = "shoot"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dk1po"]
 _data = {
 "RESET": SubResource("Animation_ma72m"),
-"flying": SubResource("Animation_jf1p2")
+"idle": SubResource("Animation_k4ixs"),
+"shoot": SubResource("Animation_vgrhy")
 }
 
 [sub_resource type="Animation" id="Animation_phgh6"]
@@ -91,10 +110,14 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
-radius = 6.08276
+radius = 9.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npbuw"]
+radius = 7.0
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
-radius = 3.0
+radius = 8.0
 
 [node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
 script = ExtResource("1_06ofs")
@@ -106,17 +129,22 @@ flash = NodePath("Components/Misc/Flash")
 
 [node name="Sprites" type="Node2D" parent="Body"]
 
+[node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(8, 11)
+texture = ExtResource("2_6n40y")
+
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
-texture = ExtResource("1_kpkqh")
+texture = ExtResource("2_sioru")
 centered = false
-hframes = 3
+hframes = 4
 
 [node name="Animation" type="AnimationPlayer" parent="Body/Sprites"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_dk1po")
 }
-autoplay = "flying"
+autoplay = "idle"
 
 [node name="Flash" type="AnimationPlayer" parent="Body/Sprites"]
 libraries = {
@@ -126,12 +154,12 @@ libraries = {
 [node name="Areas" type="Node2D" parent="Body"]
 
 [node name="Hurtbox" type="Area2D" parent="Body/Areas"]
+visible = false
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("2_00oey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
-visible = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_n51yn")
 
@@ -141,8 +169,8 @@ script = ExtResource("3_33jdv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
 visible = false
-position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_n51yn")
+position = Vector2(8, 8)
+shape = SubResource("CapsuleShape2D_npbuw")
 
 [node name="ShootPosition" type="Marker2D" parent="Body"]
 position = Vector2(8, 8)
@@ -177,15 +205,17 @@ secondState = NodePath("../MoveState")
 enemy = NodePath("../../..")
 entryTimer = NodePath("../../Timers/EntryTimer")
 
-[node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy", "moveTimer")]
+[node name="MoveState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("enemy", "moveTimer", "animation")]
 script = ExtResource("7_o1ea5")
 moveSpeed = 15.0
 enemy = NodePath("../../..")
 moveTimer = NodePath("../../Timers/MoveTimer")
+animation = NodePath("../../../Body/Sprites/Animation")
 
-[node name="ShootState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("projectileSpawner")]
+[node name="ShootState" type="Node" parent="Components/FiniteStateMachine" node_paths=PackedStringArray("projectileSpawner", "animation")]
 script = ExtResource("8_6fb5q")
 projectileSpawner = NodePath("ProjectileSpawner")
+animation = NodePath("../../../Body/Sprites/Animation")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/FiniteStateMachine/ShootState" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "body")]
 script = ExtResource("8_3y7eu")
@@ -214,14 +244,12 @@ one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
-z_index = 1
-z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
 [node name="Enabler" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(8, 7)
-scale = Vector2(0.8, 0.7)
+position = Vector2(8, 8)
+scale = Vector2(0.9, 0.9)
 
 [connection signal="timeout" from="Components/Timers/MoveTimer" to="Components/FiniteStateMachine/MoveState" method="_on_move_timer_timeout"]
 [connection signal="timeout" from="Components/Timers/BulletStormCooldown" to="Components/FiniteStateMachine/ShootState/ProjectileSpawner" method="_on_bullet_storm_cooldown_timeout"]

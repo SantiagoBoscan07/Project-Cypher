@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bse18hx5xvo4y"]
+
+[ext_resource type="Texture2D" uid="uid://bbwdcw3tjs7gw" path="res://Sprites/Misc/box.png" id="1_4yi6s"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_pyxqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukqbt"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yytw6"]
+size = Vector2(16, 16)
+
+[node name="Box" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 7
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_4yi6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ukqbt")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("2_pyxqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_yytw6")

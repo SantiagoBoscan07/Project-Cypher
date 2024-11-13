@@ -5,6 +5,7 @@
 
 [node name="Spawner" type="Node2D" node_paths=PackedStringArray("spawnTimer", "spawnerDurationTimer", "spawnerNode")]
 script = ExtResource("1_11vtg")
+spawnerDuration = 1.0
 spawnTimer = NodePath("SpawnTimer")
 spawnerDurationTimer = NodePath("SpawnDuration")
 spawnerNode = NodePath("SpawnerNode")

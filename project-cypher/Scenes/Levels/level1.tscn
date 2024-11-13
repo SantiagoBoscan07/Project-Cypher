@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=15 format=3 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="3_nmxmm"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
 [ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="14_atlcv"]
+[ext_resource type="PackedScene" uid="uid://bse18hx5xvo4y" path="res://Scenes/Misc/box.tscn" id="14_j3u3i"]
 
 [node name="Test" type="Node2D"]
 
@@ -71,9 +72,9 @@ script = ExtResource("9_aq3ig")
 [node name="Marker2D" type="Marker2D" parent="UI/Canvas"]
 position = Vector2(496, 176.891)
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Spawner"] instance=ExtResource("11_cpe0t")]
 spawnTime = 0.75
-spawnerDuration = 7.0
+spawnerDuration = 5.0
 objectToSpawn = ExtResource("12_uu113")
 spawnleft = true
 nextWave = NodePath("../Spawner2")
@@ -81,7 +82,7 @@ nextWave = NodePath("../Spawner2")
 [node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
 process_mode = 4
 spawnTime = 0.75
-spawnerDuration = 7.0
+spawnerDuration = 5.0
 objectToSpawn = ExtResource("13_b1fi8")
 spawnRight = true
 nextWave = NodePath("../Spawner3")
@@ -89,28 +90,31 @@ nextWave = NodePath("../Spawner3")
 [node name="Spawner3" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
 process_mode = 4
 spawnTime = 2.5
-spawnerDuration = 6.0
+spawnerDuration = 8.0
 objectToSpawn = ExtResource("14_atlcv")
 spawnUp = true
 nextWave = NodePath("../Spawner4")
 
 [node name="Spawner4" parent="." instance=ExtResource("11_cpe0t")]
 process_mode = 4
-spawnerDuration = 30.0
+spawnerDuration = 10.0
 
 [node name="Spawner4_1" parent="Spawner4" instance=ExtResource("11_cpe0t")]
-spawnerDuration = 30.0
+spawnerDuration = 6.0
 objectToSpawn = ExtResource("12_uu113")
 spawnUp = true
 
 [node name="Spawner4_2" parent="Spawner4" instance=ExtResource("11_cpe0t")]
 spawnTime = 7.0
-spawnerDuration = 21.0
+spawnerDuration = 14.0
 objectToSpawn = ExtResource("13_b1fi8")
 spawnleft = true
 
 [node name="Spawner4_3" parent="Spawner4" instance=ExtResource("11_cpe0t")]
 spawnTime = 9.0
 spawnerDuration = 27.0
-objectToSpawn = ExtResource("13_b1fi8")
+objectToSpawn = ExtResource("14_atlcv")
 spawnRight = true
+
+[node name="Box" parent="." instance=ExtResource("14_j3u3i")]
+position = Vector2(96, 96)

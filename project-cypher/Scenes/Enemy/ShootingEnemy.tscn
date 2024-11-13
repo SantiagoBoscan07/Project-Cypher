@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://ljywyxyw3kgy"]
+[gd_scene load_steps=23 format=3 uid="uid://ljywyxyw3kgy"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_2840j"]
 [ext_resource type="Texture2D" uid="uid://duhc173pvesco" path="res://Sprites/Enemy/WizardCat-Sheet.png" id="2_168ea"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_u8472"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_4pwlu"]
+[ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="3_junvb"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_qqdsh"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_p8a5o"]
 [ext_resource type="Script" path="res://Scripts/Misc/FiniteStateMachine.gd" id="5_vfdcd"]
@@ -25,6 +26,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_epemf"]
+resource_name = "bomb"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 6, 7, 8, 7, 6]
 }
 
 [sub_resource type="Animation" id="Animation_7ra54"]
@@ -58,22 +75,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 3, 4, 5, 4, 3]
-}
-
-[sub_resource type="Animation" id="Animation_epemf"]
-resource_name = "bomb"
-length = 0.55
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 6, 7, 8, 7, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dk1po"]
@@ -136,6 +137,12 @@ flash = NodePath("Components/Misc/Flash")
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Sprites" type="Node2D" parent="Body"]
+
+[node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(0, 4)
+texture = ExtResource("3_junvb")
+centered = false
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
 texture = ExtResource("2_168ea")
@@ -224,8 +231,6 @@ animation = NodePath("../../../Body/Sprites/Animation")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
-z_index = 1
-z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://hv8sfmxy5753"]
+[gd_scene load_steps=23 format=3 uid="uid://hv8sfmxy5753"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_3dtxn"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_crl6k"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_qdf4n"]
+[ext_resource type="Texture2D" uid="uid://2ow6b7oxdc4s" path="res://Sprites/Player/shadow.png" id="3_2p6fn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_bjsyi"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="4_wu48a"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="5_2cdik"]
@@ -124,6 +125,12 @@ libraries = {
 "": SubResource("AnimationLibrary_t6cel")
 }
 
+[node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(0, 7)
+texture = ExtResource("3_2p6fn")
+centered = false
+
 [node name="Areas" type="Node2D" parent="Body"]
 
 [node name="Hurtbox" type="Area2D" parent="Body/Areas"]
@@ -219,8 +226,6 @@ one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
-z_index = 1
-z_as_relative = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 

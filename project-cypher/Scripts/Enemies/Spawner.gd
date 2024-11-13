@@ -14,10 +14,14 @@ extends Node2D
 @export var spawnTimer: Timer
 @export var spawnerDurationTimer: Timer
 @export var spawnerNode: SpawnerNode
+var enemyCount: int = 0:
+	set(value):
+		enemyCount = value
 
 func _ready():
 	spawnTimer.wait_time = spawnTime
 	spawnerDurationTimer.wait_time = spawnerDuration
+	enemyCounter()
 	spawnerDurationTimer.start()
 	spawnTimer.start()
 
@@ -30,6 +34,18 @@ func handleSpawn(object: PackedScene):
 	elif spawnRight:
 		spawnerNode.spawn(2, Vector2(448,randf_range(32,176)))
 
+func checkEnemy():
+	enemyCount = enemyCount - 1
+	print(enemyCount)
+	if enemyCount <= 0:
+		if nextWave:
+			nextWave.process_mode = 0
+			nextWave.add_to_group("Spawner")
+		call_deferred("queue_free")
+
+func enemyCounter():
+	enemyCount = spawnerDuration / spawnTime
+	print(enemyCount)
 
 func _on_spawn_timer_timeout() -> void:
 	if objectToSpawn:
@@ -38,6 +54,6 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_spawn_duration_timeout() -> void:
 	spawnTimer.stop()
-	if nextWave:
-		nextWave.process_mode = 0
-	call_deferred("queue_free")
+	#if nextWave:
+		#nextWave.process_mode = 0
+	#call_deferred("queue_free")

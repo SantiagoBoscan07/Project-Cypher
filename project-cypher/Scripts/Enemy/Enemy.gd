@@ -22,6 +22,7 @@ func _ready():
 			)
 
 func die():
+	get_tree().call_group("Spawner", "checkEnemy")
 	call_deferred("queue_free")
 
 

@@ -76,4 +76,3 @@ func _on_test_switch_logic_timeout() -> void:
 	for enemy in enemies:
 		if enemy:
 			enemy.process_mode = 0
-	print("Test switch ended!")

@@ -25,7 +25,7 @@ func boost():
 		sprite.modulate.a = 0.5
 		dashClones.emitting = true
 		hitbox.process_mode = 0
-		collision.set_deferred("disabled", 1)
+		player.set_collision_mask_value(1, false)
 	normalSpeed = player.playerSpeed
 	boostSpeed = player.playerSpeed * 2
 	player.playerSpeed = boostSpeed
@@ -45,7 +45,7 @@ func _on_dash_duration_timeout() -> void:
 	if !isClone:
 		dashClones.emitting = false
 		sprite.modulate.a = 1
-		collision.set_deferred("disabled", 0)
+		player.set_collision_mask_value(1, true)
 		hitbox.process_mode = 4
 	player.playerSpeed = normalSpeed
 	Signals.emit_signal("dashCooldownProgress", dashCooldown.wait_time)
