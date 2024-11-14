@@ -59,6 +59,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Options" type="VBoxContainer" parent="GameOptions/PanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 
 [node name="Play Game" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
@@ -88,7 +89,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
-text = "Input Controller"
+text = "Options"
 
 [node name="InputSettings" type="Control" parent="." node_paths=PackedStringArray("gameOptions", "actionList")]
 visible = false
@@ -140,6 +141,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 
 [node name="DefaultButton" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_e3qbb")
 theme_override_font_sizes/font_size = 16
