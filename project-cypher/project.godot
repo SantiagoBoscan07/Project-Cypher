@@ -130,6 +130,8 @@ pause={
 2d_physics/layer_1="playerHurtbox"
 2d_physics/layer_2="enemyHurtbox"
 2d_physics/layer_3="detectable"
+2d_physics/layer_4="avoidable"
+2d_physics/layer_5="unavoidable"
 
 [rendering]
 

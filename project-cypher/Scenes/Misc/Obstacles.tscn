@@ -1,9 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6on2mej18s4t"]
+[gd_scene load_steps=8 format=3 uid="uid://c6on2mej18s4t"]
 
 [ext_resource type="PackedScene" uid="uid://bse18hx5xvo4y" path="res://Scenes/Misc/box.tscn" id="1_fu02a"]
+[ext_resource type="PackedScene" uid="uid://cjv6ku46oxoag" path="res://Scenes/Misc/Tree.tscn" id="2_uxrej"]
+[ext_resource type="PackedScene" uid="uid://crrbdrn5cdm02" path="res://Scenes/Misc/rocks.tscn" id="3_cs3de"]
+[ext_resource type="PackedScene" uid="uid://xtrhrfhe7wy4" path="res://Scenes/Misc/flower.tscn" id="4_u1lli"]
+[ext_resource type="PackedScene" uid="uid://bc0vqjpjhco14" path="res://Scenes/Misc/eyeflower.tscn" id="5_ufnwx"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ebrwo"]
 scenes/1/scene = ExtResource("1_fu02a")
+scenes/2/scene = ExtResource("2_uxrej")
+scenes/3/scene = ExtResource("3_cs3de")
+scenes/4/scene = ExtResource("4_u1lli")
+scenes/5/scene = ExtResource("5_ufnwx")
 
 [sub_resource type="TileSet" id="TileSet_3wvel"]
 sources/0 = SubResource("TileSetScenesCollectionSource_ebrwo")

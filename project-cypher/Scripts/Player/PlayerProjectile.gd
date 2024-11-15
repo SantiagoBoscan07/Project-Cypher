@@ -10,8 +10,9 @@ func _ready():
 	velocity = direction * speed
 
 # Changes the position of the projectile each frame 
-func _process(delta):
+func _physics_process(delta: float):
 	global_position += velocity * delta
+
 
 # When the projectile leaves the screen it gets deleted
 func _on_visible_on_screen_enabler_2d_screen_exited():

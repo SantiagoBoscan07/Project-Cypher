@@ -120,7 +120,7 @@ height = 18.0
 radius = 9.0
 
 [node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
-collision_mask = 5
+collision_mask = 25
 script = ExtResource("1_06ofs")
 health = NodePath("Components/Misc/Health")
 hurtbox = NodePath("Body/Areas/Hurtbox")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://crrbdrn5cdm02"]
+
+[ext_resource type="Texture2D" uid="uid://d4b8f6qlqm622" path="res://Sprites/Misc/Rock.png" id="1_204fk"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_f1ynh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlwdj"]
+size = Vector2(32, 21)
+
+[node name="Rocks" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_204fk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_qlwdj")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("2_f1ynh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_qlwdj")

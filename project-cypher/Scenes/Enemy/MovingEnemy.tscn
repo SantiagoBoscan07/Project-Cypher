@@ -99,6 +99,8 @@ radius = 129.0
 radius = 5.0
 
 [node name="MovingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("1_3dtxn")
 health = NodePath("Components/Misc/Health")
 hurtbox = NodePath("Body/Areas/Hurtbox")

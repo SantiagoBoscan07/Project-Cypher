@@ -129,6 +129,8 @@ radius = 6.08276
 radius = 9.05539
 
 [node name="ShootingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
+collision_layer = 25
+collision_mask = 25
 script = ExtResource("1_2840j")
 health = NodePath("Components/Misc/Health")
 hurtbox = NodePath("Body/Areas/Hurtbox")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://xtrhrfhe7wy4"]
+
+[ext_resource type="Texture2D" uid="uid://cbehrrkgds2ym" path="res://Sprites/Misc/miniflower-Sheet.png" id="1_xmevu"]
+
+[sub_resource type="Animation" id="Animation_1shum"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6bhr3"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vllpn"]
+_data = {
+"RESET": SubResource("Animation_1shum"),
+"idle": SubResource("Animation_6bhr3")
+}
+
+[node name="Flower" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_xmevu")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vllpn")
+}
+autoplay = "idle"

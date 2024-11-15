@@ -24,6 +24,7 @@ func physicsUpdate(_delta: float):
 		targetPos = (markerPos - enemy.position).normalized()
 		if enemy.position.distance_to(markerPos) > 5:
 			enemy.position += targetPos * moveSpeed * _delta
+		enemy.move_and_slide()
 
 # change state
 func changeState():

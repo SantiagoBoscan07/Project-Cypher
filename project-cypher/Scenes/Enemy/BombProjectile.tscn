@@ -1,34 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddpgqfoubcjyp"]
+[gd_scene load_steps=5 format=3 uid="uid://bqmulcyisey10"]
 
-[ext_resource type="Script" path="res://Scripts/Player/PlayerProjectile.gd" id="1_08kns"]
-[ext_resource type="Texture2D" uid="uid://bfo1gdj2arti5" path="res://Sprites/Enemy/TankProjectile.png" id="2_354sb"]
-[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_d4y02"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerProjectile.gd" id="1_8rd83"]
+[ext_resource type="Texture2D" uid="uid://bo01ltklxb11g" path="res://Sprites/Enemy/Fireball 1.png" id="2_5oj3d"]
+[ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="3_vs70p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n3g2k"]
 radius = 4.0
-height = 8.0
+height = 10.0
 
-[node name="TankProjectile" type="Node2D" groups=["Enemy"]]
+[node name="BombProjectile" type="Node2D" groups=["Enemy"]]
 z_index = -1
-script = ExtResource("1_08kns")
-speed = 30.0
+script = ExtResource("1_8rd83")
+speed = 40.0
 
 [node name="Body" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="Body"]
-texture = ExtResource("2_354sb")
+texture = ExtResource("2_5oj3d")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Body"]
-position = Vector2(0, 1.19209e-07)
-scale = Vector2(0.6, 0.6)
+position = Vector2(5.96046e-08, 1.19209e-07)
+scale = Vector2(0.7, 0.9)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
-script = ExtResource("3_d4y02")
+script = ExtResource("3_vs70p")
 isProjectile = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_n3g2k")
 
 [connection signal="screen_exited" from="Body/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
