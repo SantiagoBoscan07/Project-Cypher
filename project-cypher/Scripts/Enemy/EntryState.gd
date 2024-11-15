@@ -7,7 +7,7 @@ extends State
 var entryTimerTime: float
 
 func enter():
-	entryTimerTime = randf_range(0.5, 0.8)
+	entryTimerTime = randf_range(0.2, 0.5)
 	entryTimer.wait_time = entryTimerTime
 	entryTimer.start()
 
