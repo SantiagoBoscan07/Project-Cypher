@@ -22,18 +22,17 @@ func enter():
 	playerAnimationTree["parameters/conditions/moving"] = true
 
 # Calls movement and change direction
+# Calls getInput and transition to idle state
 func physicsUpdate(_delta: float):
+	getInput()
+	idleTransition()
 	movement()
 	changeDirection()
 	player.move_and_slide()
 
-# Calls getInput and transition to idle state
-func update(_delta: float):
-	getInput(_delta)
-	idleTransition()
 
 # Gets input from movement buttons and gives a direction depending on the inputs provided
-func getInput(_delta):
+func getInput():
 	var horizontalDirection = Input.get_axis("moveLeft", "moveRight")
 	var verticalDirection = Input.get_axis("moveUp", "moveDown")
 	if player:
