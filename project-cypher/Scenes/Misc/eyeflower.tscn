@@ -44,7 +44,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81rdy"]
 size = Vector2(9.20277, 5.19757)
 
-[node name="Eyeflower" type="StaticBody2D"]
+[node name="Eyeflower" type="StaticBody2D" groups=["Obstacle"]]
 collision_layer = 8
 collision_mask = 0
 

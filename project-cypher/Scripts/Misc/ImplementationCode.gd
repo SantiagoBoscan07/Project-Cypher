@@ -7,6 +7,8 @@ var playerArrayIndex = 0
 @export var arrows: Array[Sprite2D]
 @export var cypherRange = 3
 @export var codeGenerator: Node2D
+@export var cypherTimer: Timer
+@export var cypherTimerTime: float = 1
 var RandomPowerUp = RandomNumberGenerator.new()
 var powerInt
 var tempVal = 0
@@ -18,6 +20,8 @@ func _ready():
 	process_mode = 4
 
 func codeSetup():
+	cypherTimer.wait_time = cypherTimerTime
+	cypherTimer.start()
 	show()
 	resetArray()
 	slotSet()
@@ -32,6 +36,11 @@ func resetArray():
 	playerArrayIndex = 0
 	arrowBehavior(0)
 
+func endCypher():
+	hide()
+	Signals.emit_signal("endCypher")
+	process_mode = 4
+
 func _process(delta: float):
 	if canCheck:
 		if codeCypherArray == playerCypherArray:
@@ -41,9 +50,7 @@ func _process(delta: float):
 				1: barrier()
 				2: clone()
 				3: storm()
-			hide()
-			Signals.emit_signal("endCypher")
-			process_mode = 4
+			endCypher()
 
 func slotSet():
 	for slot in slots.size():
@@ -126,3 +133,8 @@ func clone() -> void:
 # If the button is pressed, the projectiles will show up
 func storm() -> void:
 	Signals.emit_signal("startStorm")
+
+
+func _on_cypher_timer_timeout() -> void:
+	endCypher()
+	Signals.emit_signal("endPowerUp")

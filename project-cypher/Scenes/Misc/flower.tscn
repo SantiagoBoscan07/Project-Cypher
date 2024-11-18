@@ -40,7 +40,7 @@ _data = {
 "idle": SubResource("Animation_6bhr3")
 }
 
-[node name="Flower" type="Node2D"]
+[node name="Flower" type="Node2D" groups=["Obstacle"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1

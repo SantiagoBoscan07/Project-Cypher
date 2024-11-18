@@ -6,6 +6,7 @@ extends Control
 @export var slots: Control
 var players
 var enemies
+var obstacles
 var inputPressed : bool = false
 
 var powerInt: int
@@ -24,6 +25,8 @@ func _ready() -> void:
 func _process(delta):
 	if isFilling:
 		progressBar.value -= delta
+
+func _unhandled_input(event: InputEvent):
 	if Input.is_action_pressed("decipher") and inputPressed:
 		#print("Cypher Activated!")
 		enemies = get_tree().get_nodes_in_group("Enemy")
@@ -32,11 +35,13 @@ func _process(delta):
 		players = get_tree().get_nodes_in_group("Player")
 		for player in players:
 			player.process_mode = 4
+		obstacles = get_tree().get_nodes_in_group("Obstacle")
+		for obstacle in obstacles:
+			obstacle.process_mode = 4
 		slots.process_mode = 0
 		slots.codeSetup()
 		progressBar.value = progressBar.max_value
 		inputPressed = false
-		#endPowerUp()
 
 func _on_decipher_bar_timer_timeout() -> void:
 	isFilling = false
@@ -48,11 +53,6 @@ func endPowerUp():
 	isFilling = true
 	barTimer.start()
 
-# create a timer, within the bar scene called it testSwitchLogic
-# whenever that timer timeout, it changes the process mode of the player back to 0
-# timer is going to be activated whenever the player process mode is put 4
-
-
 func resumeGame():
 	for player in players:
 		if player:
@@ -60,3 +60,6 @@ func resumeGame():
 	for enemy in enemies:
 		if enemy:
 			enemy.process_mode = 0
+	for obstacle in obstacles:
+		if obstacle:
+			obstacle.process_mode = 0
