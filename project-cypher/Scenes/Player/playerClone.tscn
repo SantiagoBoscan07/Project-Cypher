@@ -172,6 +172,7 @@ height = 16.0
 
 [node name="PlayerClone" type="CharacterBody2D"]
 modulate = Color(1, 1, 1, 0.784314)
+z_index = 1
 script = ExtResource("1_onbc1")
 playerSpeed = 75
 
@@ -184,7 +185,6 @@ position = Vector2(14, 11)
 texture = ExtResource("2_3b8sm")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 visible = false

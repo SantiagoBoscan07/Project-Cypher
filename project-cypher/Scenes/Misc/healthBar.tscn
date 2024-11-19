@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://1ssseqsge7s"]
+
+[ext_resource type="Script" path="res://Scripts/Misc/HealthBar.gd" id="1_po2up"]
+[ext_resource type="PackedScene" uid="uid://d3renss1t5voo" path="res://Scenes/Menu/heart.tscn" id="2_bxamp"]
+
+[node name="HealthBar" type="Node2D"]
+script = ExtResource("1_po2up")
+
+[node name="Heart" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+
+[node name="Heart2" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(32, 0)
+
+[node name="Heart3" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(64, 0)
+
+[node name="Heart4" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(96, 0)
+
+[node name="Heart5" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(128, 0)
+
+[node name="Heart6" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(0, 32)
+
+[node name="Heart7" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(32, 32)
+
+[node name="Heart8" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(64, 32)
+
+[node name="Heart9" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(96, 32)
+
+[node name="Heart10" parent="." instance=ExtResource("2_bxamp")]
+visible = false
+position = Vector2(128, 32)

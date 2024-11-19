@@ -122,14 +122,17 @@ _data = {
 "flash": SubResource("Animation_k5ega")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
-radius = 6.08276
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7avjd"]
+radius = 5.0
+height = 16.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
-radius = 9.05539
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ufcs"]
+radius = 4.0
+height = 14.0
 
 [node name="ShootingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
-collision_mask = 17
+z_index = 1
+collision_mask = 25
 script = ExtResource("1_2840j")
 health = NodePath("Components/Misc/Health")
 hurtbox = NodePath("Body/Areas/Hurtbox")
@@ -170,18 +173,16 @@ collision_mask = 0
 script = ExtResource("2_u8472")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
-visible = false
 position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_n51yn")
+shape = SubResource("CapsuleShape2D_7avjd")
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
 collision_layer = 0
 script = ExtResource("3_4pwlu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
-visible = false
 position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_n51yn")
+shape = SubResource("CapsuleShape2D_7avjd")
 
 [node name="ShootingOrigin" type="Marker2D" parent="Body/Areas"]
 position = Vector2(8, 8)
@@ -230,23 +231,22 @@ rayCast = NodePath("../../../Raycast")
 stateSwitchTimer = NodePath("../../../Timer/StateSwitch")
 animation = NodePath("../../../Body/Sprites/Animation")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_4omk4")
-
 [node name="Timer" type="Node" parent="."]
 
 [node name="EntryTimer" type="Timer" parent="Timer"]
 one_shot = true
 
 [node name="ShootingStateTimer" type="Timer" parent="Timer"]
-wait_time = 1.5
+wait_time = 3.0
 one_shot = true
 
 [node name="StateSwitch" type="Timer" parent="Timer"]
 wait_time = 10.0
 one_shot = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(8, 9)
+shape = SubResource("CapsuleShape2D_0ufcs")
 
 [node name="Raycast" type="RayCast2D" parent="."]
 position = Vector2(8, 8)

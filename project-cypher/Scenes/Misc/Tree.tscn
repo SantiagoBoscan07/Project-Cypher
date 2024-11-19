@@ -1,28 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjv6ku46oxoag"]
+[gd_scene load_steps=4 format=3 uid="uid://cwktwq7dli5b4"]
 
 [ext_resource type="Texture2D" uid="uid://d2ycvohkyqu72" path="res://Sprites/Misc/Twig.png" id="1_vpyu6"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_p0qv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rwi5"]
-size = Vector2(13, 15)
+size = Vector2(7.5, 4.5)
 
 [node name="Tree" type="StaticBody2D"]
-z_index = 2
+z_index = 1
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 8.5)
+position = Vector2(0.25, 11.25)
 shape = SubResource("RectangleShape2D_5rwi5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("1_vpyu6")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("2_p0qv6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0.5, 8.5)
+position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_5rwi5")

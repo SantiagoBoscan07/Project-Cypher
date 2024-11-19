@@ -20,6 +20,7 @@ config/icon="res://Sprites/Misc/box.png"
 [autoload]
 
 Signals="*res://Scripts/Globals/Signals.gd"
+Global="*res://Scripts/Misc/Global.gd"
 
 [display]
 

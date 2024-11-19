@@ -37,6 +37,7 @@ func resetArray():
 	arrowBehavior(0)
 
 func endCypher():
+	cypherTimer.stop()
 	hide()
 	Signals.emit_signal("endCypher")
 	process_mode = 4

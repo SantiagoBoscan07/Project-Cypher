@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://oyc4n17nij6i"]
+[gd_scene load_steps=25 format=3 uid="uid://oyc4n17nij6i"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_06ofs"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_00oey"]
@@ -109,17 +109,15 @@ _data = {
 "flash": SubResource("Animation_gcjo5")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
-radius = 9.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npbuw"]
 radius = 8.0
 height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
-radius = 9.0
+radius = 7.0
 
 [node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
+z_index = 1
 collision_mask = 25
 script = ExtResource("1_06ofs")
 health = NodePath("Components/Misc/Health")
@@ -155,21 +153,19 @@ libraries = {
 [node name="Areas" type="Node2D" parent="Body"]
 
 [node name="Hurtbox" type="Area2D" parent="Body/Areas"]
-visible = false
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("2_00oey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
-position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_n51yn")
+position = Vector2(8, 8)
+shape = SubResource("CapsuleShape2D_npbuw")
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
 collision_layer = 0
 script = ExtResource("3_33jdv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
-visible = false
 position = Vector2(8, 8)
 shape = SubResource("CapsuleShape2D_npbuw")
 
@@ -244,6 +240,7 @@ one_shot = true
 one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 

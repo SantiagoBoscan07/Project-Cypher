@@ -220,6 +220,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
+z_index = 1
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 29
@@ -233,6 +234,7 @@ health = NodePath("Components/Misc/Health")
 [node name="Sprites" type="Node2D" parent="Body"]
 
 [node name="PlayerSprite" type="Sprite2D" parent="Body/Sprites"]
+y_sort_enabled = true
 position = Vector2(14, 11)
 texture = ExtResource("2_6gwev")
 hframes = 4
@@ -266,6 +268,7 @@ visible = false
 modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(14, 11)
 texture = ExtResource("6_0ursj")
+offset = Vector2(0, -20)
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="Body/Sprites"]
 libraries = {

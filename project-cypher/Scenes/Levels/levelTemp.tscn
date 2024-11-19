@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=15 format=3 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
@@ -9,16 +9,13 @@
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_aq3ig"]
 [ext_resource type="Texture2D" uid="uid://ccbsa2sh742cg" path="res://Sprites/Player/portrait1.png" id="9_d71v1"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="9_syut3"]
+[ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_77tsp"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="11_cpe0t"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
 [ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="14_atlcv"]
-[ext_resource type="PackedScene" uid="uid://c6on2mej18s4t" path="res://Scenes/Misc/Obstacles.tscn" id="14_l5mny"]
 
 [node name="Level" type="Node2D"]
-
-[node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
-tile_map_data = PackedByteArray("AAAEAAQAAAAAAAAAAgAMAAQAAAAAAAAABgAUAAYAAAAAAAAABgAHAAgAAAAAAAAACAATAAMAAAAAAAAACAAIAAQAAAAAAAAACQATAAkAAAAAAAAACQALAAgAAAAAAAAACgAQAAIAAAAAAAAACgALAAUAAAAAAAAABwANAAMAAAAAAAAABwATAAcAAAAAAAAABwAVAAUAAAAAAAAABwAaAAsAAAAAAAAAAgAaAAIAAAAAAAAAAgADAAsAAAAAAAAAAgA=")
 
 [node name="Player" parent="." instance=ExtResource("1_sa34c")]
 position = Vector2(240, 135)
@@ -43,10 +40,11 @@ position = Vector2(37, 235)
 texture = ExtResource("9_d71v1")
 
 [node name="HealthLabel" type="Label" parent="UI/PlayerUI"]
+visible = false
 layout_mode = 0
-offset_left = 80.0
+offset_left = 288.0
 offset_top = 240.0
-offset_right = 134.0
+offset_right = 342.0
 offset_bottom = 263.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_io4vl")
@@ -55,17 +53,17 @@ text = "HP : 10"
 script = ExtResource("6_erp85")
 
 [node name="DashPanel" parent="UI/PlayerUI" instance=ExtResource("7_ppt10")]
-offset_left = 144.0
+offset_left = 240.0
 offset_top = 224.0
-offset_right = 144.0
+offset_right = 240.0
 offset_bottom = 224.0
 
 [node name="Bar" parent="UI/PlayerUI" node_paths=PackedStringArray("slots") instance=ExtResource("8_2lu3h")]
 layout_mode = 1
-offset_left = 201.063
-offset_top = 224.257
-offset_right = 201.063
-offset_bottom = 224.257
+offset_left = 368.0
+offset_top = 224.0
+offset_right = 368.0
+offset_bottom = 224.0
 waitTime = 1.0
 slots = NodePath("../Slots")
 
@@ -78,9 +76,12 @@ position = Vector2(496, 176.891)
 [node name="Slots" parent="UI/PlayerUI" instance=ExtResource("9_syut3")]
 visible = false
 
+[node name="HealthBar" parent="UI/PlayerUI" instance=ExtResource("11_77tsp")]
+position = Vector2(80, 215)
+
 [node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Enemy", "Spawner"] instance=ExtResource("11_cpe0t")]
 spawnTime = 0.75
-spawnerDuration = 5.0
+spawnerDuration = 3.0
 objectToSpawn = ExtResource("12_uu113")
 spawnleft = true
 nextWave = [NodePath("../Spawner2")]
