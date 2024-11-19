@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=18 format=4 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
 [ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="14_atlcv"]
 [ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="14_l5mny"]
+[ext_resource type="Script" path="res://Scripts/Misc/levelFinish.gd" id="16_wbg5h"]
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
@@ -133,10 +134,15 @@ spawnerDuration = 13.0
 objectToSpawn = ExtResource("14_atlcv")
 spawnRight = true
 
-[node name="Spawner5" parent="." instance=ExtResource("11_cpe0t")]
+[node name="Spawner5" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
 spawnerDuration = 15.0
 objectToSpawn = ExtResource("12_uu113")
 spawnUp = true
+nextWave = [NodePath("../LevelFinish")]
+isLast = true
+
+[node name="LevelFinish" type="Node2D" parent="."]
+script = ExtResource("16_wbg5h")
 
 [node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
 tile_map_data = PackedByteArray("AAAJAAQAAAAAAAAAAQAKAAQAAAAAAAAAAQATAAQAAAAAAAAAAQAUAAQAAAAAAAAAAQAVAAQAAAAAAAAAAQAIAAQAAAAAAAAAAQAGAAMAAAAAAAAAAgAXAAMAAAAAAAAAAgADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAALAAQAAAAAAAAACwASAAQAAAAAAAAACwA=")

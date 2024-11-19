@@ -15,6 +15,7 @@ extends Node2D
 @export var spawnerDurationTimer: Timer
 @export var spawnerNode: SpawnerNode
 @export var isFirst: bool
+@export var isLast: bool
 @export var isSubet: bool = false
 @export var spawnerSubset: Array[Node2D]
 var enemyCount: int = 0:
@@ -48,11 +49,14 @@ func checkEnemy():
 	#print(enemyCount)
 	if enemyCount <= 0:
 		isFinished = true
-		if nextWave:
+		if nextWave and !isLast:
 			for wave in nextWave:
 				wave.process_mode = 0
 				wave.add_to_group("Spawner")
 				wave.add_to_group("Enemy")
+		elif nextWave and isLast:
+			for wave in nextWave:
+				wave.endLevel()
 			call_deferred("queue_free")
 
 func enemyCounter():
