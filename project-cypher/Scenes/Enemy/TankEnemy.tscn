@@ -118,6 +118,7 @@ radius = 7.0
 
 [node name="TankEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
 z_index = 1
+y_sort_enabled = true
 collision_mask = 25
 script = ExtResource("1_06ofs")
 health = NodePath("Components/Misc/Health")
@@ -130,10 +131,12 @@ flash = NodePath("Components/Misc/Flash")
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)
+z_index = -2
 position = Vector2(8, 11)
 texture = ExtResource("2_6n40y")
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
+y_sort_enabled = true
 texture = ExtResource("2_sioru")
 centered = false
 hframes = 4

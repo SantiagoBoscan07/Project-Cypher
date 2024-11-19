@@ -132,6 +132,7 @@ height = 14.0
 
 [node name="ShootingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox", "flash") groups=["Enemy"]]
 z_index = 1
+y_sort_enabled = true
 collision_mask = 25
 script = ExtResource("1_2840j")
 health = NodePath("Components/Misc/Health")
@@ -149,6 +150,7 @@ texture = ExtResource("3_junvb")
 centered = false
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
+y_sort_enabled = true
 texture = ExtResource("2_168ea")
 centered = false
 hframes = 9

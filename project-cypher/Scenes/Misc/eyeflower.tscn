@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc0vqjpjhco14"]
+[gd_scene load_steps=8 format=3 uid="uid://ceh108ep52d4e"]
 
 [ext_resource type="Texture2D" uid="uid://cjo5i03ilbhqp" path="res://Sprites/Misc/Eyeflower-Sheet.png" id="1_rydsk"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_i1tnu"]
@@ -41,11 +41,16 @@ _data = {
 "idle": SubResource("Animation_sjwo2")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djgqr"]
+size = Vector2(5.20278, 5.79738)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81rdy"]
-size = Vector2(9.20277, 5.19757)
+size = Vector2(11.9551, 24.0024)
 
 [node name="Eyeflower" type="StaticBody2D" groups=["Obstacle"]]
-collision_layer = 8
+z_index = 1
+y_sort_enabled = true
+collision_layer = 16
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -60,8 +65,8 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.527462, 13.4184)
-shape = SubResource("RectangleShape2D_81rdy")
+position = Vector2(-0.41555, 9.09106)
+shape = SubResource("RectangleShape2D_djgqr")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 3
@@ -69,5 +74,6 @@ collision_mask = 0
 script = ExtResource("2_i1tnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-0.527462, 13.4184)
+visible = false
+position = Vector2(-0.919815, 4.01598)
 shape = SubResource("RectangleShape2D_81rdy")

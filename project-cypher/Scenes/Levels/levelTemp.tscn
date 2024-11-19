@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=17 format=4 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="5_io4vl"]
 [ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="6_erp85"]
+[ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_1eesl"]
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="7_ppt10"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_2lu3h"]
 [ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_aq3ig"]
@@ -14,13 +15,16 @@
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
 [ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="14_atlcv"]
+[ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="14_l5mny"]
 
 [node name="Level" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_sa34c")]
 position = Vector2(240, 135)
 
 [node name="UI" type="Control" parent="."]
+z_index = 5
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -53,17 +57,23 @@ text = "HP : 10"
 script = ExtResource("6_erp85")
 
 [node name="DashPanel" parent="UI/PlayerUI" instance=ExtResource("7_ppt10")]
-offset_left = 240.0
-offset_top = 224.0
-offset_right = 240.0
-offset_bottom = 224.0
+offset_left = 252.0
+offset_top = 213.0
+offset_right = 252.0
+offset_bottom = 213.0
+
+[node name="PowerupPanel" parent="UI/PlayerUI" instance=ExtResource("7_1eesl")]
+offset_left = 325.0
+offset_top = 229.0
+offset_right = 365.0
+offset_bottom = 269.0
 
 [node name="Bar" parent="UI/PlayerUI" node_paths=PackedStringArray("slots") instance=ExtResource("8_2lu3h")]
 layout_mode = 1
-offset_left = 368.0
-offset_top = 224.0
-offset_right = 368.0
-offset_bottom = 224.0
+offset_left = 367.0
+offset_top = 213.0
+offset_right = 367.0
+offset_bottom = 213.0
 waitTime = 1.0
 slots = NodePath("../Slots")
 
@@ -127,3 +137,6 @@ spawnRight = true
 spawnerDuration = 15.0
 objectToSpawn = ExtResource("12_uu113")
 spawnUp = true
+
+[node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
+tile_map_data = PackedByteArray("AAAJAAQAAAAAAAAAAQAKAAQAAAAAAAAAAQATAAQAAAAAAAAAAQAUAAQAAAAAAAAAAQAVAAQAAAAAAAAAAQAIAAQAAAAAAAAAAQAGAAMAAAAAAAAAAgAXAAMAAAAAAAAAAgADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAALAAQAAAAAAAAACwASAAQAAAAAAAAACwA=")

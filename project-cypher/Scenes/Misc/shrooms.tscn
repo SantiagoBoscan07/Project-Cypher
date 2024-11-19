@@ -1,21 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6wlqucl3wkrd"]
+[gd_scene load_steps=5 format=3 uid="uid://dyhxe03rqewfe"]
 
 [ext_resource type="Texture2D" uid="uid://dm6j2vjrs7dof" path="res://Sprites/Misc/shrooms.png" id="1_00lm4"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_rktpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0d3i"]
-size = Vector2(18, 5)
+size = Vector2(8, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kb2wt"]
+size = Vector2(20, 16)
 
 [node name="Shrooms" type="StaticBody2D"]
-collision_layer = 8
+z_index = 1
+y_sort_enabled = true
+collision_layer = 16
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
+y_sort_enabled = true
 texture = ExtResource("1_00lm4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.5)
+visible = false
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_q0d3i")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -24,5 +30,4 @@ collision_mask = 0
 script = ExtResource("2_rktpc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 5.5)
-shape = SubResource("RectangleShape2D_q0d3i")
+shape = SubResource("RectangleShape2D_kb2wt")

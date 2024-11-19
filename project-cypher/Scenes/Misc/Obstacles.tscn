@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" path="res://Scenes/Misc/box.tscn" id="1_fu02a"]
 [ext_resource type="PackedScene" uid="uid://cwktwq7dli5b4" path="res://Scenes/Misc/Tree.tscn" id="2_uxrej"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/flower_4.tscn" id="2_v6jw6"]
-[ext_resource type="PackedScene" path="res://Scenes/Misc/rocks.tscn" id="3_cs3de"]
+[ext_resource type="PackedScene" uid="uid://cudvrkbiue7t2" path="res://Scenes/Misc/rocks.tscn" id="3_cs3de"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/skull.tscn" id="3_jybyt"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/flower.tscn" id="4_u1lli"]
-[ext_resource type="PackedScene" path="res://Scenes/Misc/eyeflower.tscn" id="5_ufnwx"]
-[ext_resource type="PackedScene" path="res://Scenes/Misc/shrooms.tscn" id="6_438h6"]
+[ext_resource type="PackedScene" uid="uid://ceh108ep52d4e" path="res://Scenes/Misc/eyeflower.tscn" id="5_ufnwx"]
+[ext_resource type="PackedScene" uid="uid://dyhxe03rqewfe" path="res://Scenes/Misc/shrooms.tscn" id="6_438h6"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/shroomlets.tscn" id="7_e4k17"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/flower2.tscn" id="9_p4q7o"]
 [ext_resource type="PackedScene" path="res://Scenes/Misc/flower_3.tscn" id="10_l3whb"]
@@ -29,4 +29,5 @@ scenes/11/scene = ExtResource("3_jybyt")
 sources/0 = SubResource("TileSetScenesCollectionSource_ebrwo")
 
 [node name="ObstaclesTileMap" type="TileMapLayer"]
+y_sort_enabled = true
 tile_set = SubResource("TileSet_3wvel")

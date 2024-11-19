@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl0xxkdwper0d"]
+
+[ext_resource type="Texture2D" uid="uid://3uf8d3vw3fp8" path="res://Sprites/UI/ui-panel.png" id="1_763fo"]
+
+[node name="PowerupPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_763fo")
