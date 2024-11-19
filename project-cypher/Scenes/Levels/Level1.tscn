@@ -1,0 +1,168 @@
+[gd_scene load_steps=18 format=3 uid="uid://cx0xdynjhvb6u"]
+
+[ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_ykvj5"]
+[ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_5xx6b"]
+[ext_resource type="Texture2D" uid="uid://ccbsa2sh742cg" path="res://Sprites/Player/portrait1.png" id="3_67ei7"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="4_fe6kv"]
+[ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="5_hyq63"]
+[ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="6_52mh2"]
+[ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_irfh4"]
+[ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_3oa46"]
+[ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_tl3um"]
+[ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="10_athpp"]
+[ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_p77ll"]
+[ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="12_m3is3"]
+[ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="13_twnfu"]
+[ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="14_boext"]
+[ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="15_dsmjy"]
+[ext_resource type="Script" path="res://Scripts/Misc/levelFinish.gd" id="16_ktojb"]
+[ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="17_jvfii"]
+
+[node name="Level1" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_ykvj5")]
+position = Vector2(240, 135)
+
+[node name="UI" type="Control" parent="."]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerUI" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Canvas" type="Sprite2D" parent="UI/PlayerUI"]
+position = Vector2(240, 238)
+texture = ExtResource("2_5xx6b")
+
+[node name="Portait" type="Sprite2D" parent="UI/PlayerUI"]
+position = Vector2(37, 235)
+texture = ExtResource("3_67ei7")
+
+[node name="HealthLabel" type="Label" parent="UI/PlayerUI"]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 240.0
+offset_right = 342.0
+offset_bottom = 263.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_fe6kv")
+theme_override_font_sizes/font_size = 16
+text = "HP : 10"
+script = ExtResource("5_hyq63")
+
+[node name="DashPanel" parent="UI/PlayerUI" instance=ExtResource("6_52mh2")]
+offset_left = 252.0
+offset_top = 213.0
+offset_right = 252.0
+offset_bottom = 213.0
+
+[node name="PowerupPanel" parent="UI/PlayerUI" instance=ExtResource("7_irfh4")]
+offset_left = 325.0
+offset_top = 229.0
+offset_right = 365.0
+offset_bottom = 269.0
+
+[node name="Bar" parent="UI/PlayerUI" node_paths=PackedStringArray("slots") instance=ExtResource("8_3oa46")]
+layout_mode = 1
+offset_left = 367.0
+offset_top = 213.0
+offset_right = 367.0
+offset_bottom = 213.0
+waitTime = 1.0
+slots = NodePath("../Slots")
+
+[node name="StateSwitch" type="Node" parent="UI/PlayerUI"]
+script = ExtResource("9_tl3um")
+
+[node name="Marker2D" type="Marker2D" parent="UI/PlayerUI"]
+position = Vector2(496, 176.891)
+
+[node name="Slots" parent="UI/PlayerUI" instance=ExtResource("10_athpp")]
+visible = false
+
+[node name="HealthBar" parent="UI/PlayerUI" instance=ExtResource("11_p77ll")]
+position = Vector2(80, 215)
+
+[node name="ObstaclesTileMap" parent="." instance=ExtResource("15_dsmjy")]
+
+[node name="LevelFinish" type="Node2D" parent="."]
+process_mode = 4
+script = ExtResource("16_ktojb")
+
+[node name="FirstSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
+nextWave = [NodePath("../SecondSpawner"), NodePath("../SecondSpawner/Spawner"), NodePath("../SecondSpawner/Spawner2")]
+isFirst = true
+isSubet = true
+spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
+
+[node name="Spawner" parent="FirstSpawner" groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
+spawnerDuration = 3.0
+objectToSpawn = ExtResource("13_twnfu")
+spawnUp = true
+isFirst = true
+
+[node name="Spawner2" parent="FirstSpawner" groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
+spawnerDuration = 3.0
+objectToSpawn = ExtResource("13_twnfu")
+spawnUp = true
+isFirst = true
+
+[node name="SecondSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
+nextWave = [NodePath("../ThirdSpawner"), NodePath("../ThirdSpawner/Spawner"), NodePath("../ThirdSpawner/Spawner2"), NodePath("../ThirdSpawner/Spawner3"), NodePath("../ThirdSpawner/Spawner4")]
+isSubet = true
+spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
+
+[node name="Spawner" parent="SecondSpawner" instance=ExtResource("12_m3is3")]
+spawnTime = 2.0
+spawnerDuration = 6.0
+objectToSpawn = ExtResource("14_boext")
+spawnUp = true
+
+[node name="Spawner2" parent="SecondSpawner" instance=ExtResource("12_m3is3")]
+spawnTime = 2.0
+spawnerDuration = 6.0
+objectToSpawn = ExtResource("14_boext")
+spawnUp = true
+
+[node name="ThirdSpawner" parent="." node_paths=PackedStringArray("spawnerSubset") instance=ExtResource("12_m3is3")]
+isSubet = true
+spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4")]
+
+[node name="Spawner" parent="ThirdSpawner" instance=ExtResource("12_m3is3")]
+spawnTime = 2.0
+spawnerDuration = 2.0
+objectToSpawn = ExtResource("17_jvfii")
+spawnleft = true
+
+[node name="Spawner2" parent="ThirdSpawner" instance=ExtResource("12_m3is3")]
+spawnTime = 4.0
+spawnerDuration = 4.0
+objectToSpawn = ExtResource("17_jvfii")
+spawnRight = true
+
+[node name="Spawner3" parent="ThirdSpawner" instance=ExtResource("12_m3is3")]
+spawnTime = 6.0
+spawnerDuration = 6.0
+objectToSpawn = ExtResource("17_jvfii")
+spawnleft = true
+
+[node name="Spawner4" parent="ThirdSpawner" instance=ExtResource("12_m3is3")]
+spawnTime = 8.0
+spawnerDuration = 8.0
+objectToSpawn = ExtResource("17_jvfii")
+spawnRight = true
+
+[node name="FourthSpawner" parent="." instance=ExtResource("12_m3is3")]
+
+[node name="FifthSpawner" parent="." instance=ExtResource("12_m3is3")]
+
+[node name="SixthSpawner" parent="." instance=ExtResource("12_m3is3")]
+
+[node name="SeventhSpawner" parent="." instance=ExtResource("12_m3is3")]

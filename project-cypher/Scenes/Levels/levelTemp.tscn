@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=17 format=4 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="11_cpe0t"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
 [ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
-[ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="14_atlcv"]
 [ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="14_l5mny"]
 [ext_resource type="Script" path="res://Scripts/Misc/levelFinish.gd" id="16_wbg5h"]
 
@@ -90,59 +89,33 @@ visible = false
 [node name="HealthBar" parent="UI/PlayerUI" instance=ExtResource("11_77tsp")]
 position = Vector2(80, 215)
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Enemy", "Spawner"] instance=ExtResource("11_cpe0t")]
-spawnTime = 0.75
-spawnerDuration = 3.0
+[node name="FirstSpawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Enemy", "Spawner"] instance=ExtResource("11_cpe0t")]
+spawnTime = 2.0
+spawnerDuration = 10.0
 objectToSpawn = ExtResource("12_uu113")
-spawnleft = true
-nextWave = [NodePath("../Spawner2")]
+spawnUp = true
+nextWave = [NodePath("../SecondSpawner"), NodePath("../SecondSpawner/LeftSpawner"), NodePath("../SecondSpawner/RightSpawner")]
 isFirst = true
 
-[node name="Spawner2" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
-spawnTime = 0.75
-spawnerDuration = 5.0
-objectToSpawn = ExtResource("13_b1fi8")
-spawnRight = true
-nextWave = [NodePath("../Spawner3")]
-
-[node name="Spawner3" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
-spawnTime = 2.5
-spawnerDuration = 8.0
-objectToSpawn = ExtResource("14_atlcv")
-spawnUp = true
-nextWave = [NodePath("../Spawner4/Spawner4_1"), NodePath("../Spawner4/Spawner4_2"), NodePath("../Spawner4/Spawner4_3"), NodePath("../Spawner4")]
-
-[node name="Spawner4" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("11_cpe0t")]
-nextWave = [NodePath("../Spawner5")]
+[node name="SecondSpawner" parent="." node_paths=PackedStringArray("spawnerSubset") instance=ExtResource("11_cpe0t")]
 isSubet = true
-spawnerSubset = [NodePath("Spawner4_1"), NodePath("Spawner4_2"), NodePath("Spawner4_3")]
+spawnerSubset = [NodePath("LeftSpawner"), NodePath("RightSpawner")]
 
-[node name="Spawner4_1" parent="Spawner4" instance=ExtResource("11_cpe0t")]
-spawnerDuration = 6.0
-objectToSpawn = ExtResource("12_uu113")
-spawnUp = true
-
-[node name="Spawner4_2" parent="Spawner4" instance=ExtResource("11_cpe0t")]
+[node name="LeftSpawner" parent="SecondSpawner" instance=ExtResource("11_cpe0t")]
 spawnTime = 2.0
-spawnerDuration = 8.0
+spawnerDuration = 6.0
 objectToSpawn = ExtResource("13_b1fi8")
 spawnleft = true
 
-[node name="Spawner4_3" parent="Spawner4" instance=ExtResource("11_cpe0t")]
-spawnTime = 6.0
-spawnerDuration = 13.0
-objectToSpawn = ExtResource("14_atlcv")
+[node name="RightSpawner" parent="SecondSpawner" instance=ExtResource("11_cpe0t")]
+spawnTime = 4.0
+spawnerDuration = 12.0
+objectToSpawn = ExtResource("13_b1fi8")
 spawnRight = true
 
-[node name="Spawner5" parent="." node_paths=PackedStringArray("nextWave") instance=ExtResource("11_cpe0t")]
-spawnerDuration = 15.0
-objectToSpawn = ExtResource("12_uu113")
-spawnUp = true
-nextWave = [NodePath("../LevelFinish")]
-isLast = true
+[node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
+tile_map_data = PackedByteArray("AAAKAAQAAAAAAAAAAQATAAQAAAAAAAAAAQAUAAQAAAAAAAAAAQAVAAQAAAAAAAAAAQAIAAQAAAAAAAAAAQADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAALAAQAAAAAAAAACwASAAQAAAAAAAAACwAJAAQAAAAAAAAAAQAHAAQAAAAAAAAACgA=")
 
 [node name="LevelFinish" type="Node2D" parent="."]
+process_mode = 4
 script = ExtResource("16_wbg5h")
-
-[node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
-tile_map_data = PackedByteArray("AAAJAAQAAAAAAAAAAQAKAAQAAAAAAAAAAQATAAQAAAAAAAAAAQAUAAQAAAAAAAAAAQAVAAQAAAAAAAAAAQAIAAQAAAAAAAAAAQAGAAMAAAAAAAAAAgAXAAMAAAAAAAAAAgADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAALAAQAAAAAAAAACwASAAQAAAAAAAAACwA=")
