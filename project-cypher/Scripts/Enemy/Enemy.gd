@@ -12,6 +12,18 @@ var leftEntrance: bool = false:
 var rightEntrance: bool = false:
 	set(value):
 		rightEntrance = value
+var cornerUpLeftEntrance: bool = false:
+	set(value):
+		cornerUpLeftEntrance = value
+var cornerUpRightEntrance: bool = false:
+	set(value):
+		cornerUpRightEntrance = value
+var cornerDownLeftEntrance: bool = false:
+	set(value):
+		cornerDownLeftEntrance = value
+var cornerDownRightEntrance: bool = false:
+	set(value):
+		cornerDownRightEntrance = value
 
 func _ready():
 	if health:

@@ -96,23 +96,30 @@ position = Vector2(80, 215)
 process_mode = 4
 script = ExtResource("16_ktojb")
 
-[node name="FirstSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
-nextWave = [NodePath("../SecondSpawner"), NodePath("../SecondSpawner/Spawner"), NodePath("../SecondSpawner/Spawner2")]
+[node name="FirstSpawner" parent="." node_paths=PackedStringArray("spawnerSubset") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
 isFirst = true
 isSubet = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
 
-[node name="Spawner" parent="FirstSpawner" groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
+[node name="Spawner" parent="FirstSpawner" node_paths=PackedStringArray("marker") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
 spawnerDuration = 3.0
 objectToSpawn = ExtResource("13_twnfu")
+marker = NodePath("Marker2D")
 spawnUp = true
 isFirst = true
 
-[node name="Spawner2" parent="FirstSpawner" groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
+[node name="Marker2D" type="Marker2D" parent="FirstSpawner/Spawner"]
+position = Vector2(120, 0)
+
+[node name="Spawner2" parent="FirstSpawner" node_paths=PackedStringArray("marker") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
 spawnerDuration = 3.0
 objectToSpawn = ExtResource("13_twnfu")
+marker = NodePath("Marker2D")
 spawnUp = true
 isFirst = true
+
+[node name="Marker2D" type="Marker2D" parent="FirstSpawner/Spawner2"]
+position = Vector2(360, 0)
 
 [node name="SecondSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
 nextWave = [NodePath("../ThirdSpawner"), NodePath("../ThirdSpawner/Spawner"), NodePath("../ThirdSpawner/Spawner2"), NodePath("../ThirdSpawner/Spawner3"), NodePath("../ThirdSpawner/Spawner4")]

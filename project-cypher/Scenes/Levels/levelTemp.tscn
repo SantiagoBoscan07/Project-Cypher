@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://wljna60c1yj0"]
+[gd_scene load_steps=14 format=4 uid="uid://wljna60c1yj0"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_sa34c"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="4_d1lpk"]
@@ -11,9 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://ccbsa2sh742cg" path="res://Sprites/Player/portrait1.png" id="9_d71v1"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="9_syut3"]
 [ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_77tsp"]
-[ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="11_cpe0t"]
-[ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="12_uu113"]
-[ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="13_b1fi8"]
 [ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="14_l5mny"]
 [ext_resource type="Script" path="res://Scripts/Misc/levelFinish.gd" id="16_wbg5h"]
 
@@ -88,30 +85,6 @@ visible = false
 
 [node name="HealthBar" parent="UI/PlayerUI" instance=ExtResource("11_77tsp")]
 position = Vector2(80, 215)
-
-[node name="FirstSpawner" parent="." node_paths=PackedStringArray("nextWave") groups=["Enemy", "Spawner"] instance=ExtResource("11_cpe0t")]
-spawnTime = 2.0
-spawnerDuration = 10.0
-objectToSpawn = ExtResource("12_uu113")
-spawnUp = true
-nextWave = [NodePath("../SecondSpawner"), NodePath("../SecondSpawner/LeftSpawner"), NodePath("../SecondSpawner/RightSpawner")]
-isFirst = true
-
-[node name="SecondSpawner" parent="." node_paths=PackedStringArray("spawnerSubset") instance=ExtResource("11_cpe0t")]
-isSubet = true
-spawnerSubset = [NodePath("LeftSpawner"), NodePath("RightSpawner")]
-
-[node name="LeftSpawner" parent="SecondSpawner" instance=ExtResource("11_cpe0t")]
-spawnTime = 2.0
-spawnerDuration = 6.0
-objectToSpawn = ExtResource("13_b1fi8")
-spawnleft = true
-
-[node name="RightSpawner" parent="SecondSpawner" instance=ExtResource("11_cpe0t")]
-spawnTime = 4.0
-spawnerDuration = 12.0
-objectToSpawn = ExtResource("13_b1fi8")
-spawnRight = true
 
 [node name="ObstaclesTileMap" parent="." instance=ExtResource("14_l5mny")]
 tile_map_data = PackedByteArray("AAAKAAQAAAAAAAAAAQATAAQAAAAAAAAAAQAUAAQAAAAAAAAAAQAVAAQAAAAAAAAAAQAIAAQAAAAAAAAAAQADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAALAAQAAAAAAAAACwASAAQAAAAAAAAACwAJAAQAAAAAAAAAAQAHAAQAAAAAAAAACgA=")

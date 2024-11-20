@@ -14,6 +14,14 @@ func spawn(position: int, global_spawn_position: Vector2 = global_position, pare
 			instance.leftEntrance = true
 		2:
 			instance.rightEntrance = true
+		3:
+			instance.cornerUpLeftEntrance = true
+		4:
+			instance.cornerUpRightEntrance = true
+		5:
+			instance.cornerDownLeftEntrance = true
+		6:
+			instance.cornerDownRightEntrance = true
 	parent.add_child(instance)
 	instance.global_position = global_spawn_position
 	return instance

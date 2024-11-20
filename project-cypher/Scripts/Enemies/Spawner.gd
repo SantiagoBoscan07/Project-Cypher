@@ -6,9 +6,15 @@ extends Node2D
 @export_category("Object")
 @export var objectToSpawn: PackedScene
 @export_category("Location")
+@export var marker: Marker2D
+@export_category("Entry State [Only Mark One]")
 @export var spawnUp: bool = false
 @export var spawnleft: bool = false
 @export var spawnRight: bool = false
+@export var cornerUpLeft: bool = false
+@export var cornerUpRight: bool = false
+@export var cornerDownLeft: bool = false
+@export var cornerDownRight: bool = false
 @export_category("Wave Manager")
 @export var nextWave: Array[Node2D]
 @export var spawnTimer: Timer
@@ -18,6 +24,7 @@ extends Node2D
 @export var isLast: bool
 @export var isSubet: bool = false
 @export var spawnerSubset: Array[Node2D]
+var entrance
 var enemyCount: int = 0:
 	set(value):
 		enemyCount = value
@@ -35,11 +42,23 @@ func _ready():
 func handleSpawn(object: PackedScene):
 	spawnerNode.scene = object
 	if spawnUp:
-		spawnerNode.spawn(0, Vector2(randf_range(30,448),0))
+		entrance = 0
 	elif spawnleft:
-		spawnerNode.spawn(1, Vector2(0,randf_range(32,176)))
+		entrance = 1
 	elif spawnRight:
-		spawnerNode.spawn(2, Vector2(448,randf_range(32,176)))
+		entrance = 2
+	elif cornerUpLeft:
+		entrance = 3
+	elif cornerUpRight:
+		entrance = 4
+	elif cornerDownLeft:
+		entrance = 5
+	elif cornerDownRight:
+		entrance = 6
+	if marker:
+		spawnerNode.spawn(entrance, marker.global_position)
+	else:
+		print("Marker has not been set")
 
 func checkEnemy():
 	if isFinished:
