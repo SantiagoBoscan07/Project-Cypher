@@ -4,6 +4,7 @@ class_name PlayerMoveState
 @export var player: CharacterBody2D
 @export var playerAnimationTree: AnimationTree
 @export var marker: Marker2D
+var movementActions = ["moveUp", "moveDown", "moveLeft", "moveRight"]
 var maxSpeedChange = 0
 var turnSpeed 
 var acceleration 
@@ -24,10 +25,12 @@ func enter():
 # Calls movement and change direction
 # Calls getInput and transition to idle state
 func physicsUpdate(_delta: float):
+	for action in movementActions:
+		if Input.is_action_pressed(action):
+			changeDirection()
 	getInput()
 	idleTransition()
 	movement()
-	changeDirection()
 	player.move_and_slide()
 
 
@@ -61,6 +64,6 @@ func changeDirection():
 # If moving buttons are not pressed, switches to idle state and changes the direction of the sprite to the last direction the player faced
 func idleTransition():
 	if !Input.is_action_pressed("moveUp") and !Input.is_action_pressed("moveDown") and !Input.is_action_pressed("moveLeft") and !Input.is_action_pressed("moveRight"):
-		playerAnimationTree["parameters/Idle/blend_position"].x = player.lastDirectionFacing.x
-		playerAnimationTree["parameters/Idle/blend_position"].y = -player.lastDirectionFacing.y
+		playerAnimationTree["parameters/conditions/moving"] = false
+		playerAnimationTree["parameters/conditions/idle"] = true
 		stateTransition.emit(get_parent().currentState, "PlayerIdleState")

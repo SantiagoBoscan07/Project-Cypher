@@ -8,8 +8,8 @@ var movementActions = ["moveUp", "moveDown", "moveLeft", "moveRight"]
 # Animations are set for idle
 func enter():
 	player.isMoving = false
-	playerAnimationTree["parameters/conditions/idle"] = true
-	playerAnimationTree["parameters/conditions/moving"] = false
+	playerAnimationTree["parameters/Idle/blend_position"].x = player.lastDirectionFacing.x
+	playerAnimationTree["parameters/Idle/blend_position"].y = -player.lastDirectionFacing.y
 
 # If any move button is pressed, then it switches to move state
 func update(_delta: float):

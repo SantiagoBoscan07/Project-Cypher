@@ -7,6 +7,7 @@ signal oneMore()
 var lastChance: bool = true
 var lastDirectionFacing: Vector2
 var isMoving: bool = false
+var isAiming: bool = false
 
 func _ready():
 	if health:

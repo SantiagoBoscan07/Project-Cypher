@@ -7,6 +7,7 @@ class_name Shoot
 @onready var projectilePreload: PackedScene = preload("res://Scenes/Player/playerProjectile.tscn")
 @export var isClone: bool = false
 @export var cloneTimer: Timer
+var aimActions = ["aimUp", "aimDown", "aimLeft", "aimRight"]
 var canShoot: bool = true
 var projectile
 
