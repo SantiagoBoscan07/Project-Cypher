@@ -24,4 +24,4 @@ func _on_back_menu_pressed() -> void:
 
 
 func _on_play_game_2_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Levels/levelTemp.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
