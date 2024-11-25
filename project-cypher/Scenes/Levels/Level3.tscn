@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://be6b4xktnpr62"]
+[gd_scene load_steps=18 format=4 uid="uid://byij3o2yelj3m"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_i77u3"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_ui750"]
