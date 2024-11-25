@@ -1,0 +1,164 @@
+[gd_scene load_steps=18 format=4 uid="uid://be6b4xktnpr62"]
+
+[ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_i77u3"]
+[ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_ui750"]
+[ext_resource type="Texture2D" uid="uid://ccbsa2sh742cg" path="res://Sprites/Player/portrait1.png" id="3_gua38"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="4_jtttq"]
+[ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="5_df3yk"]
+[ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="6_58fc6"]
+[ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_heocu"]
+[ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_qofjs"]
+[ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_amt4l"]
+[ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="10_qh2sb"]
+[ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_jtem7"]
+[ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="12_lb8nr"]
+[ext_resource type="Script" path="res://Scripts/Misc/levelFinish.gd" id="13_dpjt0"]
+[ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="14_l48t6"]
+[ext_resource type="PackedScene" uid="uid://oyc4n17nij6i" path="res://Scenes/Enemy/TankEnemy.tscn" id="15_qlprf"]
+[ext_resource type="PackedScene" uid="uid://ljywyxyw3kgy" path="res://Scenes/Enemy/ShootingEnemy.tscn" id="16_3itbr"]
+[ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="17_grmnb"]
+
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_i77u3")]
+position = Vector2(240, 135)
+
+[node name="UI" type="Control" parent="."]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerUI" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Canvas" type="Sprite2D" parent="UI/PlayerUI"]
+position = Vector2(240, 238)
+texture = ExtResource("2_ui750")
+
+[node name="Portait" type="Sprite2D" parent="UI/PlayerUI"]
+position = Vector2(37, 235)
+texture = ExtResource("3_gua38")
+
+[node name="HealthLabel" type="Label" parent="UI/PlayerUI"]
+visible = false
+layout_mode = 0
+offset_left = 288.0
+offset_top = 240.0
+offset_right = 342.0
+offset_bottom = 263.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jtttq")
+theme_override_font_sizes/font_size = 16
+text = "HP : 10"
+script = ExtResource("5_df3yk")
+
+[node name="DashPanel" parent="UI/PlayerUI" instance=ExtResource("6_58fc6")]
+offset_left = 252.0
+offset_top = 213.0
+offset_right = 252.0
+offset_bottom = 213.0
+
+[node name="PowerupPanel" parent="UI/PlayerUI" instance=ExtResource("7_heocu")]
+offset_left = 325.0
+offset_top = 229.0
+offset_right = 365.0
+offset_bottom = 269.0
+
+[node name="Bar" parent="UI/PlayerUI" node_paths=PackedStringArray("slots") instance=ExtResource("8_qofjs")]
+layout_mode = 1
+offset_left = 367.0
+offset_top = 213.0
+offset_right = 367.0
+offset_bottom = 213.0
+waitTime = 1.0
+slots = NodePath("../Slots")
+
+[node name="StateSwitch" type="Node" parent="UI/PlayerUI"]
+script = ExtResource("9_amt4l")
+
+[node name="Marker2D" type="Marker2D" parent="UI/PlayerUI"]
+position = Vector2(496, 176.891)
+
+[node name="Slots" parent="UI/PlayerUI" instance=ExtResource("10_qh2sb")]
+visible = false
+
+[node name="HealthBar" parent="UI/PlayerUI" instance=ExtResource("11_jtem7")]
+position = Vector2(80, 215)
+
+[node name="ObstaclesTileMap" parent="." instance=ExtResource("12_lb8nr")]
+position = Vector2(-7, -2)
+rotation = -0.00177684
+tile_map_data = PackedByteArray("AAADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAA=")
+
+[node name="LevelFinish" type="Node2D" parent="."]
+process_mode = 4
+script = ExtResource("13_dpjt0")
+
+[node name="Wave1" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") groups=["Enemy", "Spawner"] instance=ExtResource("14_l48t6")]
+nextWave = [NodePath("../Wave2"), NodePath("../Wave2/Spawner"), NodePath("../Wave2/Spawner2"), NodePath("../Wave2/Spawner3")]
+isFirst = true
+isSubet = true
+spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
+
+[node name="Spawner" parent="Wave1" node_paths=PackedStringArray("marker") instance=ExtResource("14_l48t6")]
+position = Vector2(302.084, 73.6609)
+spawnTime = 2.0
+spawnerDuration = 2.0
+objectToSpawn = ExtResource("15_qlprf")
+marker = NodePath("Marker2D")
+spawnUp = true
+isFirst = true
+
+[node name="Marker2D" type="Marker2D" parent="Wave1/Spawner"]
+position = Vector2(-195.084, -65.6609)
+
+[node name="Spawner2" parent="Wave1" node_paths=PackedStringArray("marker") instance=ExtResource("14_l48t6")]
+position = Vector2(302.084, 73.6609)
+spawnTime = 2.0
+spawnerDuration = 2.0
+objectToSpawn = ExtResource("15_qlprf")
+marker = NodePath("Marker2D")
+spawnUp = true
+isFirst = true
+
+[node name="Marker2D" type="Marker2D" parent="Wave1/Spawner2"]
+position = Vector2(125.916, -63.6609)
+
+[node name="Wave2" parent="." node_paths=PackedStringArray("spawnerSubset") instance=ExtResource("14_l48t6")]
+isSubet = true
+spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3")]
+
+[node name="Spawner" parent="Wave2" node_paths=PackedStringArray("marker") instance=ExtResource("14_l48t6")]
+spawnTime = 3.0
+spawnerDuration = 12.0
+objectToSpawn = ExtResource("16_3itbr")
+marker = NodePath("Marker2D")
+cornerUpLeft = true
+
+[node name="Marker2D" type="Marker2D" parent="Wave2/Spawner"]
+position = Vector2(20, 0)
+
+[node name="Spawner2" parent="Wave2" node_paths=PackedStringArray("marker") instance=ExtResource("14_l48t6")]
+spawnTime = 3.0
+spawnerDuration = 12.0
+objectToSpawn = ExtResource("16_3itbr")
+marker = NodePath("Marker2D")
+cornerUpRight = true
+
+[node name="Marker2D" type="Marker2D" parent="Wave2/Spawner2"]
+position = Vector2(450, 0)
+
+[node name="Spawner3" parent="Wave2" node_paths=PackedStringArray("marker") instance=ExtResource("14_l48t6")]
+spawnTime = 5.0
+spawnerDuration = 5.0
+objectToSpawn = ExtResource("17_grmnb")
+marker = NodePath("Marker2D")
+spawnUp = true
+
+[node name="Marker2D" type="Marker2D" parent="Wave2/Spawner3"]
+position = Vector2(250, 0)
