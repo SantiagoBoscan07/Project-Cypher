@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://byij3o2yelj3m"]
+[gd_scene load_steps=17 format=3 uid="uid://byij3o2yelj3m"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_i77u3"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_ui750"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="6_58fc6"]
 [ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_heocu"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_qofjs"]
-[ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_amt4l"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="10_qh2sb"]
 [ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_jtem7"]
 [ext_resource type="PackedScene" uid="uid://bex5p3pmmbw7s" path="res://Scenes/Misc/Obstacles.tscn" id="12_lb8nr"]
@@ -78,9 +77,6 @@ offset_bottom = 213.0
 waitTime = 1.0
 slots = NodePath("../Slots")
 
-[node name="StateSwitch" type="Node" parent="UI/PlayerUI"]
-script = ExtResource("9_amt4l")
-
 [node name="Marker2D" type="Marker2D" parent="UI/PlayerUI"]
 position = Vector2(496, 176.891)
 
@@ -93,7 +89,6 @@ position = Vector2(80, 215)
 [node name="ObstaclesTileMap" parent="." instance=ExtResource("12_lb8nr")]
 position = Vector2(-7, -2)
 rotation = -0.00177684
-tile_map_data = PackedByteArray("AAADAAwAAAAAAAAACAACAAwAAAAAAAAACAAAAAkAAAAAAAAACAAAAAoAAAAAAAAACAAAAAsAAAAAAAAACAAAAAwAAAAAAAAACAABAAwAAAAAAAAACAAAAAgAAAAAAAAACAABAAsAAAAAAAAACAABAAoAAAAAAAAACAAEAAwAAAAAAAAACAACAAsAAAAAAAAACAAdAAwAAAAAAAAACAAcAAwAAAAAAAAACAAbAAwAAAAAAAAACAAaAAwAAAAAAAAACAAZAAwAAAAAAAAACAAdAAsAAAAAAAAACAAdAAoAAAAAAAAACAAdAAkAAAAAAAAACAAdAAgAAAAAAAAACAAcAAsAAAAAAAAACAAcAAoAAAAAAAAACAAbAAsAAAAAAAAACAA=")
 
 [node name="LevelFinish" type="Node2D" parent="."]
 process_mode = 4

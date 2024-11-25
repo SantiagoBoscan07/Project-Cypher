@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cx0xdynjhvb6u"]
+[gd_scene load_steps=17 format=3 uid="uid://cx0xdynjhvb6u"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_ykvj5"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_5xx6b"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="6_52mh2"]
 [ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_irfh4"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_3oa46"]
-[ext_resource type="Script" path="res://Scripts/Misc/StateSwitch.gd" id="9_tl3um"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="10_athpp"]
 [ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_p77ll"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="12_m3is3"]
@@ -77,12 +76,6 @@ offset_right = 367.0
 offset_bottom = 213.0
 waitTime = 1.0
 slots = NodePath("../Slots")
-
-[node name="StateSwitch" type="Node" parent="UI/PlayerUI"]
-script = ExtResource("9_tl3um")
-
-[node name="Marker2D" type="Marker2D" parent="UI/PlayerUI"]
-position = Vector2(496, 176.891)
 
 [node name="Slots" parent="UI/PlayerUI" instance=ExtResource("10_athpp")]
 visible = false

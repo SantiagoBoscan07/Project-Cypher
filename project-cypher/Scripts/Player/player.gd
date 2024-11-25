@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal oneMore()
 @export var playerSpeed: float = 50
 @export var health: Health
+@export var isClone: bool = false
 var lastChance: bool = true
 var lastDirectionFacing: Vector2
 var isMoving: bool = false
@@ -14,7 +15,7 @@ func _ready():
 		health.connect("no_health", die)
 
 func _unhandled_input(event: InputEvent):
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and !isClone:
 		call_deferred("test")
 
 func die():

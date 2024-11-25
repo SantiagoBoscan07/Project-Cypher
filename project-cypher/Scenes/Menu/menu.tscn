@@ -1,9 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfkii3aeaf0gy"]
+[gd_scene load_steps=19 format=3 uid="uid://dfkii3aeaf0gy"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
+[ext_resource type="Texture2D" uid="uid://cnp8nqw1scj0n" path="res://Sprites/UI/Finished Title-Sheet.png" id="1_lhije"]
 [ext_resource type="Script" path="res://Scripts/Menu/InputSettings.gd" id="2_0iokl"]
 [ext_resource type="PackedScene" uid="uid://u0hqdutq4nw4" path="res://Scenes/Menu/inputButton.tscn" id="2_djfks"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="2_e3qbb"]
+[ext_resource type="Texture2D" uid="uid://cicj2ii3yi6lj" path="res://Sprites/UI/button-idle1.png" id="3_md76t"]
+[ext_resource type="Texture2D" uid="uid://dnyfx7wcwm3cy" path="res://Sprites/UI/button-pressed1.png" id="4_0darn"]
+[ext_resource type="Texture2D" uid="uid://do4ygnrlofaa3" path="res://Sprites/UI/button-idle2.png" id="4_rshb6"]
+[ext_resource type="Texture2D" uid="uid://cva53hfm2afd5" path="res://Sprites/UI/button-highlighted1.png" id="5_iqglh"]
+[ext_resource type="Texture2D" uid="uid://o3magxgf2rqw" path="res://Sprites/UI/button-pressed2.png" id="6_mq1gr"]
+[ext_resource type="Texture2D" uid="uid://dytvccniafdii" path="res://Sprites/UI/button-idle3.png" id="8_731xd"]
+[ext_resource type="Texture2D" uid="uid://dmno0elt8aahi" path="res://Sprites/UI/button-highlighted2.png" id="8_gvftb"]
+[ext_resource type="Texture2D" uid="uid://dcywaf74ang2j" path="res://Sprites/UI/button-pressed3.png" id="9_sx8hy"]
+[ext_resource type="Texture2D" uid="uid://c2q6j0gyqqcfe" path="res://Sprites/UI/button-highlighted3.png" id="14_xexcd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tb6ev"]
+bg_color = Color(0.219608, 0.156863, 0.262745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_av2yn"]
+bg_color = Color(0.219608, 0.156863, 0.262745, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxg43"]
 bg_color = Color(1, 1, 1, 0.392157)
@@ -36,6 +52,13 @@ inputSettings = NodePath("../InputSettings")
 playButton = NodePath("PanelContainer/MarginContainer/Options/Play Game")
 optionButton = NodePath("../InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu")
 
+[node name="Title" type="Sprite2D" parent="GameOptions"]
+z_index = 2
+position = Vector2(240, 135)
+texture = ExtResource("1_lhije")
+hframes = 7
+frame = 5
+
 [node name="PanelContainer" type="PanelContainer" parent="GameOptions"]
 layout_mode = 1
 anchors_preset = 8
@@ -49,6 +72,7 @@ offset_right = 460.0
 offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tb6ev")
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOptions/PanelContainer"]
 layout_mode = 2
@@ -61,35 +85,19 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Play Game" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
+[node name="Play Game" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_e3qbb")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
-text = "Test Scene"
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_md76t")
+texture_pressed = ExtResource("4_0darn")
+texture_focused = ExtResource("5_iqglh")
 
-[node name="Play Game2" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
+[node name="Options" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_e3qbb")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
-text = "Level 1"
-
-[node name="Options" type="Button" parent="GameOptions/PanelContainer/MarginContainer/Options"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_e3qbb")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
-text = "Options"
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_rshb6")
+texture_pressed = ExtResource("6_mq1gr")
+texture_focused = ExtResource("8_gvftb")
 
 [node name="InputSettings" type="Control" parent="." node_paths=PackedStringArray("gameOptions", "actionList")]
 visible = false
@@ -99,6 +107,14 @@ offset_bottom = 40.0
 script = ExtResource("2_0iokl")
 gameOptions = NodePath("../GameOptions")
 actionList = NodePath("PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList")
+
+[node name="Option Screen" type="Sprite2D" parent="InputSettings"]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = 1
+position = Vector2(240, 135)
+texture = ExtResource("1_lhije")
+hframes = 7
+frame = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="InputSettings"]
 layout_mode = 1
@@ -113,6 +129,7 @@ offset_right = 460.0
 offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_av2yn")
 
 [node name="MarginContainer" type="MarginContainer" parent="InputSettings/PanelContainer"]
 layout_mode = 2
@@ -134,11 +151,13 @@ size_flags_horizontal = 3
 
 [node name="InputButton" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList" instance=ExtResource("2_djfks")]
 layout_mode = 2
-focus_mode = 0
-theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
+
+[node name="BackMenu" type="TextureButton" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("8_731xd")
+texture_pressed = ExtResource("9_sx8hy")
+texture_focused = ExtResource("14_xexcd")
 
 [node name="DefaultButton" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 visible = false
@@ -151,19 +170,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Reset Default Controller"
 
-[node name="BackMenu" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_e3qbb")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
-text = "Back to Menu"
-
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game" to="GameOptions" method="_on_play_game_pressed"]
-[connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game2" to="GameOptions" method="_on_play_game_2_pressed"]
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Options" to="GameOptions" method="_on_options_pressed"]
-[connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="GameOptions" method="_on_back_menu_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="InputSettings" method="_on_back_menu_pressed"]
+[connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]

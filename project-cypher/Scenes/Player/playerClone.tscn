@@ -171,10 +171,10 @@ radius = 6.0
 height = 16.0
 
 [node name="PlayerClone" type="CharacterBody2D"]
-modulate = Color(1, 1, 1, 0.784314)
+modulate = Color(1, 1, 1, 0.392157)
 z_index = 2
 script = ExtResource("1_onbc1")
-playerSpeed = 75
+isClone = true
 
 [node name="Body" type="Node2D" parent="."]
 

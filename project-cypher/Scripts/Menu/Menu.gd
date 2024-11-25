@@ -1,8 +1,8 @@
 extends Control
 
 @export var inputSettings: Control
-@export var playButton: Button
-@export var optionButton: Button
+@export var playButton: TextureButton
+@export var optionButton: TextureButton
 
 func _ready():
 	playButton.grab_focus()
@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_play_game_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Test/test.tscn") # this is going to change
+	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
 
 
 func _on_options_pressed():
@@ -21,7 +21,3 @@ func _on_options_pressed():
 
 func _on_back_menu_pressed() -> void:
 	playButton.grab_focus()
-
-
-func _on_play_game_2_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
