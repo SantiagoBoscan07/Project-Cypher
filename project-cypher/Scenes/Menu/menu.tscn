@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfkii3aeaf0gy"]
+[gd_scene load_steps=17 format=3 uid="uid://dfkii3aeaf0gy"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
 [ext_resource type="Texture2D" uid="uid://cnp8nqw1scj0n" path="res://Sprites/UI/Finished Title-Sheet.png" id="1_lhije"]
@@ -8,12 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cicj2ii3yi6lj" path="res://Sprites/UI/button-idle1.png" id="3_md76t"]
 [ext_resource type="Texture2D" uid="uid://dnyfx7wcwm3cy" path="res://Sprites/UI/button-pressed1.png" id="4_0darn"]
 [ext_resource type="Texture2D" uid="uid://do4ygnrlofaa3" path="res://Sprites/UI/button-idle2.png" id="4_rshb6"]
-[ext_resource type="Texture2D" uid="uid://cva53hfm2afd5" path="res://Sprites/UI/button-highlighted1.png" id="5_iqglh"]
+[ext_resource type="Texture2D" uid="uid://bfe4ukv2231vc" path="res://Sprites/UI/button-highlighted.png" id="5_r3vyh"]
 [ext_resource type="Texture2D" uid="uid://o3magxgf2rqw" path="res://Sprites/UI/button-pressed2.png" id="6_mq1gr"]
 [ext_resource type="Texture2D" uid="uid://dytvccniafdii" path="res://Sprites/UI/button-idle3.png" id="8_731xd"]
-[ext_resource type="Texture2D" uid="uid://dmno0elt8aahi" path="res://Sprites/UI/button-highlighted2.png" id="8_gvftb"]
 [ext_resource type="Texture2D" uid="uid://dcywaf74ang2j" path="res://Sprites/UI/button-pressed3.png" id="9_sx8hy"]
-[ext_resource type="Texture2D" uid="uid://c2q6j0gyqqcfe" path="res://Sprites/UI/button-highlighted3.png" id="14_xexcd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tb6ev"]
 bg_color = Color(0.219608, 0.156863, 0.262745, 1)
@@ -90,14 +88,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("3_md76t")
 texture_pressed = ExtResource("4_0darn")
-texture_focused = ExtResource("5_iqglh")
+texture_focused = ExtResource("5_r3vyh")
 
 [node name="Options" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("4_rshb6")
 texture_pressed = ExtResource("6_mq1gr")
-texture_focused = ExtResource("8_gvftb")
+texture_focused = ExtResource("5_r3vyh")
 
 [node name="InputSettings" type="Control" parent="." node_paths=PackedStringArray("gameOptions", "actionList")]
 visible = false
@@ -157,7 +155,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("8_731xd")
 texture_pressed = ExtResource("9_sx8hy")
-texture_focused = ExtResource("14_xexcd")
+texture_focused = ExtResource("5_r3vyh")
 
 [node name="DefaultButton" type="Button" parent="InputSettings/PanelContainer/MarginContainer/ControllerSettings"]
 visible = false
