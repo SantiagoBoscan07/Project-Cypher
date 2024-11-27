@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfkii3aeaf0gy"]
+[gd_scene load_steps=22 format=3 uid="uid://dfkii3aeaf0gy"]
 
+[ext_resource type="Script" path="res://Scripts/Menu/MenuScene.gd" id="1_1rj4v"]
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
 [ext_resource type="Texture2D" uid="uid://cnp8nqw1scj0n" path="res://Sprites/UI/Finished Title-Sheet.png" id="1_lhije"]
 [ext_resource type="Script" path="res://Scripts/Menu/InputSettings.gd" id="2_0iokl"]
@@ -12,9 +13,17 @@
 [ext_resource type="Texture2D" uid="uid://o3magxgf2rqw" path="res://Sprites/UI/button-pressed2.png" id="6_mq1gr"]
 [ext_resource type="Texture2D" uid="uid://dytvccniafdii" path="res://Sprites/UI/button-idle3.png" id="8_731xd"]
 [ext_resource type="Texture2D" uid="uid://dcywaf74ang2j" path="res://Sprites/UI/button-pressed3.png" id="9_sx8hy"]
+[ext_resource type="Script" path="res://Scripts/Menu/AudioSetting.gd" id="11_cs6oo"]
+[ext_resource type="Texture2D" uid="uid://d3pum4du6n1l6" path="res://Sprites/Player/barrierPlaceholder.png" id="11_j7rji"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tb6ev"]
 bg_color = Color(0.219608, 0.156863, 0.262745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umydw"]
+bg_color = Color(0.486275, 0.427451, 0.501961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tp5ch"]
+bg_color = Color(0.780392, 0.776471, 0.776471, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_av2yn"]
 bg_color = Color(0.219608, 0.156863, 0.262745, 1)
@@ -40,6 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1rj4v")
 
 [node name="GameOptions" type="Control" parent="." node_paths=PackedStringArray("inputSettings", "playButton", "optionButton")]
 anchors_preset = 0
@@ -106,6 +116,92 @@ script = ExtResource("2_0iokl")
 gameOptions = NodePath("../GameOptions")
 actionList = NodePath("PanelContainer/MarginContainer/ControllerSettings/ScrollContainer/ActionList")
 
+[node name="Music Label" type="Label" parent="InputSettings"]
+z_index = 1
+layout_mode = 0
+offset_left = 200.0
+offset_top = 16.0
+offset_right = 279.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 8
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="Music Label2" type="Label" parent="InputSettings"]
+z_index = 1
+layout_mode = 0
+offset_left = 200.0
+offset_top = 48.0
+offset_right = 282.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 8
+text = "Sound Effects Volume"
+horizontal_alignment = 1
+
+[node name="Audio" type="Control" parent="InputSettings" node_paths=PackedStringArray("musicSlider", "soundSlider")]
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 48.0
+script = ExtResource("11_cs6oo")
+musicSlider = NodePath("MusicSlider")
+soundSlider = NodePath("SoundSlider")
+
+[node name="MusicSlider" type="HSlider" parent="InputSettings/Audio"]
+z_index = 1
+layout_mode = 0
+offset_left = -136.0
+offset_top = 16.0
+offset_right = 224.0
+offset_bottom = 32.0
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("11_j7rji")
+theme_override_icons/grabber_highlight = ExtResource("11_j7rji")
+theme_override_icons/grabber_disabled = ExtResource("11_j7rji")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_umydw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_tp5ch")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="SoundSlider" type="HSlider" parent="InputSettings/Audio"]
+z_index = 1
+layout_mode = 0
+offset_left = -136.0
+offset_top = 48.0
+offset_right = 224.0
+offset_bottom = 64.0
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("11_j7rji")
+theme_override_icons/grabber_highlight = ExtResource("11_j7rji")
+theme_override_icons/grabber_disabled = ExtResource("11_j7rji")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_umydw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_tp5ch")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Controller Label" type="Label" parent="InputSettings"]
+z_index = 1
+layout_mode = 0
+offset_left = 184.0
+offset_top = 80.0
+offset_right = 302.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_e3qbb")
+theme_override_font_sizes/font_size = 8
+text = "Controllers"
+horizontal_alignment = 1
+
 [node name="Option Screen" type="Sprite2D" parent="InputSettings"]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = 1
@@ -132,7 +228,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_av2yn")
 [node name="MarginContainer" type="MarginContainer" parent="InputSettings/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 96
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
@@ -170,6 +266,8 @@ text = "Reset Default Controller"
 
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game" to="GameOptions" method="_on_play_game_pressed"]
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Options" to="GameOptions" method="_on_options_pressed"]
+[connection signal="value_changed" from="InputSettings/Audio/MusicSlider" to="InputSettings/Audio" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="InputSettings/Audio/SoundSlider" to="InputSettings/Audio" method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="GameOptions" method="_on_back_menu_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/BackMenu" to="InputSettings" method="_on_back_menu_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]

@@ -206,8 +206,7 @@ spawnRight = true
 [node name="Wave4Marker5" type="Marker2D" parent="FourthSpawner/Spawner5"]
 position = Vector2(460, 135)
 
-[node name="FifthSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
-nextWave = [null, null, null, null, null, null, null, null, null, null]
+[node name="FifthSpawner" parent="." node_paths=PackedStringArray("spawnerSubset") instance=ExtResource("12_m3is3")]
 isSubet = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4"), NodePath("Spawner5")]
 

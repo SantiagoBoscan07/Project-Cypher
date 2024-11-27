@@ -31,7 +31,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0.486275, 0.427451, 0.501961, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -74,8 +74,10 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("1_2gwvf")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "action name"
 vertical_alignment = 1
 
@@ -87,7 +89,9 @@ mouse_filter = 1
 [node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("1_2gwvf")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 8
 text = "Input Key"
 vertical_alignment = 1

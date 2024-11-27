@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2rh7n471a6cq"]
+
+[ext_resource type="Script" path="res://Scripts/Misc/AudioPlayer.gd" id="1_68gys"]
+[ext_resource type="AudioStream" uid="uid://cjit27c2duskx" path="res://Sound Effects/Hit.wav" id="1_smpyj"]
+[ext_resource type="Script" path="res://Scripts/Misc/AudioManager.gd" id="2_pug7b"]
+[ext_resource type="AudioStream" uid="uid://b2g517negxfnc" path="res://Music/Orchid's Veil.mp3" id="3_3pdvm"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_68gys")
+
+[node name="AudioManagerNode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_smpyj")
+bus = &"Sound Effects"
+script = ExtResource("2_pug7b")
+pitch_min = 1.0
+
+[node name="TitleSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3pdvm")
+bus = &"Music"
