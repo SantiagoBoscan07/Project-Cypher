@@ -203,7 +203,7 @@ text = "Controllers"
 horizontal_alignment = 1
 
 [node name="Option Screen" type="Sprite2D" parent="InputSettings"]
-modulate = Color(1, 1, 1, 0.588235)
+modulate = Color(1, 1, 1, 0.196078)
 z_index = 1
 position = Vector2(240, 135)
 texture = ExtResource("1_lhije")

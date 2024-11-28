@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=52 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://dvoi5rf77b4d5" path="res://Sprites/Player/player-Sheet.png" id="2_6gwev"]
@@ -10,7 +10,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://bce40qro0huc1" path="res://Scenes/Player/Animations/WalkingAnimations.res" id="3_qha88"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerMoveState.gd" id="4_s3erd"]
 [ext_resource type="Script" path="res://Scripts/Debug/StateLabel.gd" id="5_jd4lw"]
-[ext_resource type="Texture2D" uid="uid://d3pum4du6n1l6" path="res://Sprites/Player/barrierPlaceholder.png" id="6_0ursj"]
+[ext_resource type="Texture2D" uid="uid://diok0kqxat86f" path="res://Sprites/Player/barrier.png" id="6_htsk8"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hitbox.gd" id="6_y6idu"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="7_ut3vb"]
 [ext_resource type="Script" path="res://Scripts/Player/Shoot.gd" id="8_4eq7g"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Dash.gd" id="13_531wn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Health.gd" id="13_u21dx"]
 [ext_resource type="Script" path="res://Scripts/Player/Barrier.gd" id="15_4i3y8"]
+[ext_resource type="PackedScene" uid="uid://c7xuu2akrdoiu" path="res://Scenes/Player/playerShadow.tscn" id="15_wrh3t"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurt.gd" id="16_4kicl"]
 [ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="17_5wl1q"]
 [ext_resource type="Script" path="res://Scripts/Player/ProjectileSpawner.gd" id="18_2t5jg"]
@@ -173,54 +174,7 @@ _data = {
 radius = 6.0
 height = 16.0
 
-[sub_resource type="Shader" id="Shader_kyj71"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
-
-shader_type canvas_item;
-render_mode blend_mix;
-uniform int particles_anim_h_frames;
-uniform int particles_anim_v_frames;
-uniform bool particles_anim_loop;
-
-void vertex() {
-	float h_frames = float(particles_anim_h_frames);
-	float v_frames = float(particles_anim_v_frames);
-	VERTEX.xy /= vec2(h_frames, v_frames);
-	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
-	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
-	if (!particles_anim_loop) {
-		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
-	} else {
-		particle_frame = mod(particle_frame, particle_total_frames);
-	}	
-	vec2 scale_uv = UV / vec2(h_frames, v_frames);
-	UV = scale_uv + vec2(
-		mod(particle_frame, h_frames) / h_frames, 
-		floor((particle_frame + 0.5) / h_frames) / v_frames);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui6qp"]
-shader = SubResource("Shader_kyj71")
-shader_parameter/particles_anim_h_frames = 4
-shader_parameter/particles_anim_v_frames = 8
-shader_parameter/particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_caoq6"]
-_data = [Vector2(0, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.986667, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_vehsm"]
-curve = SubResource("Curve_caoq6")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sj58v"]
-gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_vehsm")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
-z_index = 1
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 29
@@ -235,7 +189,6 @@ health = NodePath("Components/Misc/Health")
 
 [node name="PlayerSprite" type="Sprite2D" parent="Body/Sprites"]
 y_sort_enabled = true
-position = Vector2(14, 11)
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
@@ -243,7 +196,7 @@ vframes = 8
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)
 z_index = -2
-position = Vector2(14, 14)
+position = Vector2(0, 3)
 texture = ExtResource("3_gm63e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Sprites"]
@@ -265,8 +218,7 @@ parameters/Move/blend_position = Vector2(-0.00759494, -0.0319149)
 [node name="Barrier" type="Sprite2D" parent="Body/Sprites"]
 visible = false
 modulate = Color(1, 1, 1, 0.392157)
-position = Vector2(14, 11)
-texture = ExtResource("6_0ursj")
+texture = ExtResource("6_htsk8")
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="Body/Sprites"]
 libraries = {
@@ -278,13 +230,12 @@ libraries = {
 [node name="ShootingMarkers" type="Node2D" parent="Body/Markers"]
 
 [node name="ShootingPosition" type="Marker2D" parent="Body/Markers/ShootingMarkers"]
-position = Vector2(14, 12)
 
 [node name="ShootingPosition2" type="Marker2D" parent="Body/Markers/ShootingMarkers"]
 position = Vector2(6, 4)
 
 [node name="ShootingPosition3" type="Marker2D" parent="Body/Markers/ShootingMarkers"]
-position = Vector2(22, 4)
+position = Vector2(-6, 4)
 
 [node name="CloneMarker1" type="Marker2D" parent="Body/Markers"]
 position = Vector2(70, 0)
@@ -302,7 +253,6 @@ script = ExtResource("6_y6idu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
 visible = false
-position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_btcbe")
 
 [node name="Hurtbox" type="Area2D" parent="Body/Areas"]
@@ -311,7 +261,6 @@ script = ExtResource("7_ut3vb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
 visible = false
-position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_btcbe")
 
 [node name="Detectable" type="Area2D" parent="Body/Areas" groups=["Detectable"]]
@@ -321,19 +270,9 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Detectable"]
 visible = false
-position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_btcbe")
 
-[node name="Particles" type="Node2D" parent="Body"]
-
-[node name="DashParticles" type="GPUParticles2D" parent="Body/Particles"]
-z_index = -2
-material = SubResource("ShaderMaterial_ui6qp")
-position = Vector2(14, 12)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_sj58v")
-texture = ExtResource("2_6gwev")
-lifetime = 0.25
+[node name="DashEffect" type="Node2D" parent="Body"]
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -364,13 +303,14 @@ shootingTimer = NodePath("../../../Timer/ShootingTimer")
 script = ExtResource("9_86i7t")
 body = NodePath("../../..")
 
-[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "dashDuration", "dashCooldown", "dashClones", "sprite", "hitbox", "collision")]
+[node name="Dash" type="Node2D" parent="Components/Moveset" node_paths=PackedStringArray("player", "dashDuration", "dashCooldown", "marker", "sprite", "hitbox", "collision")]
 script = ExtResource("13_531wn")
 player = NodePath("../../..")
 dashDuration = NodePath("../../../Timer/DashDuration")
 dashCooldown = NodePath("../../../Timer/DashCooldown")
-dashClones = NodePath("../../../Body/Particles/DashParticles")
-sprite = NodePath("../../../Body/Sprites")
+marker = NodePath("../../../Body/Markers/ShootingMarkers/ShootingPosition")
+shadowScene = ExtResource("15_wrh3t")
+sprite = NodePath("../../../Body/Sprites/PlayerSprite")
 hitbox = NodePath("../../../Body/Areas/Hitbox")
 collision = NodePath("../../../Collision")
 
@@ -404,7 +344,6 @@ invulnerableNode = NodePath("../../Misc/Invulnerable")
 sprite = NodePath("../../../Body/Sprites/Barrier")
 
 [node name="ProjectileSpawner" type="Node2D" parent="Components/Power-Ups" node_paths=PackedStringArray("bulletspawner", "power_timer", "durationTimer", "body")]
-position = Vector2(28, 28)
 script = ExtResource("18_2t5jg")
 bullethell = ExtResource("2_jk383")
 alpha = 1.0
@@ -429,10 +368,11 @@ wait_time = 0.3
 one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="Timer"]
+wait_time = 1.25
 one_shot = true
 
 [node name="DashDuration" type="Timer" parent="Timer"]
-wait_time = 0.5
+wait_time = 0.7
 one_shot = true
 
 [node name="ProjectileSpeed" type="Timer" parent="Timer"]
@@ -479,7 +419,6 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(14, 11)
 shape = SubResource("CapsuleShape2D_btcbe")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]

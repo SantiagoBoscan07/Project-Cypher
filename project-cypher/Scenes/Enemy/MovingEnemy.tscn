@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://hv8sfmxy5753"]
+[gd_scene load_steps=24 format=3 uid="uid://hv8sfmxy5753"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_3dtxn"]
 [ext_resource type="Texture2D" uid="uid://cqid4clqbudlv" path="res://Sprites/Enemy/BirdEnemySpritesheet.png" id="1_crl6k"]
@@ -89,11 +89,15 @@ _data = {
 "flash": SubResource("Animation_cqsdo")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n51yn"]
-radius = 6.08276
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8p3g2"]
+radius = 9.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsgam"]
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i1o5d"]
-radius = 129.0
+radius = 214.009
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4omk4"]
 radius = 5.0
@@ -145,8 +149,8 @@ script = ExtResource("2_qdf4n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
 visible = false
-position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_n51yn")
+position = Vector2(8, 7)
+shape = SubResource("CapsuleShape2D_8p3g2")
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
 collision_layer = 0
@@ -154,8 +158,8 @@ script = ExtResource("3_bjsyi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
 visible = false
-position = Vector2(8, 9)
-shape = SubResource("CircleShape2D_n51yn")
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_jsgam")
 
 [node name="DetectionRadius" type="Area2D" parent="Body/Areas"]
 collision_layer = 0
@@ -230,6 +234,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
