@@ -6,6 +6,7 @@ extends Node
 @onready var heart: AudioManagerNode = $Heart
 @onready var menuSelect: AudioManagerNode = $MenuSelect
 @onready var hit: AudioManagerNode = $Hit
+@onready var hurt: AudioManagerNode = $Hurt
 
 
 func playTitleTheme():
@@ -25,3 +26,6 @@ func playMenuSelect():
 
 func playHit():
 	hit.play_with_variance()
+
+func playHurt():
+	hurt.play_with_variance()

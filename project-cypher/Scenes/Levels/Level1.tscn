@@ -95,6 +95,7 @@ script = ExtResource("16_ktojb")
 nextWave = [NodePath("../SecondSpawner"), NodePath("../SecondSpawner/Spawner"), NodePath("../SecondSpawner/Spawner2")]
 isFirst = true
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
 
 [node name="Spawner" parent="FirstSpawner" node_paths=PackedStringArray("marker") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
@@ -122,6 +123,7 @@ position = Vector2(360, 0)
 [node name="SecondSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
 nextWave = [NodePath("../ThirdSpawner"), NodePath("../ThirdSpawner/Spawner"), NodePath("../ThirdSpawner/Spawner2")]
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
 
 [node name="Spawner" parent="SecondSpawner" node_paths=PackedStringArray("marker") instance=ExtResource("12_m3is3")]
@@ -145,6 +147,7 @@ position = Vector2(460, 0)
 [node name="ThirdSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
 nextWave = [NodePath("../FourthSpawner"), NodePath("../FourthSpawner/Spawner"), NodePath("../FourthSpawner/Spawner2"), NodePath("../FourthSpawner/Spawner3"), NodePath("../FourthSpawner/Spawner4"), NodePath("../FourthSpawner/Spawner5")]
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
 
 [node name="Spawner" parent="ThirdSpawner" node_paths=PackedStringArray("marker") instance=ExtResource("12_m3is3")]
@@ -166,6 +169,7 @@ position = Vector2(460, 135)
 [node name="FourthSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
 nextWave = [NodePath("../FifthSpawner"), NodePath("../FifthSpawner/Spawner"), NodePath("../FifthSpawner/Spawner2"), NodePath("../FifthSpawner/Spawner3"), NodePath("../FifthSpawner/Spawner4"), NodePath("../FifthSpawner/Spawner5")]
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4"), NodePath("Spawner5")]
 
 [node name="Spawner" parent="FourthSpawner" node_paths=PackedStringArray("marker") instance=ExtResource("12_m3is3")]
@@ -211,6 +215,7 @@ position = Vector2(460, 135)
 [node name="FifthSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
 nextWave = [NodePath("../SixthSpawner"), NodePath("../SixthSpawner/Spawner"), NodePath("../SixthSpawner/Spawner2"), NodePath("../SixthSpawner/Spawner3"), NodePath("../SixthSpawner/Spawner4"), NodePath("../SixthSpawner/Spawner5"), NodePath("../SixthSpawner/Spawner6"), NodePath("../SixthSpawner/Spawner7"), NodePath("../SixthSpawner/Spawner8"), NodePath("../SixthSpawner/Spawner9")]
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4"), NodePath("Spawner5")]
 
 [node name="Spawner" parent="FifthSpawner" node_paths=PackedStringArray("marker") instance=ExtResource("12_m3is3")]
@@ -256,6 +261,7 @@ position = Vector2(240, 40)
 [node name="SixthSpawner" parent="." node_paths=PackedStringArray("nextWave", "spawnerSubset") instance=ExtResource("12_m3is3")]
 nextWave = [NodePath("../SeventhSpawner"), NodePath("../SeventhSpawner/Spawner"), NodePath("../SeventhSpawner/Spawner2"), NodePath("../SeventhSpawner/Spawner3"), NodePath("../SeventhSpawner/Spawner4"), NodePath("../SeventhSpawner/Spawner5"), NodePath("../SeventhSpawner/Spawner6"), NodePath("../SeventhSpawner/Spawner7"), NodePath("../SeventhSpawner/Spawner8")]
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4"), NodePath("Spawner5"), NodePath("Spawner6"), NodePath("Spawner7"), NodePath("Spawner8"), NodePath("Spawner9")]
 
 [node name="Spawner" parent="SixthSpawner" node_paths=PackedStringArray("marker") instance=ExtResource("12_m3is3")]
@@ -333,6 +339,7 @@ position = Vector2(455, 0)
 [node name="SeventhSpawner" parent="." node_paths=PackedStringArray("spawnerSubset") instance=ExtResource("12_m3is3")]
 isLast = true
 isSubet = true
+isCountable = true
 spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2"), NodePath("Spawner3"), NodePath("Spawner4"), NodePath("Spawner5"), NodePath("Spawner6"), NodePath("Spawner7"), NodePath("Spawner8")]
 
 [node name="Spawner" parent="SeventhSpawner" node_paths=PackedStringArray("marker") instance=ExtResource("12_m3is3")]

@@ -16,6 +16,6 @@ func _on_hurtbox_entered(hurtbox: Hurtbox):
 	
 	hit_hurtbox.emit(hurtbox)
 	hurtbox.hurt.emit(self)
-	AudioManager.playHit()
 	if isProjectile:
+		AudioManager.playHit()
 		owner.call_deferred("queue_free")

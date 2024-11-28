@@ -174,7 +174,7 @@ _data = {
 radius = 6.0
 height = 16.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox") groups=["Player"]]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 0
@@ -183,6 +183,7 @@ floor_block_on_wall = false
 script = ExtResource("1_205wi")
 playerSpeed = 75.0
 health = NodePath("Components/Misc/Health")
+hurtbox = NodePath("Body/Areas/Hurtbox")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -193,7 +194,6 @@ y_sort_enabled = true
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
-frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)

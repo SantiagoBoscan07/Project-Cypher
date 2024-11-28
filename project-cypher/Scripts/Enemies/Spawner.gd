@@ -23,6 +23,7 @@ extends Node2D
 @export var isFirst: bool
 @export var isLast: bool
 @export var isSubet: bool = false
+@export var isCountable: bool = false
 @export var spawnerSubset: Array[Node2D]
 var entrance
 var enemyCount: int = 0:
@@ -30,6 +31,10 @@ var enemyCount: int = 0:
 		enemyCount = value
 var isFinished: bool = false
 
+# Set the spawn time and duration of spawner
+# Gets count of enemies in wave
+# Activates only first spawner, others are activated when first is done
+# Starts timer for spawner time and duration
 func _ready():
 	spawnTimer.wait_time = spawnTime
 	spawnerDurationTimer.wait_time = spawnerDuration
@@ -39,6 +44,7 @@ func _ready():
 	spawnerDurationTimer.start()
 	spawnTimer.start()
 
+# Handles Position where enemies spawn
 func handleSpawn(object: PackedScene):
 	spawnerNode.scene = object
 	if spawnUp:
@@ -60,10 +66,12 @@ func handleSpawn(object: PackedScene):
 	else:
 		print("Marker has not been set")
 
+# Checks how many enemies left on the wave before moving to next wave
 func checkEnemy():
 	if isFinished:
 		return
-	enemyCount = enemyCount - 1
+	if isCountable:
+		enemyCount = enemyCount - 1
 	#print(name)
 	#print(enemyCount)
 	if enemyCount <= 0:
@@ -78,6 +86,7 @@ func checkEnemy():
 				wave.endLevel()
 			call_deferred("queue_free")
 
+# Counts how many enemies does the wave have
 func enemyCounter():
 	if isSubet:
 		for wave in spawnerSubset:
@@ -87,12 +96,13 @@ func enemyCounter():
 		enemyCount = spawnerDuration / spawnTime
 	#print(enemyCount)
 
-func _on_spawn_timer_timeout() -> void:
+# After the timer for spawn time runs out, it spawns en enemy
+func _on_spawn_timer_timeout():
 	if objectToSpawn:
 		handleSpawn(objectToSpawn)
 
-
-func _on_spawn_duration_timeout() -> void:
+# After the duration of the wave, it stops spawning enemies
+func _on_spawn_duration_timeout():
 	spawnTimer.stop()
 	#if nextWave:
 		#nextWave.process_mode = 0

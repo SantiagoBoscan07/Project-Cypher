@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://coefm57wptp2g"]
+
+[ext_resource type="Texture2D" uid="uid://c6pvak2ewyv5t" path="res://Sprites/Misc/deathAnimation.png" id="1_73vkb"]
+
+[node name="Death" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_73vkb")
+hframes = 6
