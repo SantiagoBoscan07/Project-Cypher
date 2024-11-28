@@ -7,6 +7,7 @@ func _ready():
 	get_tree().paused = true
 	arrayHeart = get_children()
 	for heart in arrayHeart:
+		AudioManager.playHeart()
 		heart.show()
 		await get_tree().create_timer(0.25).timeout
 	get_tree().paused = false

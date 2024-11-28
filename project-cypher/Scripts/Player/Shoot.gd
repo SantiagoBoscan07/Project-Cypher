@@ -33,6 +33,7 @@ func shoot():
 		projectile.direction = player.lastDirectionFacing
 		projectile.z_index = player.z_index - 1
 		get_tree().current_scene.add_child(projectile)
+	AudioManager.playShoot()
 	canShoot = false
 
 # Once the timer runs out, the player can shoot again

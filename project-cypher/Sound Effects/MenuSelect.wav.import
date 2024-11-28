@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dvnxb5k1s4cu2"
-path="res://.godot/imported/Shoot.wav-3fc5a832e66b382ce52729aac03c43a8.sample"
+uid="uid://ovg1svxexx1o"
+path="res://.godot/imported/MenuSelect.wav-be75e3dbc02ed58b7a5168324fa9f107.sample"
 
 [deps]
 
-source_file="res://Sound Effects/Shoot.wav"
-dest_files=["res://.godot/imported/Shoot.wav-3fc5a832e66b382ce52729aac03c43a8.sample"]
+source_file="res://Sound Effects/MenuSelect.wav"
+dest_files=["res://.godot/imported/MenuSelect.wav-be75e3dbc02ed58b7a5168324fa9f107.sample"]
 
 [params]
 

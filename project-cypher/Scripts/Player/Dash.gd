@@ -43,6 +43,7 @@ func boost():
 		hitbox.process_mode = 0
 		player.set_collision_mask_value(1, false)
 		Signals.emit_signal("dashProgress", dashDuration.wait_time)
+	AudioManager.playDash()
 	canDash = false
 
 

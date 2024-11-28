@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dvnxb5k1s4cu2"
-path="res://.godot/imported/Shoot.wav-3fc5a832e66b382ce52729aac03c43a8.sample"
+uid="uid://bu2enqcwup82b"
+path="res://.godot/imported/Heart.wav-7f40d8a1de2ca570047ef2ab296c0eb9.sample"
 
 [deps]
 
-source_file="res://Sound Effects/Shoot.wav"
-dest_files=["res://.godot/imported/Shoot.wav-3fc5a832e66b382ce52729aac03c43a8.sample"]
+source_file="res://Sound Effects/Heart.wav"
+dest_files=["res://.godot/imported/Heart.wav-7f40d8a1de2ca570047ef2ab296c0eb9.sample"]
 
 [params]
 

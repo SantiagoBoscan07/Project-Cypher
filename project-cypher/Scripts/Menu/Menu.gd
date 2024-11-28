@@ -10,14 +10,17 @@ func _ready():
 
 
 func _on_play_game_pressed():
+	AudioManager.playMenuSelect()
 	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
 
 
 func _on_options_pressed():
+	AudioManager.playMenuSelect()
 	optionButton.grab_focus()
 	inputSettings.visible = true
 	visible = false
 
 
-func _on_back_menu_pressed() -> void:
+func _on_back_menu_pressed():
+	AudioManager.playMenuSelect()
 	playButton.grab_focus()
