@@ -27,7 +27,7 @@ func _process(delta):
 		progressBar.value -= delta
 
 func _unhandled_input(event: InputEvent):
-	if Input.is_action_pressed("decipher") and inputPressed and !Global.isDead:
+	if Input.is_action_pressed("decipher") and inputPressed and !Global.isDead and !Global.isPaused:
 		#print("Cypher Activated!")
 #		enemies = get_tree().get_nodes_in_group("Enemy")
 #		for enemy in enemies:
