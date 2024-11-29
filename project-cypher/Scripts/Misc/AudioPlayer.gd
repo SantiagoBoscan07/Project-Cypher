@@ -8,6 +8,8 @@ extends Node
 @onready var hit: AudioManagerNode = $Hit
 @onready var hurt: AudioManagerNode = $Hurt
 @onready var deathPlayer: AudioStreamPlayer = $DeathPlayer
+@onready var lowHealth: AudioManagerNode = $LowHealth
+
 var busMusic
 var busSound
 
@@ -40,6 +42,8 @@ func playDeathPlayer():
 	AudioServer.set_bus_mute(busMusic, true)
 	deathPlayer.play()
 
+func playLowHealth():
+	lowHealth.play_with_variance()
 
 func _on_death_player_finished():
 	AudioServer.set_bus_mute(busMusic, false)

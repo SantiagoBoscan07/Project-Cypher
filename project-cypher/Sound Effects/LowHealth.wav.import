@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0ee85g6my5ta"
+path="res://.godot/imported/LowHealth.wav-c9ee29825b81efdb0cda07fd6df45421.sample"
+
+[deps]
+
+source_file="res://Sound Effects/LowHealth.wav"
+dest_files=["res://.godot/imported/LowHealth.wav-c9ee29825b81efdb0cda07fd6df45421.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
