@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/Misc/HealthBar.gd" id="1_po2up"]
 [ext_resource type="PackedScene" uid="uid://d3renss1t5voo" path="res://Scenes/Menu/heart.tscn" id="2_bxamp"]
 
-[node name="HealthBar" type="Node2D"]
+[node name="HealthBar" type="Node2D" node_paths=PackedStringArray("arrayHeart")]
 script = ExtResource("1_po2up")
+arrayHeart = [NodePath("Heart"), NodePath("Heart2"), NodePath("Heart3"), NodePath("Heart4"), NodePath("Heart5"), NodePath("Heart6"), NodePath("Heart7"), NodePath("Heart8"), NodePath("Heart9"), NodePath("Heart10")]
 
 [node name="Heart" parent="." instance=ExtResource("2_bxamp")]
 visible = false
@@ -44,3 +45,5 @@ position = Vector2(96, 32)
 [node name="Heart10" parent="." instance=ExtResource("2_bxamp")]
 visible = false
 position = Vector2(128, 32)
+
+[node name="LastChance" type="Sprite2D" parent="."]

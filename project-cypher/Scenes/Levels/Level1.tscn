@@ -1,10 +1,8 @@
-[gd_scene load_steps=17 format=4 uid="uid://cx0xdynjhvb6u"]
+[gd_scene load_steps=15 format=4 uid="uid://cx0xdynjhvb6u"]
 
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_ykvj5"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_5xx6b"]
 [ext_resource type="Texture2D" uid="uid://ccbsa2sh742cg" path="res://Sprites/Player/portrait1.png" id="3_67ei7"]
-[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="4_fe6kv"]
-[ext_resource type="Script" path="res://Scripts/Menu/HealthLabel.gd" id="5_hyq63"]
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="6_52mh2"]
 [ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_irfh4"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_3oa46"]
@@ -42,19 +40,6 @@ texture = ExtResource("2_5xx6b")
 [node name="Portait" type="Sprite2D" parent="UI/PlayerUI"]
 position = Vector2(37, 235)
 texture = ExtResource("3_67ei7")
-
-[node name="HealthLabel" type="Label" parent="UI/PlayerUI"]
-visible = false
-layout_mode = 0
-offset_left = 288.0
-offset_top = 240.0
-offset_right = 342.0
-offset_bottom = 263.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_fe6kv")
-theme_override_font_sizes/font_size = 16
-text = "HP : 10"
-script = ExtResource("5_hyq63")
 
 [node name="DashPanel" parent="UI/PlayerUI" instance=ExtResource("6_52mh2")]
 offset_left = 252.0

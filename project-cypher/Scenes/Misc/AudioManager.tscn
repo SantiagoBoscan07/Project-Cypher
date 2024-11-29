@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2rh7n471a6cq"]
+[gd_scene load_steps=11 format=3 uid="uid://c2rh7n471a6cq"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/AudioPlayer.gd" id="1_68gys"]
 [ext_resource type="AudioStream" uid="uid://cjit27c2duskx" path="res://Sound Effects/Hit.wav" id="1_smpyj"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bu2enqcwup82b" path="res://Sound Effects/Heart.wav" id="6_o7mj7"]
 [ext_resource type="AudioStream" uid="uid://ovg1svxexx1o" path="res://Sound Effects/MenuSelect.wav" id="7_5gllr"]
 [ext_resource type="AudioStream" uid="uid://bj6omn1j50p1p" path="res://Sound Effects/Hurt.wav" id="9_dt4fp"]
+[ext_resource type="AudioStream" uid="uid://deg41lll2ytbq" path="res://Sound Effects/Death.wav" id="10_18ojx"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_68gys")
@@ -58,3 +59,9 @@ bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 2.0
 pitch_max = 2.2
+
+[node name="DeathPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_18ojx")
+bus = &"Sound Effects"
+
+[connection signal="finished" from="DeathPlayer" to="." method="_on_death_player_finished"]

@@ -8,10 +8,11 @@ func _ready():
 	player.connect("oneMore", lastChanceText)
 
 func updateText():
-	if player.health.health < 0:
-		text = str("HP: 0")
-	else:
-		text = "HP: " + str(player.health.health)
+	if player.health:
+		if player.health.health < 0:
+			text = str("HP: 0")
+		else:
+			text = "HP: " + str(player.health.health)
 
 func lastChanceText():
 	text = "Last Chance"

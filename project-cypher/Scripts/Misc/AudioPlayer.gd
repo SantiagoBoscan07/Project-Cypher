@@ -7,7 +7,13 @@ extends Node
 @onready var menuSelect: AudioManagerNode = $MenuSelect
 @onready var hit: AudioManagerNode = $Hit
 @onready var hurt: AudioManagerNode = $Hurt
+@onready var deathPlayer: AudioStreamPlayer = $DeathPlayer
+var busMusic
+var busSound
 
+func _ready():
+	busMusic = AudioServer.get_bus_index("Music")
+	busSound = AudioServer.get_bus_index("Sound Effects")
 
 func playTitleTheme():
 	titleSong.play()
@@ -29,3 +35,12 @@ func playHit():
 
 func playHurt():
 	hurt.play_with_variance()
+
+func playDeathPlayer():
+	AudioServer.set_bus_mute(busMusic, true)
+	deathPlayer.play()
+
+
+func _on_death_player_finished():
+	AudioServer.set_bus_mute(busMusic, false)
+	get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")
