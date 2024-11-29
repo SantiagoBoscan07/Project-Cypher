@@ -43,4 +43,5 @@ func playDeathPlayer():
 
 func _on_death_player_finished():
 	AudioServer.set_bus_mute(busMusic, false)
+	Global.isDead = false
 	get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")

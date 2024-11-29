@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://1ssseqsge7s"]
+[gd_scene load_steps=4 format=3 uid="uid://1ssseqsge7s"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/HealthBar.gd" id="1_po2up"]
 [ext_resource type="PackedScene" uid="uid://d3renss1t5voo" path="res://Scenes/Menu/heart.tscn" id="2_bxamp"]
+[ext_resource type="PackedScene" uid="uid://cwjbwy4cf6ja3" path="res://Scenes/Misc/lastChance.tscn" id="3_fao3u"]
 
-[node name="HealthBar" type="Node2D" node_paths=PackedStringArray("arrayHeart")]
+[node name="HealthBar" type="Node2D" node_paths=PackedStringArray("arrayHeart", "lastChance")]
 script = ExtResource("1_po2up")
 arrayHeart = [NodePath("Heart"), NodePath("Heart2"), NodePath("Heart3"), NodePath("Heart4"), NodePath("Heart5"), NodePath("Heart6"), NodePath("Heart7"), NodePath("Heart8"), NodePath("Heart9"), NodePath("Heart10")]
+lastChance = NodePath("LastChance")
 
 [node name="Heart" parent="." instance=ExtResource("2_bxamp")]
-visible = false
 
 [node name="Heart2" parent="." instance=ExtResource("2_bxamp")]
 visible = false
@@ -46,4 +47,6 @@ position = Vector2(96, 32)
 visible = false
 position = Vector2(128, 32)
 
-[node name="LastChance" type="Sprite2D" parent="."]
+[node name="LastChance" parent="." instance=ExtResource("3_fao3u")]
+visible = false
+frame = 0

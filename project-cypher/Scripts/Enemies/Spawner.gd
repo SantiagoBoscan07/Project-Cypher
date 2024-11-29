@@ -72,8 +72,8 @@ func checkEnemy():
 		return
 	if isCountable:
 		enemyCount = enemyCount - 1
-	#print(name)
-	#print(enemyCount)
+	print(name)
+	print(enemyCount)
 	if enemyCount <= 0:
 		isFinished = true
 		if nextWave and !isLast:

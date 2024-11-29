@@ -1,8 +1,8 @@
 extends Node
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("Player") 
-var lastChanceUsed: bool = false
 @export var arrayHeart: Array[Sprite2D]
+@export var lastChance: Sprite2D
 var heart
 func _ready():
 	get_tree().paused = true
@@ -20,9 +20,11 @@ func updateHeart():
 		popHeart()
 	else:
 		arrayHeart[0].fastShake()
+		lastChance.show()
 
 func die():
 	popHeart()
+	lastChance.hide()
 
 func popHeart():
 	arrayHeart.pop_back().hide()

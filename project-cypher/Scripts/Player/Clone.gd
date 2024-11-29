@@ -11,6 +11,7 @@ var cloneObject2
 
 func _ready() -> void:
 	Signals.connect("activateClone", cloneActivate)
+	Signals.connect("turnOff", deactivate)
 
 func cloneActivate():
 	#print('Clone activated.')
@@ -28,3 +29,9 @@ func _on_clone_timer_timeout() -> void:
 	cloneObject1.queue_free()
 	cloneObject2.queue_free()
 	Signals.emit_signal("endPowerUp")
+
+func deactivate():
+	cloneTimer.stop()
+	if cloneObject1 and cloneObject2:
+		cloneObject1.queue_free()
+		cloneObject2.queue_free()

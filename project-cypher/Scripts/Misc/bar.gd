@@ -27,17 +27,19 @@ func _process(delta):
 		progressBar.value -= delta
 
 func _unhandled_input(event: InputEvent):
-	if Input.is_action_pressed("decipher") and inputPressed:
+	if Input.is_action_pressed("decipher") and inputPressed and !Global.isDead:
 		#print("Cypher Activated!")
-		enemies = get_tree().get_nodes_in_group("Enemy")
-		for enemy in enemies:
-			enemy.process_mode = 4
-		players = get_tree().get_nodes_in_group("Player")
-		for player in players:
-			player.process_mode = 4
-		obstacles = get_tree().get_nodes_in_group("Obstacle")
-		for obstacle in obstacles:
-			obstacle.process_mode = 4
+#		enemies = get_tree().get_nodes_in_group("Enemy")
+#		for enemy in enemies:
+#			enemy.process_mode = 4
+#		players = get_tree().get_nodes_in_group("Player")
+#		for player in players:
+#			player.process_mode = 4
+#		obstacles = get_tree().get_nodes_in_group("Obstacle")
+#		for obstacle in obstacles:
+#			obstacle.process_mode = 4
+		Engine.time_scale = 0
+		Global.isPaused = true
 		slots.process_mode = 0
 		slots.codeSetup()
 		progressBar.value = progressBar.max_value
@@ -54,12 +56,14 @@ func endPowerUp():
 	barTimer.start()
 
 func resumeGame():
-	for player in players:
-		if player:
-			player.process_mode = 0
-	for enemy in enemies:
-		if enemy:
-			enemy.process_mode = 0
-	for obstacle in obstacles:
-		if obstacle:
-			obstacle.process_mode = 0
+	Engine.time_scale = 1
+	Global.isPaused = false
+#	for player in players:
+#		if player:
+#			player.process_mode = 0
+#	for enemy in enemies:
+#		if enemy:
+#			enemy.process_mode = 0
+#	for obstacle in obstacles:
+#		if obstacle:
+#			obstacle.process_mode = 0

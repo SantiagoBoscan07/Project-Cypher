@@ -18,6 +18,7 @@ var direction = Vector2.RIGHT
 func _ready():
 	if isPlayer:
 		Signals.connect("startStorm", timer)
+		Signals.connect("turnOff", deactivate)
 
 func get_vector(angle):
 	theta = angle + alpha
@@ -41,3 +42,6 @@ func timer():
 
 func _on_bullet_storm_cooldown_timeout():
 	start_storm(theta)
+
+func deactivate():
+	power_timer.stop()

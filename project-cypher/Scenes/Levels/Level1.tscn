@@ -85,7 +85,7 @@ spawnerSubset = [NodePath("Spawner"), NodePath("Spawner2")]
 
 [node name="Spawner" parent="FirstSpawner" node_paths=PackedStringArray("marker") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
 spawnTime = 2.0
-spawnerDuration = 10.0
+spawnerDuration = 11.0
 objectToSpawn = ExtResource("13_twnfu")
 marker = NodePath("Wave1Marker1")
 spawnUp = true
@@ -96,7 +96,7 @@ position = Vector2(120, 0)
 
 [node name="Spawner2" parent="FirstSpawner" node_paths=PackedStringArray("marker") groups=["Enemy", "Spawner"] instance=ExtResource("12_m3is3")]
 spawnTime = 2.0
-spawnerDuration = 10.0
+spawnerDuration = 11.0
 objectToSpawn = ExtResource("13_twnfu")
 marker = NodePath("Wave1Marker2")
 spawnUp = true

@@ -9,6 +9,7 @@ extends State
 @export var animation: AnimationPlayer
 @export var stateSwitchTimer: Timer
 var projectile
+var playerPos
 
 func enter():
 	stateSwitchTimer.start()
@@ -16,7 +17,8 @@ func enter():
 
 func update(_delta):
 	if player:
-		ray_cast.target_position = ray_cast.to_local(player.position)
+		playerPos = player.position
+		ray_cast.target_position = ray_cast.to_local(playerPos)
 
 
 func _on_shooting_state_timer_timeout():

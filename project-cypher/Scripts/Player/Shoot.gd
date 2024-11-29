@@ -18,7 +18,7 @@ func _ready():
 
 # If shoot button is pressed it calls the shoot function
 func  _process(delta: float):
-	if Input.is_action_pressed("shoot") and canShoot and !isClone:
+	if Input.is_action_pressed("shoot") and canShoot and !isClone and !Global.isPaused:
 		shoot()
 
 # Loads the projectile scene and creates an instantiate in the scene

@@ -23,5 +23,10 @@ func die():
 	instance.position = body.global_position
 	get_tree().current_scene.add_child(instance)
 	if isPlayer:
+		Global.isDead = true
+		Signals.emit_signal("turnOff")
+		body.process_mode = 4
+		body.hide()
 		AudioManager.playDeathPlayer()
-	body.call_deferred("queue_free")
+	else:
+		body.call_deferred("queue_free")

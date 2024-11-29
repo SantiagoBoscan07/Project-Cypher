@@ -196,6 +196,7 @@ y_sort_enabled = true
 texture = ExtResource("2_6gwev")
 hframes = 4
 vframes = 8
+frame = 8
 
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)
@@ -222,6 +223,7 @@ parameters/Move/blend_position = Vector2(-0.00759494, -0.0319149)
 [node name="Barrier" type="Sprite2D" parent="Body/Sprites"]
 visible = false
 modulate = Color(1, 1, 1, 0.392157)
+z_index = 1
 texture = ExtResource("6_htsk8")
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="Body/Sprites"]
