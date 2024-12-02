@@ -13,6 +13,7 @@ func _ready():
 func activateBarrier():
 	sprite.visible = true
 	invulnerableNode.iFrame(barrierTimer.wait_time)
+	Signals.emit_signal("powerUpDuration", barrierTimer.wait_time)
 	barrierTimer.start()
 
 func turnOffSprite():

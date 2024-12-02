@@ -21,3 +21,5 @@ signal state_changed
 signal endPowerUp
 # signal to end cypher minigame
 signal endCypher
+# signal to get power up duration
+signal powerUpDuration(time:float)

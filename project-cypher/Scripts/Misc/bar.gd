@@ -4,6 +4,7 @@ extends Control
 @export var waitTime : float = 10.0
 @export var progressBar: TextureProgressBar
 @export var slots: Control
+@export var label: Label
 var players
 var enemies
 var obstacles
@@ -15,6 +16,10 @@ var isFilling: bool
 
 func _ready() -> void:
 	# FIXME: Add way for timer to know when to start
+	for inputEvent in InputMap.action_get_events("decipher"):
+		if inputEvent is InputEventKey:
+			label.text = "Press " + inputEvent.as_text() + " To Decipher"
+	label.hide()
 	Signals.connect("endPowerUp", endPowerUp)
 	Signals.connect("endCypher", resumeGame)
 	progressBar.max_value = barTimer.wait_time
@@ -47,6 +52,7 @@ func _unhandled_input(event: InputEvent):
 
 func _on_decipher_bar_timer_timeout() -> void:
 	isFilling = false
+	label.show()
 	inputPressed = true
 
 func endPowerUp():
@@ -58,6 +64,7 @@ func endPowerUp():
 func resumeGame():
 	Engine.time_scale = 1
 	Global.isPaused = false
+	label.hide()
 #	for player in players:
 #		if player:
 #			player.process_mode = 0

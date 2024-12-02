@@ -1,12 +1,89 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl0xxkdwper0d"]
+[gd_scene load_steps=8 format=3 uid="uid://cl0xxkdwper0d"]
 
+[ext_resource type="Script" path="res://Scripts/Menu/powerupPanel.gd" id="1_7wg8i"]
 [ext_resource type="Texture2D" uid="uid://3uf8d3vw3fp8" path="res://Sprites/UI/ui-panel.png" id="1_763fo"]
+[ext_resource type="Texture2D" uid="uid://diok0kqxat86f" path="res://Sprites/Player/barrier.png" id="2_6hh7c"]
+[ext_resource type="Texture2D" uid="uid://c2uona3xvbx6q" path="res://Sprites/Player/player1.png" id="3_22kfr"]
+[ext_resource type="Texture2D" uid="uid://cmc0ct64gxsdx" path="res://Sprites/Player/playerProjectile.png" id="4_3bky1"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="5_pomdk"]
+[ext_resource type="Texture2D" uid="uid://dnk7a8qef2t1m" path="res://Sprites/UI/ui-panel2.png" id="7_rqfn0"]
 
-[node name="PowerupPanel" type="Control"]
+[node name="PowerupPanel" type="Control" node_paths=PackedStringArray("barrier", "clones", "storm", "label", "progressBar", "powerUpDuration")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_7wg8i")
+barrier = NodePath("Icon/Barrier")
+clones = NodePath("Icon/Clones")
+storm = NodePath("Icon/Storm")
+label = NodePath("Label")
+progressBar = NodePath("TextureProgressBar")
+powerUpDuration = NodePath("DurationTime")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("1_763fo")
+
+[node name="Barrier" type="Sprite2D" parent="Icon"]
+visible = false
+texture = ExtResource("2_6hh7c")
+
+[node name="Clones" type="Sprite2D" parent="Icon"]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+position = Vector2(5, -4)
+
+[node name="Clones3" type="Sprite2D" parent="Icon/Clones"]
+position = Vector2(1, 1)
+texture = ExtResource("3_22kfr")
+
+[node name="Clones2" type="Sprite2D" parent="Icon/Clones"]
+position = Vector2(-11, 8)
+texture = ExtResource("3_22kfr")
+
+[node name="Storm" type="Sprite2D" parent="Icon"]
+visible = false
+
+[node name="Storm" type="Sprite2D" parent="Icon/Storm"]
+position = Vector2(-8, 6)
+texture = ExtResource("4_3bky1")
+
+[node name="Storm2" type="Sprite2D" parent="Icon/Storm"]
+position = Vector2(8, -6)
+texture = ExtResource("4_3bky1")
+
+[node name="Storm3" type="Sprite2D" parent="Icon/Storm"]
+position = Vector2(-8, -6)
+texture = ExtResource("4_3bky1")
+
+[node name="Storm4" type="Sprite2D" parent="Icon/Storm"]
+position = Vector2(8, 6)
+texture = ExtResource("4_3bky1")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -30.0
+offset_top = 19.0
+offset_right = 32.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_pomdk")
+theme_override_font_sizes/font_size = 8
+text = "Power"
+horizontal_alignment = 1
+
+[node name="DurationTime" type="Timer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+z_index = 1
+offset_left = -15.6083
+offset_top = -15.9056
+offset_right = 24.3917
+offset_bottom = 24.0944
+step = 0.0
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("7_rqfn0")
+tint_progress = Color(0, 0, 0, 0.392157)

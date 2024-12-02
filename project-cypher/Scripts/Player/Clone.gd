@@ -21,6 +21,7 @@ func cloneActivate():
 	cloneObject2 = clone.instantiate()
 	cloneObject2.position = clone2Marker.global_position
 	get_tree().current_scene.add_child(cloneObject2)
+	Signals.emit_signal("powerUpDuration", cloneTimer.wait_time)
 	cloneTimer.start()
 
 func _on_clone_timer_timeout() -> void:

@@ -38,6 +38,8 @@ func _on_bullet_storm_duration_timeout():
 
 func timer():
 	power_timer.start()
+	if isPlayer:
+		Signals.emit_signal("powerUpDuration", durationTimer.wait_time)
 	durationTimer.start()
 
 func _on_bullet_storm_cooldown_timeout():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhkmpvny5c00a"]
+[gd_scene load_steps=5 format=3 uid="uid://dhkmpvny5c00a"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/bar.gd" id="1_07emo"]
 [ext_resource type="Texture2D" uid="uid://ct46fv3vxxh1g" path="res://Sprites/UI/cypherbar1.png" id="3_51mjw"]
 [ext_resource type="Texture2D" uid="uid://d1pdk6ywuepu8" path="res://Sprites/UI/cypherbar2.png" id="3_gs47y"]
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="4_3f83u"]
 
-[node name="Bar" type="Control" node_paths=PackedStringArray("barTimer", "progressBar")]
+[node name="Bar" type="Control" node_paths=PackedStringArray("barTimer", "progressBar", "label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_07emo")
 barTimer = NodePath("DecipherBarTimer")
 progressBar = NodePath("TextureProgressBar")
+label = NodePath("Label")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 z_index = 1
@@ -31,6 +33,22 @@ texture = ExtResource("3_51mjw")
 centered = false
 
 [node name="DecipherBarTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.2168
+offset_top = 36.2435
+offset_right = 86.2168
+offset_bottom = 59.2435
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_3f83u")
+theme_override_font_sizes/font_size = 8
+text = "Press E To Activate"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="DecipherBarTimer" to="." method="_on_decipher_bar_timer_timeout"]

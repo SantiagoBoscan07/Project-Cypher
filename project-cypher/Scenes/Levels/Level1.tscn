@@ -42,10 +42,10 @@ position = Vector2(37, 235)
 texture = ExtResource("3_67ei7")
 
 [node name="DashPanel" parent="UI/PlayerUI" instance=ExtResource("6_52mh2")]
-offset_left = 252.0
-offset_top = 213.0
-offset_right = 252.0
-offset_bottom = 213.0
+offset_left = 272.0
+offset_top = 229.0
+offset_right = 272.0
+offset_bottom = 229.0
 
 [node name="PowerupPanel" parent="UI/PlayerUI" instance=ExtResource("7_irfh4")]
 offset_left = 325.0
