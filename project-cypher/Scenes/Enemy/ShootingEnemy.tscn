@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ljywyxyw3kgy"]
+[gd_scene load_steps=25 format=3 uid="uid://ljywyxyw3kgy"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_2840j"]
 [ext_resource type="Texture2D" uid="uid://duhc173pvesco" path="res://Sprites/Enemy/WizardCat-Sheet.png" id="2_168ea"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="7_wqafv"]
 [ext_resource type="Script" path="res://Scripts/Enemy/bomb_state.gd" id="8_3pws8"]
 [ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_grifg"]
+[ext_resource type="Script" path="res://Scripts/Misc/DeathNode.gd" id="9_3vdbu"]
+[ext_resource type="PackedScene" uid="uid://coefm57wptp2g" path="res://Scenes/Misc/death.tscn" id="10_loppa"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
 length = 0.001
@@ -147,12 +149,10 @@ flash = NodePath("Components/Misc/Flash")
 modulate = Color(1, 1, 1, 0.784314)
 position = Vector2(0, 4)
 texture = ExtResource("3_junvb")
-centered = false
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
 y_sort_enabled = true
 texture = ExtResource("2_168ea")
-centered = false
 hframes = 9
 
 [node name="Animation" type="AnimationPlayer" parent="Body/Sprites"]
@@ -175,7 +175,7 @@ collision_mask = 0
 script = ExtResource("2_u8472")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
-position = Vector2(8, 9)
+visible = false
 shape = SubResource("CapsuleShape2D_7avjd")
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
@@ -183,11 +183,10 @@ collision_layer = 0
 script = ExtResource("3_4pwlu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
-position = Vector2(8, 9)
+visible = false
 shape = SubResource("CapsuleShape2D_7avjd")
 
 [node name="ShootingOrigin" type="Marker2D" parent="Body/Areas"]
-position = Vector2(8, 8)
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -204,6 +203,11 @@ hurtbox = NodePath("../../../Body/Areas/Hurtbox")
 [node name="Flash" type="Node" parent="Components/Misc" node_paths=PackedStringArray("flash")]
 script = ExtResource("7_wqafv")
 flash = NodePath("../../../Body/Sprites/Flash")
+
+[node name="Death" type="Node" parent="Components/Misc" node_paths=PackedStringArray("body")]
+script = ExtResource("9_3vdbu")
+body = NodePath("../../..")
+deathAnimation = ExtResource("10_loppa")
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_vfdcd")
@@ -239,7 +243,7 @@ animation = NodePath("../../../Body/Sprites/Animation")
 one_shot = true
 
 [node name="ShootingStateTimer" type="Timer" parent="Timer"]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="StateSwitch" type="Timer" parent="Timer"]
@@ -247,16 +251,14 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(8, 9)
 shape = SubResource("CapsuleShape2D_0ufcs")
 
 [node name="Raycast" type="RayCast2D" parent="."]
-position = Vector2(8, 8)
 target_position = Vector2(0, 29)
 
 [node name="Enabler" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(8, 7)
-scale = Vector2(0.8, 0.7)
+position = Vector2(0.5, 0.5)
+scale = Vector2(0.65, 0.75)
 
 [connection signal="animation_finished" from="Body/Sprites/Animation" to="Components/FiniteStateMachine/ShootingState" method="_on_animation_animation_finished"]
 [connection signal="animation_finished" from="Body/Sprites/Animation" to="Components/FiniteStateMachine/BombState" method="_on_animation_animation_finished"]

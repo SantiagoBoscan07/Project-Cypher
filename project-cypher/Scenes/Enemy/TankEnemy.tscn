@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://oyc4n17nij6i"]
+[gd_scene load_steps=27 format=3 uid="uid://oyc4n17nij6i"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_06ofs"]
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_00oey"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/TankShoot.gd" id="8_6fb5q"]
 [ext_resource type="Script" path="res://Scripts/Enemy/EntryState.gd" id="8_hdprn"]
 [ext_resource type="Script" path="res://Scripts/Misc/Flash.gd" id="8_ym6rj"]
+[ext_resource type="Script" path="res://Scripts/Misc/DeathNode.gd" id="10_qvqph"]
+[ext_resource type="PackedScene" uid="uid://coefm57wptp2g" path="res://Scenes/Misc/death.tscn" id="11_rdkpr"]
 [ext_resource type="PackedScene" uid="uid://ddpgqfoubcjyp" path="res://Scenes/Enemy/TankProjectile.tscn" id="15_11lhv"]
 
 [sub_resource type="Animation" id="Animation_ma72m"]
@@ -132,13 +134,12 @@ flash = NodePath("Components/Misc/Flash")
 [node name="Shadow" type="Sprite2D" parent="Body/Sprites"]
 modulate = Color(1, 1, 1, 0.784314)
 z_index = -2
-position = Vector2(8, 11)
+position = Vector2(0, 4)
 texture = ExtResource("2_6n40y")
 
 [node name="Sprite" type="Sprite2D" parent="Body/Sprites"]
 y_sort_enabled = true
 texture = ExtResource("2_sioru")
-centered = false
 hframes = 4
 
 [node name="Animation" type="AnimationPlayer" parent="Body/Sprites"]
@@ -161,7 +162,7 @@ collision_mask = 0
 script = ExtResource("2_00oey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
-position = Vector2(8, 8)
+visible = false
 shape = SubResource("CapsuleShape2D_npbuw")
 
 [node name="Hitbox" type="Area2D" parent="Body/Areas"]
@@ -169,11 +170,10 @@ collision_layer = 0
 script = ExtResource("3_33jdv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
-position = Vector2(8, 8)
+visible = false
 shape = SubResource("CapsuleShape2D_npbuw")
 
 [node name="ShootPosition" type="Marker2D" parent="Body"]
-position = Vector2(8, 8)
 
 [node name="Components" type="Node2D" parent="."]
 
@@ -194,6 +194,11 @@ script = ExtResource("7_4n3x2")
 [node name="Flash" type="Node" parent="Components/Misc" node_paths=PackedStringArray("flash")]
 script = ExtResource("8_ym6rj")
 flash = NodePath("../../../Body/Sprites/Flash")
+
+[node name="Death" type="Node" parent="Components/Misc" node_paths=PackedStringArray("body")]
+script = ExtResource("10_qvqph")
+body = NodePath("../../..")
+deathAnimation = ExtResource("11_rdkpr")
 
 [node name="FiniteStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initialState")]
 script = ExtResource("5_kwi8c")
@@ -244,11 +249,9 @@ one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(8, 9)
 shape = SubResource("CircleShape2D_4omk4")
 
 [node name="Enabler" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(8, 8)
 scale = Vector2(0.9, 0.9)
 
 [connection signal="timeout" from="Components/Timers/MoveTimer" to="Components/FiniteStateMachine/MoveState" method="_on_move_timer_timeout"]

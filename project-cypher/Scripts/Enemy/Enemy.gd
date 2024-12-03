@@ -26,17 +26,12 @@ var cornerDownRightEntrance: bool = false:
 		cornerDownRightEntrance = value
 
 func _ready():
-	if health:
-		health.connect("no_health", die)
 	if hurtbox:
 		hurtbox.hurt.connect(func(hitbox:Hitbox):
 			flash._flash()
 			)
 
-func die():
-	get_tree().call_group("Spawner", "checkEnemy")
-	call_deferred("queue_free")
-
 
 func _on_enabler_screen_exited():
-	die()
+	get_tree().call_group("Spawner", "checkEnemy")
+	call_deferred("queue_free")

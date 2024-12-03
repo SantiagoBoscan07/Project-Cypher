@@ -21,4 +21,5 @@ func turnOffSprite():
 
 func _on_barrier_timer_timeout() -> void:
 	turnOffSprite()
+	AudioManager.playPowerDown()
 	Signals.emit_signal("endPowerUp")

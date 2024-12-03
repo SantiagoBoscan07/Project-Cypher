@@ -12,6 +12,13 @@ signal golevel1
 @onready var lowHealth: AudioManagerNode = $LowHealth
 @onready var slots: AudioManagerNode = $Slots
 @onready var startGame: AudioManagerNode = $StartGame
+@onready var meow: AudioManagerNode = $Meow
+@onready var bomb: AudioManagerNode = $Bomb
+@onready var stormPlayer: AudioManagerNode = $StormPlayer
+@onready var stormEnemy: AudioManagerNode = $StormEnemy
+@onready var powerup: AudioManagerNode = $Powerup
+@onready var powerdown: AudioManagerNode = $Powerdown
+@onready var enemyDeath: AudioManagerNode = $EnemyDeath
 
 
 var busMusic
@@ -73,5 +80,26 @@ func unmuteMusic():
 func playStartGame():
 	startGame.play()
 
-func _on_start_game_finished() -> void:
+func _on_start_game_finished():
 	emit_signal("golevel1")
+
+func playMeow():
+	meow.play_with_variance()
+
+func playBomb():
+	bomb.play_with_variance()
+
+func playStormPlayer():
+	stormPlayer.play_with_variance()
+
+func playStormEnemy():
+	stormEnemy.play_with_variance()
+
+func playPowerup():
+	powerup.play_with_variance()
+
+func playPowerDown():
+	powerdown.play_with_variance()
+
+func playEnemyDeath():
+	enemyDeath.play_with_variance()

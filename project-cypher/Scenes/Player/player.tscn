@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cls6xfv5lmsj6"]
+[gd_scene load_steps=55 format=3 uid="uid://cls6xfv5lmsj6"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_205wi"]
 [ext_resource type="Texture2D" uid="uid://dvoi5rf77b4d5" path="res://Sprites/Player/player-Sheet.png" id="2_6gwev"]
@@ -172,9 +172,13 @@ _data = {
 "flash": SubResource("Animation_wq2fd")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbe"]
-radius = 6.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btjet"]
+radius = 5.0
 height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbe"]
+radius = 3.0
+height = 12.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health", "hurtbox") groups=["Player"]]
 z_index = 1
@@ -259,7 +263,7 @@ script = ExtResource("6_y6idu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hitbox"]
 visible = false
-shape = SubResource("CapsuleShape2D_btcbe")
+shape = SubResource("CapsuleShape2D_btjet")
 
 [node name="Hurtbox" type="Area2D" parent="Body/Areas"]
 collision_mask = 0
@@ -267,7 +271,7 @@ script = ExtResource("7_ut3vb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Areas/Hurtbox"]
 visible = false
-shape = SubResource("CapsuleShape2D_btcbe")
+shape = SubResource("CapsuleShape2D_btjet")
 
 [node name="Detectable" type="Area2D" parent="Body/Areas" groups=["Detectable"]]
 collision_layer = 4
@@ -392,18 +396,18 @@ wait_time = 0.05
 autostart = true
 
 [node name="BulletStormCooldown" type="Timer" parent="Timer"]
-wait_time = 0.05
+wait_time = 0.1
 
 [node name="BulletStormDuration" type="Timer" parent="Timer"]
 wait_time = 10.0
 one_shot = true
 
 [node name="BarrierTimer" type="Timer" parent="Timer"]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="CloneTimer" type="Timer" parent="Timer"]
-wait_time = 15.0
+wait_time = 10.0
 one_shot = true
 
 [node name="IFrameDuration" type="Timer" parent="Timer"]
@@ -431,6 +435,7 @@ stateMachine = NodePath("../../Components/FiniteStateMachine")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_btcbe")
 
 [connection signal="timeout" from="Timer/ShootingTimer" to="Components/Moveset/Shoot" method="_on_shooting_timer_timeout"]

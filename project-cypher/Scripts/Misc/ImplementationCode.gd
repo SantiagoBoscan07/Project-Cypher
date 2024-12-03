@@ -66,6 +66,7 @@ func powerUp():
 		1: barrier()
 		2: clone()
 		3: storm()
+	AudioManager.playPowerup()
 	endCypher()
 
 func slotSet():

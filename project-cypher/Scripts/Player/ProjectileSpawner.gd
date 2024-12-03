@@ -26,6 +26,10 @@ func get_vector(angle):
 
 func start_storm(angle):
 	var bullethell = bullethell.instantiate()
+	if isPlayer:
+		AudioManager.playStormPlayer()
+	else:
+		AudioManager.playStormEnemy()
 	bullethell.position = bulletspawner.global_position
 	bullethell.z_index = body.z_index - 1
 	bullethell.direction = get_vector(angle)
@@ -34,6 +38,7 @@ func start_storm(angle):
 func _on_bullet_storm_duration_timeout():
 	power_timer.stop()
 	if isPlayer:
+		AudioManager.playPowerDown()
 		Signals.emit_signal("endPowerUp")
 
 func timer():

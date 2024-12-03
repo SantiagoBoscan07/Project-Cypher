@@ -18,7 +18,7 @@ func _process(delta):
 
 func _on_life_time_timeout():
 	queue_free()
-	
+	AudioManager.playBomb()
 	projectile = projectilePreload.instantiate()
 	projectile.position = shootingPosition.global_position
 	projectile.direction = Vector2.LEFT

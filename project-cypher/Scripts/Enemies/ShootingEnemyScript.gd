@@ -27,6 +27,7 @@ func _on_shooting_state_timer_timeout():
 
 # Loads the projectile scene and creates an instantiate in the scene
 func shoot():
+	AudioManager.playMeow()
 	projectile = projectilePreload.instantiate()
 	projectile.position = shootingPosition.global_position
 	projectile.direction = (ray_cast.target_position).normalized()

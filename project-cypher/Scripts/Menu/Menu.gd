@@ -18,8 +18,6 @@ func _on_play_game_pressed():
 	menuSelect.hide()
 	levelSelect.show()
 	level1Button.grab_focus()
-	#AudioManager.stopTitleTheme()
-	#AudioManager.playStartGame()
 
 
 func goLevel1():
@@ -42,3 +40,8 @@ func _on_back_pressed() -> void:
 	levelSelect.hide()
 	menuSelect.show()
 	playButton.grab_focus()
+
+
+func _on_level_1_pressed() -> void:
+	AudioManager.stopTitleTheme()
+	AudioManager.playStartGame()

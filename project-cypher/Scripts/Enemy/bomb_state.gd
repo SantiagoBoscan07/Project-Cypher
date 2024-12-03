@@ -13,6 +13,7 @@ func enter():
 
 # Loads the projectile scene and creates an instantiate in the scene
 func shoot():
+	AudioManager.playMeow()
 	projectile = projectilePreload.instantiate()
 	projectile.position = shootingPosition.global_position
 	#projectile.direction = (ray_cast.target_position).normalized()

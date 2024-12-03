@@ -29,4 +29,6 @@ func die():
 		body.hide()
 		AudioManager.playDeathPlayer()
 	else:
+		AudioManager.playEnemyDeath()
+		get_tree().call_group("Spawner", "checkEnemy")
 		body.call_deferred("queue_free")

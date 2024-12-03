@@ -29,10 +29,11 @@ func _on_clone_timer_timeout() -> void:
 	#print('Clone disappeared.')
 	cloneObject1.queue_free()
 	cloneObject2.queue_free()
+	AudioManager.playPowerDown()
 	Signals.emit_signal("endPowerUp")
 
 func deactivate():
 	cloneTimer.stop()
-	if cloneObject1 and cloneObject2:
+	if cloneObject1 != null and cloneObject2 != null:
 		cloneObject1.queue_free()
 		cloneObject2.queue_free()
