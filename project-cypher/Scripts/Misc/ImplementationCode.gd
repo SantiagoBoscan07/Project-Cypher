@@ -9,6 +9,8 @@ var playerArrayIndex = 0
 @export var codeGenerator: Node2D
 @export var cypherTimer: Timer
 @export var cypherTimerTime: float = 1
+@export var progressBar: TextureProgressBar
+var isFilling: bool = false
 var RandomPowerUp = RandomNumberGenerator.new()
 var powerInt
 var tempVal = 0
@@ -21,6 +23,9 @@ func _ready():
 
 func codeSetup():
 	cypherTimer.wait_time = cypherTimerTime
+	progressBar.max_value = cypherTimer.wait_time
+	progressBar.value = 0
+	isFilling = true
 	cypherTimer.start()
 	show()
 	resetArray()
@@ -43,6 +48,9 @@ func endCypher():
 	process_mode = 4
 
 func _process(delta: float):
+	#print(cypherTimer.time_left)
+	if isFilling:
+		progressBar.value += delta
 	if canCheck:
 		if codeCypherArray == playerCypherArray:
 			canCheck = false

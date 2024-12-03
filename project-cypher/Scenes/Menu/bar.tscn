@@ -14,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_07emo")
 barTimer = NodePath("DecipherBarTimer")
+waitTime = 1.0
 progressBar = NodePath("TextureProgressBar")
 label = NodePath("Label")
 
@@ -33,7 +34,6 @@ texture = ExtResource("3_51mjw")
 centered = false
 
 [node name="DecipherBarTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="Label" type="Label" parent="."]

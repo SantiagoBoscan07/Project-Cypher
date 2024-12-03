@@ -14,5 +14,5 @@ func enter():
 # If any move button is pressed, then it switches to move state
 func update(_delta: float):
 	for action in movementActions:
-		if Input.is_action_pressed(action) and !Global.isPaused:
+		if Input.is_action_pressed(action):
 			stateTransition.emit(get_parent().currentState, "PlayerMoveState")

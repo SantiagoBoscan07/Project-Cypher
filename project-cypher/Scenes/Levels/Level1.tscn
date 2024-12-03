@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/levelFinish.gd" id="16_ktojb"]
 
 [node name="Level1" type="Node2D"]
+process_mode = 1
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_ykvj5")]
@@ -59,7 +60,6 @@ offset_left = 367.0
 offset_top = 213.0
 offset_right = 367.0
 offset_bottom = 213.0
-waitTime = 1.0
 slots = NodePath("../Slots")
 
 [node name="Slots" parent="UI/PlayerUI" instance=ExtResource("10_athpp")]

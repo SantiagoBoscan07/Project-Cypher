@@ -19,7 +19,7 @@ var shadow3
 
 # If dash button pressed, the character is moving, and dash is active, then it will activate the dash move
 func _physics_process(delta):
-	if Input.is_action_pressed("dash") and player.isMoving and canDash and !Global.isPaused:
+	if Input.is_action_pressed("dash") and player.isMoving and canDash:
 		boost()
 	shadowCloneBehavior()
 

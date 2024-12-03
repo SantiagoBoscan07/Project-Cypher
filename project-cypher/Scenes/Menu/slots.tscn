@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsx638c06je4o"]
+[gd_scene load_steps=9 format=3 uid="uid://dsx638c06je4o"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/ImplementationCode.gd" id="1_eihbr"]
-[ext_resource type="PackedScene" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="2_c62gr"]
+[ext_resource type="PackedScene" uid="uid://cxl1afkcld8ef" path="res://Scenes/Test/CypherCodeGenerator.tscn" id="2_c62gr"]
 [ext_resource type="Texture2D" uid="uid://drni5chsmigu3" path="res://Sprites/UI/ShuffleSlots-Sheet.png" id="2_ku14i"]
 [ext_resource type="Texture2D" uid="uid://dfpax3c4nvcsr" path="res://Sprites/UI/arrow.png" id="3_ufsv7"]
 [ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="5_4q7fg"]
+[ext_resource type="Texture2D" uid="uid://cfy16v1d8iofk" path="res://Sprites/UI/barcypher.png" id="6_m0ce8"]
+[ext_resource type="Texture2D" uid="uid://dukprti5g3u42" path="res://Sprites/UI/cypherbarfiller.png" id="7_txev2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxlkt"]
 bg_color = Color(0, 0, 0, 0.784314)
 
-[node name="Slots" type="Control" node_paths=PackedStringArray("slots", "arrows", "codeGenerator", "cypherTimer")]
+[node name="Slots" type="Control" node_paths=PackedStringArray("slots", "arrows", "codeGenerator", "cypherTimer", "progressBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -19,7 +21,8 @@ slots = [NodePath("Panel/Slot"), NodePath("Panel/Slot2"), NodePath("Panel/Slot3"
 arrows = [NodePath("Panel/Slot/Arrow"), NodePath("Panel/Slot2/Arrow"), NodePath("Panel/Slot3/Arrow")]
 codeGenerator = NodePath("CypherCodeGenerator")
 cypherTimer = NodePath("CypherTimer")
-cypherTimerTime = 5.0
+cypherTimerTime = 10.0
+progressBar = NodePath("Panel/TextureProgressBar")
 
 [node name="CypherCodeGenerator" parent="." node_paths=PackedStringArray("label") instance=ExtResource("2_c62gr")]
 label = NodePath("../Panel/Label")
@@ -73,6 +76,7 @@ texture = ExtResource("3_ufsv7")
 centered = false
 
 [node name="Label" type="Label" parent="Panel"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -83,10 +87,28 @@ offset_right = 237.5
 offset_bottom = 65.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("5_4q7fg")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 48
 text = "SECRET CODE: 1 1 1"
 horizontal_alignment = 1
+
+[node name="BarUI" type="Sprite2D" parent="Panel"]
+position = Vector2(40, 208)
+texture = ExtResource("6_m0ce8")
+centered = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel"]
+z_index = 1
+offset_left = 44.0
+offset_top = 212.0
+offset_right = 436.0
+offset_bottom = 252.0
+step = 0.0
+value = 100.0
+texture_progress = ExtResource("7_txev2")
+tint_progress = Color(0, 0, 0, 0.392157)
 
 [node name="CypherTimer" type="Timer" parent="."]
 one_shot = true
