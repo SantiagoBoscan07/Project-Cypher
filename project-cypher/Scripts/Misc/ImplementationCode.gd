@@ -18,6 +18,7 @@ var canCheck: bool = false
 
 func _ready():
 	hide()
+	Signals.connect("slotsSet", powerUp)
 	canCheck = false
 	process_mode = 4
 
@@ -42,6 +43,7 @@ func resetArray():
 	arrowBehavior(0)
 
 func endCypher():
+	print("end cypher")
 	cypherTimer.stop()
 	hide()
 	Signals.emit_signal("endCypher")
@@ -54,12 +56,17 @@ func _process(delta: float):
 	if canCheck:
 		if codeCypherArray == playerCypherArray:
 			canCheck = false
-			powerInt = RandomPowerUp.randi_range(1, 3)
-			match powerInt:
-				1: barrier()
-				2: clone()
-				3: storm()
-			endCypher()
+			isFilling = false
+			AudioManager.playSlotSet()
+
+
+func powerUp():
+	powerInt = RandomPowerUp.randi_range(1, 3)
+	match powerInt:
+		1: barrier()
+		2: clone()
+		3: storm()
+	endCypher()
 
 func slotSet():
 	for slot in slots.size():
@@ -122,13 +129,13 @@ func playerDown():
 
 func _unhandled_input(event: InputEvent):
 	# Add check to verify the state of the game and move index accordingly
-	if Input.is_action_just_pressed("moveLeft"):
+	if Input.is_action_just_pressed("moveLeft") and canCheck:
 		playerLeft()
-	if Input.is_action_just_pressed("moveRight"):
+	if Input.is_action_just_pressed("moveRight") and canCheck:
 		playerRight()
-	if Input.is_action_just_pressed("moveUp"):
+	if Input.is_action_just_pressed("moveUp") and canCheck:
 		playerUp()
-	if Input.is_action_just_pressed("moveDown"):
+	if Input.is_action_just_pressed("moveDown") and canCheck:
 		playerDown()
 
 # If the button is pressed, the barrier will show up

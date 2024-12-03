@@ -101,6 +101,7 @@ centered = false
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Panel"]
 z_index = 1
+layout_mode = 0
 offset_left = 44.0
 offset_top = 212.0
 offset_right = 436.0

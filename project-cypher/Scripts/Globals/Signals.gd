@@ -23,3 +23,5 @@ signal endPowerUp
 signal endCypher
 # signal to get power up duration
 signal powerUpDuration(time:float)
+# signal when correctly input slots
+signal slotsSet

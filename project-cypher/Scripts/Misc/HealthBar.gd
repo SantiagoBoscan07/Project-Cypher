@@ -8,10 +8,12 @@ var heart
 func _ready():
 	get_tree().paused = true
 	for heart in arrayHeart:
+		AudioManager.muteMusic()
 		AudioManager.playHeart()
 		heart.show()
 		await get_tree().create_timer(0.25).timeout
 	get_tree().paused = false
+	AudioManager.unmuteMusic()
 	if player:
 		player.health.connect("health_changed", updateHeart)
 		player.health.connect("no_health", die)

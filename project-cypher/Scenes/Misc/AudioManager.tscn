@@ -1,18 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2rh7n471a6cq"]
+[gd_scene load_steps=14 format=3 uid="uid://c2rh7n471a6cq"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/AudioPlayer.gd" id="1_68gys"]
 [ext_resource type="AudioStream" uid="uid://cjit27c2duskx" path="res://Sound Effects/Hit.wav" id="1_smpyj"]
 [ext_resource type="Script" path="res://Scripts/Misc/AudioManager.gd" id="2_pug7b"]
 [ext_resource type="AudioStream" uid="uid://b2g517negxfnc" path="res://Music/Orchid's Veil.mp3" id="3_3pdvm"]
-[ext_resource type="AudioStream" uid="uid://dvnxb5k1s4cu2" path="res://Sound Effects/Shoot.wav" id="5_rkr7j"]
+[ext_resource type="AudioStream" uid="uid://dvnxb5k1s4cu2" path="res://Sound Effects/shoot.wav" id="5_rkr7j"]
 [ext_resource type="AudioStream" uid="uid://pdlghumei3u6" path="res://Sound Effects/Dash.wav" id="6_130qy"]
 [ext_resource type="AudioStream" uid="uid://bu2enqcwup82b" path="res://Sound Effects/Heart.wav" id="6_o7mj7"]
 [ext_resource type="AudioStream" uid="uid://ovg1svxexx1o" path="res://Sound Effects/MenuSelect.wav" id="7_5gllr"]
 [ext_resource type="AudioStream" uid="uid://bj6omn1j50p1p" path="res://Sound Effects/Hurt.wav" id="9_dt4fp"]
 [ext_resource type="AudioStream" uid="uid://deg41lll2ytbq" path="res://Sound Effects/Death.wav" id="10_18ojx"]
 [ext_resource type="AudioStream" uid="uid://d0ee85g6my5ta" path="res://Sound Effects/LowHealth.wav" id="11_pwayu"]
+[ext_resource type="AudioStream" uid="uid://cvltuu4xoju4x" path="res://Sound Effects/SlotSet.WAV" id="12_8sllj"]
+[ext_resource type="AudioStream" uid="uid://2w3ym5wtooqn" path="res://Sound Effects/StartGame.wav" id="13_1mc0n"]
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_68gys")
 
 [node name="TitleSong" type="AudioStreamPlayer" parent="."]
@@ -67,8 +70,24 @@ bus = &"Sound Effects"
 
 [node name="LowHealth" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_pwayu")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 2.5
 pitch_max = 2.7
 
+[node name="Slots" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8sllj")
+bus = &"Sound Effects"
+script = ExtResource("2_pug7b")
+pitch_min = 0.5
+pitch_max = 0.6
+
+[node name="StartGame" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_1mc0n")
+script = ExtResource("2_pug7b")
+pitch_min = 1.5
+pitch_max = 1.7
+
 [connection signal="finished" from="DeathPlayer" to="." method="_on_death_player_finished"]
+[connection signal="finished" from="Slots" to="." method="_on_slots_finished"]
+[connection signal="finished" from="StartGame" to="." method="_on_start_game_finished"]

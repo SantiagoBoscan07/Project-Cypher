@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfkii3aeaf0gy"]
+[gd_scene load_steps=30 format=3 uid="uid://dfkii3aeaf0gy"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/MenuScene.gd" id="1_1rj4v"]
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_7le3e"]
@@ -12,9 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://bfe4ukv2231vc" path="res://Sprites/UI/button-highlighted.png" id="5_r3vyh"]
 [ext_resource type="Texture2D" uid="uid://o3magxgf2rqw" path="res://Sprites/UI/button-pressed2.png" id="6_mq1gr"]
 [ext_resource type="Texture2D" uid="uid://dytvccniafdii" path="res://Sprites/UI/button-idle3.png" id="8_731xd"]
+[ext_resource type="Texture2D" uid="uid://lvw07b8vhnep" path="res://Sprites/UI/button-idle4.png" id="9_014y8"]
 [ext_resource type="Texture2D" uid="uid://dcywaf74ang2j" path="res://Sprites/UI/button-pressed3.png" id="9_sx8hy"]
+[ext_resource type="Texture2D" uid="uid://72h1wbhj4fqg" path="res://Sprites/UI/button-pressed4.png" id="10_ypt36"]
 [ext_resource type="Script" path="res://Scripts/Menu/AudioSetting.gd" id="11_cs6oo"]
+[ext_resource type="Texture2D" uid="uid://plolxgb7c2pc" path="res://Sprites/UI/button-idle5.png" id="11_fk40x"]
 [ext_resource type="Texture2D" uid="uid://d3pum4du6n1l6" path="res://Sprites/Player/barrierPlaceholder.png" id="11_j7rji"]
+[ext_resource type="Texture2D" uid="uid://dytbsrw7pjtpu" path="res://Sprites/UI/button-pressed5.png" id="12_mgxyb"]
+[ext_resource type="Texture2D" uid="uid://cthx0c4a40uca" path="res://Sprites/UI/button-idle6.png" id="13_icd6g"]
+[ext_resource type="Texture2D" uid="uid://c25kuwemn2dg5" path="res://Sprites/UI/button-pressed6.png" id="14_fiksl"]
+[ext_resource type="Texture2D" uid="uid://bitcqscm3uijx" path="res://Sprites/UI/button-idle7.png" id="15_affoa"]
+[ext_resource type="Texture2D" uid="uid://bvu2l28g1g8ja" path="res://Sprites/UI/button-pressed7.png" id="16_s7d40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tb6ev"]
 bg_color = Color(0.219608, 0.156863, 0.262745, 1)
@@ -51,14 +59,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1rj4v")
 
-[node name="GameOptions" type="Control" parent="." node_paths=PackedStringArray("inputSettings", "playButton", "optionButton")]
+[node name="GameOptions" type="Control" parent="." node_paths=PackedStringArray("inputSettings", "playButton", "menuSelect", "levelSelect", "optionButton", "level1Button")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7le3e")
 inputSettings = NodePath("../InputSettings")
 playButton = NodePath("PanelContainer/MarginContainer/Options/Play Game")
+menuSelect = NodePath("PanelContainer/MarginContainer/Options")
+levelSelect = NodePath("PanelContainer/MarginContainer/LevelSelect")
 optionButton = NodePath("../InputSettings/BackMenu")
+level1Button = NodePath("PanelContainer/MarginContainer/LevelSelect/Level1")
 
 [node name="Title" type="Sprite2D" parent="GameOptions"]
 z_index = 2
@@ -91,6 +102,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Options" type="VBoxContainer" parent="GameOptions/PanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="Play Game" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/Options"]
@@ -105,6 +117,47 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("4_rshb6")
 texture_pressed = ExtResource("6_mq1gr")
+texture_focused = ExtResource("5_r3vyh")
+
+[node name="Credits" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("15_affoa")
+texture_pressed = ExtResource("16_s7d40")
+texture_focused = ExtResource("5_r3vyh")
+
+[node name="LevelSelect" type="BoxContainer" parent="GameOptions/PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Level1" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/LevelSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_014y8")
+texture_pressed = ExtResource("10_ypt36")
+texture_focused = ExtResource("5_r3vyh")
+
+[node name="Level2" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/LevelSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("11_fk40x")
+texture_pressed = ExtResource("12_mgxyb")
+texture_focused = ExtResource("5_r3vyh")
+
+[node name="Level3" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/LevelSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_icd6g")
+texture_pressed = ExtResource("14_fiksl")
+texture_focused = ExtResource("5_r3vyh")
+
+[node name="Back" type="TextureButton" parent="GameOptions/PanelContainer/MarginContainer/LevelSelect"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("8_731xd")
+texture_pressed = ExtResource("9_sx8hy")
 texture_focused = ExtResource("5_r3vyh")
 
 [node name="InputSettings" type="Control" parent="." node_paths=PackedStringArray("gameOptions", "actionList")]
@@ -268,6 +321,7 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Play Game" to="GameOptions" method="_on_play_game_pressed"]
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/Options/Options" to="GameOptions" method="_on_options_pressed"]
+[connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/LevelSelect/Back" to="GameOptions" method="_on_back_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]
 [connection signal="value_changed" from="InputSettings/Audio/MusicSlider" to="InputSettings/Audio" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="InputSettings/Audio/SoundSlider" to="InputSettings/Audio" method="_on_sound_slider_value_changed"]
