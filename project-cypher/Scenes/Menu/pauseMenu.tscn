@@ -51,6 +51,7 @@ texture_pressed = ExtResource("3_c3nit")
 texture_focused = ExtResource("4_rccrs")
 
 [node name="Reload" type="TextureButton" parent="Submenu"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 160.0
 offset_right = 264.0
@@ -60,6 +61,7 @@ texture_pressed = ExtResource("6_jf5be")
 texture_focused = ExtResource("4_rccrs")
 
 [node name="Quit" type="TextureButton" parent="Submenu"]
+layout_mode = 0
 offset_left = 304.0
 offset_top = 160.0
 offset_right = 344.0

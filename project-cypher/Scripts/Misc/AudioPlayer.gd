@@ -64,19 +64,17 @@ func playSlotSet():
 	slots.play_with_variance()
 
 func _on_death_player_finished():
-	unmuteMusic()
-	Global.isDead = false
-	get_tree().change_scene_to_file("res://Scenes/Menu/menu.tscn")
+	Signals.emit_signal("gameOverScreen")
 
 
 func _on_slots_finished():
 	Signals.emit_signal("slotsSet")
 
 func muteMusic():
-	AudioServer.set_bus_mute(busMusic, true)
-
-func unmuteMusic():
-	AudioServer.set_bus_mute(busMusic, false)
+	var sounds = get_children()
+	for sound in sounds:
+		if sound.get_bus() == "Music" and sound.is_playing():
+			sound.stop()
 
 func playStartGame():
 	startGame.play()

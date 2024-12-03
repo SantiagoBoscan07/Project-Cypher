@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cx0xdynjhvb6u"]
+[gd_scene load_steps=18 format=4 uid="uid://cx0xdynjhvb6u"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/Level1.gd" id="1_28iq2"]
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_ykvj5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_3oa46"]
 [ext_resource type="PackedScene" uid="uid://ce5h85kvbhdgb" path="res://Scenes/Menu/pauseMenu.tscn" id="9_6ad88"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="10_athpp"]
+[ext_resource type="PackedScene" uid="uid://iphdojwnme66" path="res://Scenes/Menu/GameOver.tscn" id="11_biwko"]
 [ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_p77ll"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="12_m3is3"]
 [ext_resource type="PackedScene" uid="uid://hv8sfmxy5753" path="res://Scenes/Enemy/MovingEnemy.tscn" id="13_twnfu"]
@@ -72,6 +73,9 @@ visible = false
 position = Vector2(80, 215)
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("9_6ad88")]
+visible = false
+
+[node name="GameOver" parent="UI" instance=ExtResource("11_biwko")]
 visible = false
 
 [node name="ObstaclesTileMap" parent="." instance=ExtResource("15_dsmjy")]

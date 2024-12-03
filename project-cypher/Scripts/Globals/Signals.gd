@@ -27,3 +27,7 @@ signal powerUpDuration(time:float)
 signal slotsSet
 # signal for pause
 signal pausemenu
+# signal for game over
+signal gameOverScreen
+# signal for level start
+signal levelStart

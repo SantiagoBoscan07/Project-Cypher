@@ -1,33 +1,29 @@
 extends Control
 
 @export var submenu: Control
-@export var resumeButton: TextureButton
+@export var reloadButton: TextureButton
 
 func _ready():
 	hide()
 	submenu.process_mode = 4
-	Signals.connect("pausemenu", paused)
+	Signals.connect("gameOverScreen", gameOver)
 
-func paused():
+func gameOver():
 	submenu.process_mode = 0
 	show()
-	resumeButton.grab_focus()
-
-
-func _on_resume_pressed():
-	AudioManager.playMenuSelect()
-	hide()
-	submenu.process_mode = 4
 	get_tree().paused = !get_tree().paused
+	reloadButton.grab_focus()
 
 
-func _on_reload_pressed():
+func _on_restart_pressed():
+	Global.isDead = false
 	AudioManager.playMenuSelect()
 	AudioManager.muteMusic()
 	get_tree().reload_current_scene()
 
 
 func _on_quit_pressed():
+	Global.isDead = false
 	AudioManager.playMenuSelect()
 	AudioManager.muteMusic()
 	get_tree().paused = !get_tree().paused
