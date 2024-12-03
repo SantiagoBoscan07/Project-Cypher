@@ -19,6 +19,7 @@ signal golevel1
 @onready var powerup: AudioManagerNode = $Powerup
 @onready var powerdown: AudioManagerNode = $Powerdown
 @onready var enemyDeath: AudioManagerNode = $EnemyDeath
+@onready var level1: AudioStreamPlayer = $Level1
 
 
 var busMusic
@@ -103,3 +104,6 @@ func playPowerDown():
 
 func playEnemyDeath():
 	enemyDeath.play_with_variance()
+
+func playLevel1():
+	level1.play()

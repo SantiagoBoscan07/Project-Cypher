@@ -18,5 +18,5 @@ func _ready():
 
 func _unhandled_input(event: InputEvent):
 	if Input.is_action_just_pressed("pause") and !isClone:
-		pass
-		#call_deferred("test")
+		Signals.emit_signal("pausemenu")
+		get_tree().paused = !get_tree().paused

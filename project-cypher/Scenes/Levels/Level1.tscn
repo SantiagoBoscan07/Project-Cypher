@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://cx0xdynjhvb6u"]
+[gd_scene load_steps=17 format=4 uid="uid://cx0xdynjhvb6u"]
 
+[ext_resource type="Script" path="res://Scripts/Misc/Level1.gd" id="1_28iq2"]
 [ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_ykvj5"]
 [ext_resource type="Texture2D" uid="uid://b41ppccw6ere3" path="res://Sprites/UI/In-Game UI.png" id="2_5xx6b"]
 [ext_resource type="Texture2D" uid="uid://ccbsa2sh742cg" path="res://Sprites/Player/portrait1.png" id="3_67ei7"]
 [ext_resource type="PackedScene" uid="uid://cv48c5g84owhq" path="res://Scenes/Menu/dashPanel.tscn" id="6_52mh2"]
 [ext_resource type="PackedScene" uid="uid://cl0xxkdwper0d" path="res://Scenes/Menu/powerup_panel.tscn" id="7_irfh4"]
 [ext_resource type="PackedScene" uid="uid://dhkmpvny5c00a" path="res://Scenes/Menu/bar.tscn" id="8_3oa46"]
+[ext_resource type="PackedScene" uid="uid://ce5h85kvbhdgb" path="res://Scenes/Menu/pauseMenu.tscn" id="9_6ad88"]
 [ext_resource type="PackedScene" uid="uid://dsx638c06je4o" path="res://Scenes/Menu/slots.tscn" id="10_athpp"]
 [ext_resource type="PackedScene" uid="uid://1ssseqsge7s" path="res://Scenes/Misc/healthBar.tscn" id="11_p77ll"]
 [ext_resource type="PackedScene" uid="uid://dmetig6ydnusx" path="res://Scenes/Enemy/spawner.tscn" id="12_m3is3"]
@@ -18,6 +20,7 @@
 [node name="Level1" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
+script = ExtResource("1_28iq2")
 
 [node name="Player" parent="." instance=ExtResource("1_ykvj5")]
 position = Vector2(240, 135)
@@ -67,6 +70,9 @@ visible = false
 
 [node name="HealthBar" parent="UI/PlayerUI" instance=ExtResource("11_p77ll")]
 position = Vector2(80, 215)
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("9_6ad88")]
+visible = false
 
 [node name="ObstaclesTileMap" parent="." instance=ExtResource("15_dsmjy")]
 position = Vector2(-2, -1)

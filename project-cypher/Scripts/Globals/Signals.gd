@@ -25,3 +25,5 @@ signal endCypher
 signal powerUpDuration(time:float)
 # signal when correctly input slots
 signal slotsSet
+# signal for pause
+signal pausemenu

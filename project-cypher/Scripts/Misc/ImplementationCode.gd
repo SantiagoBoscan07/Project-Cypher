@@ -43,7 +43,7 @@ func resetArray():
 	arrowBehavior(0)
 
 func endCypher():
-	print("end cypher")
+	#print("end cypher")
 	cypherTimer.stop()
 	hide()
 	Signals.emit_signal("endCypher")

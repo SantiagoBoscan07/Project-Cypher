@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c2rh7n471a6cq"]
+[gd_scene load_steps=21 format=3 uid="uid://c2rh7n471a6cq"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/AudioPlayer.gd" id="1_68gys"]
 [ext_resource type="AudioStream" uid="uid://cjit27c2duskx" path="res://Sound Effects/Hit.wav" id="1_smpyj"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dxwqn0x1po4y7" path="res://Sound Effects/Powerup.wav" id="17_guwen"]
 [ext_resource type="AudioStream" uid="uid://be1ixnaxsf0p2" path="res://Sound Effects/Powerdown.wav" id="18_v8wx6"]
 [ext_resource type="AudioStream" uid="uid://dpkf8aad7ea1c" path="res://Sound Effects/EnemyDeath.wav" id="19_wvd4g"]
+[ext_resource type="AudioStream" uid="uid://blbet3edkqyff" path="res://Music/level1.mp3" id="20_1xat0"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -90,48 +91,60 @@ pitch_max = 0.6
 
 [node name="StartGame" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_1mc0n")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 1.5
 pitch_max = 1.7
 
 [node name="Meow" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_0uu61")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 1.0
 
 [node name="Bomb" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_8jtol")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 0.5
 pitch_max = 0.7
 
 [node name="StormPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_s0qb0")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 1.5
 pitch_max = 1.7
 
 [node name="StormEnemy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_s0qb0")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_max = 0.8
 
 [node name="Powerup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_guwen")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 1.4
 pitch_max = 1.6
 
 [node name="Powerdown" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_v8wx6")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_max = 0.8
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_wvd4g")
+bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 0.8
 pitch_max = 1.0
+
+[node name="Level1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_1xat0")
+bus = &"Music"
 
 [connection signal="finished" from="DeathPlayer" to="." method="_on_death_player_finished"]
 [connection signal="finished" from="Slots" to="." method="_on_slots_finished"]
