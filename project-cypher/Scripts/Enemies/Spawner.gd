@@ -81,10 +81,18 @@ func checkEnemy():
 				wave.process_mode = 0
 				wave.add_to_group("Spawner")
 				wave.add_to_group("Enemy")
-		elif nextWave and isLast:
-			for wave in nextWave:
-				wave.endLevel()
-			call_deferred("queue_free")
+		if isLast:
+			AudioManager.muteMusic()
+			var projectiles = get_tree().get_nodes_in_group("Enemy")
+			for projectile in projectiles:
+				projectile.hide()
+				projectile.process_mode = 4
+			AudioManager.playLevelComplete()
+			Engine.time_scale = 0.5
+			await get_tree().create_timer(1).timeout
+			Engine.time_scale = 1
+			Signals.emit_signal("endLevel")
+			#call_deferred("queue_free")
 
 # Counts how many enemies does the wave have
 func enemyCounter():

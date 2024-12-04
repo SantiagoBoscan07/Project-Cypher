@@ -35,3 +35,5 @@ signal levelStart
 signal endFadeNormal
 # signal transition end black
 signal endFadeBlack
+# signal for end of level
+signal endLevel

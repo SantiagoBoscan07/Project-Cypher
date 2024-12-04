@@ -4,6 +4,7 @@ extends Node
 @export var arrayHeart: Array[Sprite2D]
 @export var lastChance: Sprite2D
 @export var lowHealthTimer: Timer
+@export var tutorial: CanvasLayer
 var heart
 func _ready():
 	Signals.connect("endFadeNormal", initialSetup)
@@ -16,7 +17,10 @@ func initialSetup():
 		AudioManager.playHeart()
 		heart.show()
 		await get_tree().create_timer(0.25).timeout
-	get_tree().paused = false
+	if tutorial:
+		tutorial.show()
+	else:
+		get_tree().paused = false
 	Signals.emit_signal("levelStart")
 
 func updateHeart():

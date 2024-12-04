@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2rh7n471a6cq"]
+[gd_scene load_steps=23 format=3 uid="uid://c2rh7n471a6cq"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/AudioPlayer.gd" id="1_68gys"]
 [ext_resource type="AudioStream" uid="uid://cjit27c2duskx" path="res://Sound Effects/Hit.wav" id="1_smpyj"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://dpkf8aad7ea1c" path="res://Sound Effects/EnemyDeath.wav" id="19_wvd4g"]
 [ext_resource type="AudioStream" uid="uid://blbet3edkqyff" path="res://Music/level1.mp3" id="20_1xat0"]
 [ext_resource type="AudioStream" uid="uid://b4fwhs4smkyd2" path="res://Sound Effects/Transition.wav" id="21_qb4nt"]
+[ext_resource type="AudioStream" uid="uid://dn0xhbhm5cgs1" path="res://Sound Effects/LevelComplete.wav" id="22_np4o1"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -153,6 +154,12 @@ bus = &"Sound Effects"
 script = ExtResource("2_pug7b")
 pitch_min = 1.7
 pitch_max = 1.9
+
+[node name="LevelComplete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_np4o1")
+script = ExtResource("2_pug7b")
+pitch_min = 0.5
+pitch_max = 0.7
 
 [connection signal="finished" from="DeathPlayer" to="." method="_on_death_player_finished"]
 [connection signal="finished" from="Slots" to="." method="_on_slots_finished"]

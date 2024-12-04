@@ -20,6 +20,7 @@ extends Node
 @onready var enemyDeath: AudioManagerNode = $EnemyDeath
 @onready var level1: AudioStreamPlayer = $Level1
 @onready var transition: AudioManagerNode = $Transition
+@onready var levelComplete: AudioManagerNode = $LevelComplete
 
 
 var busMusic
@@ -102,3 +103,6 @@ func playLevel1():
 
 func playTransition():
 	transition.play_with_variance()
+
+func playLevelComplete():
+	levelComplete.play_with_variance()
