@@ -22,6 +22,7 @@ config/icon="res://Sprites/Player/portrait1.png"
 Signals="*res://Scripts/Globals/Signals.gd"
 Global="*res://Scripts/Misc/Global.gd"
 AudioManager="*res://Scenes/Misc/AudioManager.tscn"
+TransitionScreen="*res://Scenes/Misc/transitionScreen.tscn"
 
 [display]
 

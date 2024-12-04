@@ -8,7 +8,6 @@ extends Control
 @export var level1Button: TextureButton
 
 func _ready():
-	AudioManager.connect("golevel1", goLevel1)
 	playButton.grab_focus()
 	visible = true
 
@@ -19,9 +18,6 @@ func _on_play_game_pressed():
 	levelSelect.show()
 	level1Button.grab_focus()
 
-
-func goLevel1():
-	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
 
 func _on_options_pressed():
 	AudioManager.playMenuSelect()
@@ -43,5 +39,11 @@ func _on_back_pressed() -> void:
 
 
 func _on_level_1_pressed() -> void:
-	AudioManager.stopTitleTheme()
+	AudioManager.muteMusic()
 	AudioManager.playStartGame()
+	TransitionScreen.fadeToBlack()
+	Signals.connect("endFadeBlack", startLevel1)
+
+
+func startLevel1():
+	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")

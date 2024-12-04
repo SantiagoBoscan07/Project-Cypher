@@ -31,3 +31,7 @@ signal pausemenu
 signal gameOverScreen
 # signal for level start
 signal levelStart
+# signal transition end 
+signal endFadeNormal
+# signal transition end black
+signal endFadeBlack

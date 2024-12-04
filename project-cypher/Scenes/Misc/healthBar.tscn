@@ -11,6 +11,7 @@ lastChance = NodePath("LastChance")
 lowHealthTimer = NodePath("LowHealth")
 
 [node name="Heart" parent="." instance=ExtResource("2_bxamp")]
+visible = false
 
 [node name="Heart2" parent="." instance=ExtResource("2_bxamp")]
 visible = false

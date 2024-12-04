@@ -1,6 +1,5 @@
 extends Node
 
-signal golevel1
 @onready var titleSong: AudioStreamPlayer = $TitleSong
 @onready var shoot: AudioManagerNode = $Shoot
 @onready var dash: AudioManagerNode = $Dash
@@ -20,6 +19,7 @@ signal golevel1
 @onready var powerdown: AudioManagerNode = $Powerdown
 @onready var enemyDeath: AudioManagerNode = $EnemyDeath
 @onready var level1: AudioStreamPlayer = $Level1
+@onready var transition: AudioManagerNode = $Transition
 
 
 var busMusic
@@ -31,9 +31,6 @@ func _ready():
 
 func playTitleTheme():
 	titleSong.play()
-
-func stopTitleTheme():
-	titleSong.stop()
 
 func playShoot():
 	shoot.play_with_variance()
@@ -79,9 +76,6 @@ func muteMusic():
 func playStartGame():
 	startGame.play()
 
-func _on_start_game_finished():
-	emit_signal("golevel1")
-
 func playMeow():
 	meow.play_with_variance()
 
@@ -105,3 +99,6 @@ func playEnemyDeath():
 
 func playLevel1():
 	level1.play()
+
+func playTransition():
+	transition.play_with_variance()

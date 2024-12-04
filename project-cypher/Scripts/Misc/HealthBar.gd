@@ -6,16 +6,18 @@ extends Node
 @export var lowHealthTimer: Timer
 var heart
 func _ready():
-	get_tree().paused = true
+	Signals.connect("endFadeNormal", initialSetup)
+	if player:
+		player.health.connect("health_changed", updateHeart)
+		player.health.connect("no_health", die)
+
+func initialSetup():
 	for heart in arrayHeart:
 		AudioManager.playHeart()
 		heart.show()
 		await get_tree().create_timer(0.25).timeout
 	get_tree().paused = false
 	Signals.emit_signal("levelStart")
-	if player:
-		player.health.connect("health_changed", updateHeart)
-		player.health.connect("no_health", die)
 
 func updateHeart():
 	if arrayHeart.size() > 1:
