@@ -31,14 +31,14 @@ func _on_back_menu_pressed():
 	playButton.grab_focus()
 
 
-func _on_back_pressed() -> void:
+func _on_back_pressed():
 	AudioManager.playMenuSelect()
 	levelSelect.hide()
 	menuSelect.show()
 	playButton.grab_focus()
 
 
-func _on_level_1_pressed() -> void:
+func _on_level_1_pressed():
 	AudioManager.muteMusic()
 	AudioManager.playStartGame()
 	TransitionScreen.fadeToBlack()
@@ -47,3 +47,7 @@ func _on_level_1_pressed() -> void:
 
 func startLevel1():
 	get_tree().change_scene_to_file("res://Scenes/Levels/Level1.tscn")
+
+
+func _on_shader_toggle_pressed():
+	Signals.emit_signal("toggleShader")

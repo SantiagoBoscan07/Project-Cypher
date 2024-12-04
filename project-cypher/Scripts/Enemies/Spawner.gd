@@ -81,7 +81,7 @@ func checkEnemy():
 				wave.process_mode = 0
 				wave.add_to_group("Spawner")
 				wave.add_to_group("Enemy")
-		if isLast:
+		if isLast and !Global.isDead:
 			AudioManager.muteMusic()
 			var projectiles = get_tree().get_nodes_in_group("Enemy")
 			for projectile in projectiles:

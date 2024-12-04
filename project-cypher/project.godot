@@ -23,6 +23,7 @@ Signals="*res://Scripts/Globals/Signals.gd"
 Global="*res://Scripts/Misc/Global.gd"
 AudioManager="*res://Scenes/Misc/AudioManager.tscn"
 TransitionScreen="*res://Scenes/Misc/transitionScreen.tscn"
+ScreenShader="*res://Scenes/Shader/screenShader.tscn"
 
 [display]
 

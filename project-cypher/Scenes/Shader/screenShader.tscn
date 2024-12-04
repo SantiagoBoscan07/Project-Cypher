@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://duahwuhoo0i1b"]
+
+[ext_resource type="Script" path="res://Scripts/Misc/shaderActive.gd" id="1_305dt"]
+[ext_resource type="Shader" path="res://Shader/screenShader.gdshader" id="1_vcptb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7k34"]
+shader = ExtResource("1_vcptb")
+shader_parameter/curvature = 4.0
+shader_parameter/vignette_multiplier = 0.25
+
+[node name="ScreenShader" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_305dt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_l7k34")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -37,3 +37,5 @@ signal endFadeNormal
 signal endFadeBlack
 # signal for end of level
 signal endLevel
+# signal to toggle shader
+signal toggleShader
