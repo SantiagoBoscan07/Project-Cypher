@@ -16,6 +16,7 @@ run/main_scene="res://Scenes/Menu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false
+boot_splash/image="res://Sprites/Misc/Title Screen Text Only-31x0-410x189.png"
 config/icon="res://Sprites/Player/portrait1.png"
 
 [autoload]
