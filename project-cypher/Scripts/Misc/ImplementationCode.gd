@@ -44,7 +44,8 @@ func resetArray():
 
 func endCypher():
 	#print("end cypher")
-	cypherTimer.stop()
+	if !cypherTimer.is_stopped():
+		cypherTimer.stop()
 	hide()
 	Signals.emit_signal("endCypher")
 	process_mode = 4
@@ -55,6 +56,7 @@ func _process(delta: float):
 		progressBar.value += delta
 	if canCheck:
 		if codeCypherArray == playerCypherArray:
+			cypherTimer.stop()
 			canCheck = false
 			isFilling = false
 			AudioManager.playSlotSet()

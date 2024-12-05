@@ -221,17 +221,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_kxg43")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qiwc5")
 text = "Reset Default Controller"
 
-[node name="ShaderToggle" type="TextureButton" parent="InputSettings"]
-layout_mode = 2
-offset_left = 208.0
-offset_top = 32.0
-offset_right = 272.0
-offset_bottom = 48.0
-size_flags_horizontal = 4
-texture_normal = ExtResource("21_rq12h")
-texture_pressed = ExtResource("22_y2dil")
-texture_focused = ExtResource("5_r3vyh")
-
 [node name="Music Label" type="Label" parent="InputSettings"]
 z_index = 1
 layout_mode = 0
@@ -321,6 +310,17 @@ texture_normal = ExtResource("8_731xd")
 texture_pressed = ExtResource("9_sx8hy")
 texture_focused = ExtResource("5_r3vyh")
 
+[node name="ShaderToggle" type="TextureButton" parent="InputSettings"]
+layout_mode = 2
+offset_left = 208.0
+offset_top = 32.0
+offset_right = 272.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+texture_normal = ExtResource("21_rq12h")
+texture_pressed = ExtResource("22_y2dil")
+texture_focused = ExtResource("5_r3vyh")
+
 [node name="Controller Label" type="Label" parent="InputSettings"]
 z_index = 1
 layout_mode = 0
@@ -343,8 +343,8 @@ horizontal_alignment = 1
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/LevelSelect/Level3" to="GameOptions" method="_on_level_3_pressed"]
 [connection signal="pressed" from="GameOptions/PanelContainer/MarginContainer/LevelSelect/Back" to="GameOptions" method="_on_back_pressed"]
 [connection signal="pressed" from="InputSettings/PanelContainer/MarginContainer/ControllerSettings/DefaultButton" to="InputSettings" method="_on_default_button_pressed"]
-[connection signal="pressed" from="InputSettings/ShaderToggle" to="GameOptions" method="_on_shader_toggle_pressed"]
 [connection signal="value_changed" from="InputSettings/Audio/MusicSlider" to="InputSettings/Audio" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="InputSettings/Audio/SoundSlider" to="InputSettings/Audio" method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="InputSettings/BackMenu" to="GameOptions" method="_on_back_menu_pressed"]
 [connection signal="pressed" from="InputSettings/BackMenu" to="InputSettings" method="_on_back_menu_pressed"]
+[connection signal="pressed" from="InputSettings/ShaderToggle" to="GameOptions" method="_on_shader_toggle_pressed"]

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cxa6p52iadu61"
-path="res://.godot/imported/Orchid's Veil Staff Roll.MP3-60a42dd8ba43a7b219c5bd94c21055ca.mp3str"
+path="res://.godot/imported/Orchid's Veil Staff Roll.mp3-380d2aa6c7e615d81eae295d981dca96.mp3str"
 
 [deps]
 
-source_file="res://Music/Orchid's Veil Staff Roll.MP3"
-dest_files=["res://.godot/imported/Orchid's Veil Staff Roll.MP3-60a42dd8ba43a7b219c5bd94c21055ca.mp3str"]
+source_file="res://Music/Orchid's Veil Staff Roll.mp3"
+dest_files=["res://.godot/imported/Orchid's Veil Staff Roll.mp3-380d2aa6c7e615d81eae295d981dca96.mp3str"]
 
 [params]
 

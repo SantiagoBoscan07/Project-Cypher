@@ -51,5 +51,5 @@ func endPowerUp():
 	barTimer.start()
 
 func resumeGame():
-	get_tree().paused = !get_tree().paused
+	get_tree().paused = false
 	label.hide()
