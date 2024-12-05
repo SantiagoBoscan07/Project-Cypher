@@ -23,7 +23,7 @@ extends Node
 @onready var levelComplete: AudioManagerNode = $LevelComplete
 @onready var level2: AudioStreamPlayer = $Level2
 @onready var level3: AudioStreamPlayer = $Level3
-
+@onready var credits: AudioStreamPlayer = $Credits
 
 
 var busMusic
@@ -115,3 +115,6 @@ func playLevel2():
 
 func playLevel3():
 	level3.play()
+
+func playCredits():
+	credits.play()

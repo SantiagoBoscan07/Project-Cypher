@@ -71,3 +71,13 @@ func _on_level_3_pressed() -> void:
 
 func startLevel3():
 	get_tree().change_scene_to_file("res://Scenes/Levels/Level3.tscn")
+
+
+func _on_credits_pressed() -> void:
+	AudioManager.muteMusic()
+	AudioManager.playStartGame()
+	TransitionScreen.fadeToBlack()
+	Signals.connect("endFadeBlack", startCredits)
+
+func startCredits():
+	get_tree().change_scene_to_file("res://Scenes/Menu/credits.tscn")
