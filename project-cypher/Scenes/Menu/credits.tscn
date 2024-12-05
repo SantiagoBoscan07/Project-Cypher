@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c71mr8aecqkkk"]
+
+[ext_resource type="FontFile" uid="uid://b5w4bpcpnvqoj" path="res://Misc/LowGothic_8x10_Regular.ttf" id="1_5gpso"]
+[ext_resource type="PackedScene" uid="uid://cls6xfv5lmsj6" path="res://Scenes/Player/player.tscn" id="1_ue7mp"]
+
+[node name="credits" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(96, 64)
+zoom = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 9.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0.780392, 0.776471, 0.776471, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_5gpso")
+theme_override_font_sizes/font_size = 8
+text = "test"
+
+[node name="Player" parent="." instance=ExtResource("1_ue7mp")]
+position = Vector2(48, 80)

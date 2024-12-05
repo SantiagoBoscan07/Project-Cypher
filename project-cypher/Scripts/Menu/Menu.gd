@@ -61,3 +61,13 @@ func _on_level_2_pressed():
 
 func startLevel2():
 	get_tree().change_scene_to_file("res://Scenes/Levels/Level2.tscn")
+
+
+func _on_level_3_pressed() -> void:
+	AudioManager.muteMusic()
+	AudioManager.playStartGame()
+	TransitionScreen.fadeToBlack()
+	Signals.connect("endFadeBlack", startLevel3)
+
+func startLevel3():
+	get_tree().change_scene_to_file("res://Scenes/Levels/Level3.tscn")

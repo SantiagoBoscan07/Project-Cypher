@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2rh7n471a6cq"]
+[gd_scene load_steps=25 format=3 uid="uid://c2rh7n471a6cq"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/AudioPlayer.gd" id="1_68gys"]
 [ext_resource type="AudioStream" uid="uid://cjit27c2duskx" path="res://Sound Effects/Hit.wav" id="1_smpyj"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://b4fwhs4smkyd2" path="res://Sound Effects/Transition.wav" id="21_qb4nt"]
 [ext_resource type="AudioStream" uid="uid://dn0xhbhm5cgs1" path="res://Sound Effects/LevelComplete.wav" id="22_np4o1"]
 [ext_resource type="AudioStream" uid="uid://0ap7dpau0fba" path="res://Music/level2.mp3" id="23_f3ipy"]
+[ext_resource type="AudioStream" uid="uid://dlyg6my3ol3ha" path="res://Music/level3.MP3" id="24_4objb"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -165,6 +166,10 @@ pitch_max = 0.7
 
 [node name="Level2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_f3ipy")
+bus = &"Music"
+
+[node name="Level3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_4objb")
 bus = &"Music"
 
 [connection signal="finished" from="DeathPlayer" to="." method="_on_death_player_finished"]

@@ -2,18 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://1306631j2ug3"
-path="res://.godot/imported/level3.mp3-3d47440c0c084a615cce6dc577f5a07c.mp3str"
+uid="uid://dlyg6my3ol3ha"
+path="res://.godot/imported/level3.MP3-298c0238c9c01000bde5d321324d2dd6.mp3str"
 
 [deps]
 
-source_file="res://Music/level3.mp3"
-dest_files=["res://.godot/imported/level3.mp3-3d47440c0c084a615cce6dc577f5a07c.mp3str"]
+source_file="res://Music/level3.MP3"
+dest_files=["res://.godot/imported/level3.MP3-298c0238c9c01000bde5d321324d2dd6.mp3str"]
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=6.2
+bpm=0.0
 beat_count=0
 bar_beats=4

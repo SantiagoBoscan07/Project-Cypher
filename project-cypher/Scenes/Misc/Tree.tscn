@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Misc/Hurtbox.gd" id="2_p0qv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmpuw"]
-size = Vector2(6, 8)
+size = Vector2(15, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rwi5"]
 size = Vector2(13, 7)
@@ -20,7 +20,7 @@ y_sort_enabled = true
 texture = ExtResource("1_vpyu6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(-0.5, 7)
 shape = SubResource("RectangleShape2D_pmpuw")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -29,5 +29,6 @@ collision_mask = 0
 script = ExtResource("2_p0qv6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
 position = Vector2(0.5, 12.5)
 shape = SubResource("RectangleShape2D_5rwi5")

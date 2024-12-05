@@ -42,7 +42,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djgqr"]
-size = Vector2(5.20278, 5.79738)
+size = Vector2(6.98661, 5.79738)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81rdy"]
 size = Vector2(9.06773, 9.00718)
@@ -65,7 +65,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.41555, 9.09106)
+position = Vector2(-0.415457, 9.09106)
 shape = SubResource("RectangleShape2D_djgqr")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -74,5 +74,6 @@ collision_mask = 0
 script = ExtResource("2_i1tnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
 position = Vector2(-0.564106, 11.5136)
 shape = SubResource("RectangleShape2D_81rdy")
