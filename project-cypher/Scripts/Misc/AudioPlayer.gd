@@ -21,6 +21,8 @@ extends Node
 @onready var level1: AudioStreamPlayer = $Level1
 @onready var transition: AudioManagerNode = $Transition
 @onready var levelComplete: AudioManagerNode = $LevelComplete
+@onready var level2: AudioStreamPlayer = $Level2
+
 
 
 var busMusic
@@ -106,3 +108,6 @@ func playTransition():
 
 func playLevelComplete():
 	levelComplete.play_with_variance()
+
+func playLevel2():
+	level2.play()
