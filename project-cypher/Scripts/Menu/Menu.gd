@@ -60,7 +60,7 @@ func _on_level_2_pressed():
 	Signals.connect("endFadeBlack", startLevel2)
 
 func startLevel2():
-	get_tree().change_scene_to_file("res://Scenes/Levels/Level2.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/level2.tscn")
 
 
 func _on_level_3_pressed() -> void:
